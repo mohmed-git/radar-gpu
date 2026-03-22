@@ -82,7 +82,7 @@ function initNavbar() {
 // ← غيّر هذا الرابط بعد نشر Backend على Railway/Render
 // لا يوجد Backend حالياً — يعمل بالبيانات الثابتة مباشرةً
 // عند نشر Backend على Railway، أدخل رابطه هنا بدل null
-const API_BASE = null;
+const API_BASE = 'https://radar-gpu-production.up.railway.app';
 
 let LIVE_DATA      = null; // يُملأ بعد الجلب
 let LAST_UPDATED   = null;
