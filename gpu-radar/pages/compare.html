@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مقارنة قطع الكمبيوتر | GPU Radar — قارن GPU و CPU جنباً إلى جنب</title>
+  <meta name="description" content="قارن بين بطاقات الرسوميات GPU والمعالجات CPU جنباً إلى جنب من حيث السعر وتاريخه والمواصفات وقيمة الأداء."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://gpu-radar.com/pages/compare.html"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .compare-selectors { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2rem; }
+    .compare-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .compare-card h3 { font-size: .9rem; color: var(--text3); margin-bottom: .75rem; text-transform: uppercase; letter-spacing: 1px; }
+    .compare-result { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.25rem; align-items: start; margin-top: 2rem; }
+    .compare-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .compare-vs { display: flex; align-items: center; justify-content: center; font-family: var(--font-data); font-size: 1.4rem; font-weight: 700; color: var(--text3); }
+    .cmp-name { font-size: 1.1rem; font-weight: 700; margin-bottom: .25rem; }
+    .cmp-brand { font-size: .78rem; color: var(--text3); margin-bottom: 1.25rem; }
+    .cmp-price { font-family: var(--font-data); font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: .25rem; }
+    .cmp-change { font-size: .85rem; margin-bottom: 1.5rem; }
+    .cmp-row { display: flex; justify-content: space-between; padding: .55rem 0; border-bottom: 1px solid rgba(255,255,255,.04); font-size: .88rem; }
+    .cmp-row .label { color: var(--text3); }
+    .cmp-row .val { color: var(--text); font-weight: 500; }
+    .winner { border-color: rgba(56,189,248,.3) !important; }
+    .winner-badge { display: inline-flex; align-items: center; gap: .3rem; background: var(--accent-dim); border: 1px solid rgba(56,189,248,.3); color: var(--accent); font-size: .75rem; font-weight: 700; padding: .2rem .65rem; border-radius: 4px; margin-bottom: .75rem; }
+    .chart-compare { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 1.5rem; }
+    .chart-compare h3 { font-size: 1rem; margin-bottom: 1rem; }
+    @media(max-width:768px){ .compare-selectors{grid-template-columns:1fr;} .compare-result{grid-template-columns:1fr;} .compare-vs{display:none;} }
+  </style>
+</head>
+<body>
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+    <nav class="nav-menu" id="nav-menu">
+      <a href="../index.html" class="nav-link">الرئيسية</a>
+      <a href="gpu.html" class="nav-link">GPU</a>
+      <a href="cpu.html" class="nav-link">CPU</a>
+      <a href="compare.html" class="nav-link active">المقارنة</a>
+      <a href="blog.html" class="nav-link">المدونة</a>
+      <a href="about.html" class="nav-link">من نحن</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="alerts.html" class="btn-alert"><span class="bell-dot"></span>تنبيهات</a>
+      <button class="burger" id="burger" aria-label="فتح القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container"><h1>مقارنة القطع</h1><p>قارن بين أي قطعتين جنباً إلى جنب من حيث السعر والمواصفات والقيمة</p></div>
+  </section>
+
+  <section class="section" style="background:var(--bg2)">
+    <div class="container">
+      <!-- Selectors -->
+      <div class="compare-selectors">
+        <div class="compare-card">
+          <h3>القطعة الأولى</h3>
+          <div class="form-field">
+            <select id="part-a" onchange="runCompare()" aria-label="القطعة الأولى">
+              <option value="" disabled selected>— اختر قطعة —</option>
+            </select>
+          </div>
+        </div>
+        <div class="compare-card">
+          <h3>القطعة الثانية</h3>
+          <div class="form-field">
+            <select id="part-b" onchange="runCompare()" aria-label="القطعة الثانية">
+              <option value="" disabled selected>— اختر قطعة —</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div id="compare-result" style="display:none">
+        <div class="compare-result">
+          <div class="compare-col" id="col-a"></div>
+          <div class="compare-vs">VS</div>
+          <div class="compare-col" id="col-b"></div>
+        </div>
+        <div class="chart-compare">
+          <h3>مقارنة تاريخ الأسعار</h3>
+          <div style="position:relative;height:260px"><canvas id="compare-chart"></canvas></div>
+        </div>
+      </div>
+
+      <div id="compare-empty" style="text-align:center;padding:3rem;color:var(--text3)">
+        <div style="font-size:3rem;margin-bottom:1rem">⚖️</div>
+        <p>اختر قطعتين من القائمتين أعلاه لبدء المقارنة</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand"><a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a><p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p></div>
+    <nav class="footer-nav">
+      <div class="footer-col"><h4>الأسعار</h4><ul><li><a href="gpu.html">GPU</a></li><li><a href="cpu.html">CPU</a></li></ul></div>
+      <div class="footer-col"><h4>الموقع</h4><ul><li><a href="about.html">من نحن</a></li><li><a href="contact.html">تواصل</a></li></ul></div>
+      <div class="footer-col"><h4>قانوني</h4><ul><li><a href="privacy-policy.html">الخصوصية</a></li><li><a href="terms.html">الشروط</a></li></ul></div>
+    </nav>
+  </div>
+  <div class="footer-bottom"><div class="container footer-bottom-inner"><p>© 2025 GPU Radar.</p></div></div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// Data loaded from ../js/data.js (ALL_PARTS, MONTHS_AR, calcChange)
+
+// Populate selects
+['part-a','part-b'].forEach(id => {
+  const sel = document.getElementById(id);
+  const gpus = ALL_PARTS.filter(p=>p.type==='GPU');
+  const cpus = ALL_PARTS.filter(p=>p.type==='CPU');
+  [['🎮 بطاقات الرسوميات', gpus], ['⚡ المعالجات', cpus]].forEach(([label, items]) => {
+    const og = document.createElement('optgroup');
+    og.label = label;
+    items.forEach(p => { const o = new Option(`${p.brand} ${p.name} — $${p.price.toLocaleString()}`, p.id); og.appendChild(o); });
+    sel.appendChild(og);
+  });
+});
+
+// Default
+document.getElementById('part-a').value = 'rtx4080s';
+document.getElementById('part-b').value = 'rx7900xtx';
+
+let cmpChart = null;
+
+function calcChange(c,p){ return ((c-p)/p*100).toFixed(1); }
+
+function buildCol(p, isWinner) {
+  const ch = parseFloat(calcChange(p.price, p.prev));
+  const brandCls = `brand-${p.brand.toLowerCase()}`;
+  const chCls = ch > 0 ? 'change-up' : ch < 0 ? 'change-down' : 'change-flat';
+  const chSign = ch > 0 ? '▲' : ch < 0 ? '▼' : '—';
+  const drop = ((p.price - p.low52) / p.low52 * 100).toFixed(0);
+  return `
+    ${isWinner ? '<div class="winner-badge">◈ أفضل قيمة</div>' : ''}
+    <div class="cmp-name">${p.name}</div>
+    <div class="cmp-brand"><span class="brand-badge ${brandCls}">${p.brand}</span> · ${p.type}</div>
+    <div class="cmp-price">$${p.price.toLocaleString()}</div>
+    <div class="cmp-change"><span class="change-badge ${chCls}">${chSign}${Math.abs(ch)}%</span> <span style="color:var(--text3);font-size:.8rem">من الشهر الماضي</span></div>
+    <div class="cmp-row"><span class="label">أعلى سعر (52 أسبوع)</span><span class="val" style="color:var(--red)">$${p.high52.toLocaleString()}</span></div>
+    <div class="cmp-row"><span class="label">أدنى سعر (52 أسبوع)</span><span class="val" style="color:var(--green)">$${p.low52.toLocaleString()}</span></div>
+    <div class="cmp-row"><span class="label">السعر السابق</span><span class="val">$${p.prev.toLocaleString()}</span></div>
+    <div class="cmp-row"><span class="label">فوق القاع بـ</span><span class="val">+${drop}%</span></div>
+    <div class="cmp-row"><span class="label">الفئة</span><span class="val">${p.type}</span></div>
+  `;
+}
+
+function runCompare() {
+  const idA = document.getElementById('part-a').value;
+  const idB = document.getElementById('part-b').value;
+  if (!idA || !idB || idA === idB) return;
+
+  const pA = ALL_PARTS.find(p => p.id === idA);
+  const pB = ALL_PARTS.find(p => p.id === idB);
+  if (!pA || !pB) return;
+
+  document.getElementById('compare-empty').style.display = 'none';
+  document.getElementById('compare-result').style.display = 'block';
+
+  // Determine winner (lower price relative to its 52w high)
+  const scoreA = pA.price / pA.high52;
+  const scoreB = pB.price / pB.high52;
+  const winnerA = scoreA <= scoreB;
+
+  const colA = document.getElementById('col-a');
+  const colB = document.getElementById('col-b');
+  colA.className = 'compare-col' + (winnerA ? ' winner' : '');
+  colB.className = 'compare-col' + (!winnerA ? ' winner' : '');
+  colA.innerHTML = buildCol(pA, winnerA);
+  colB.innerHTML = buildCol(pB, !winnerA);
+
+  // Chart
+  const ctx = document.getElementById('compare-chart');
+  if (cmpChart) cmpChart.destroy();
+  cmpChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: MONTHS_AR,
+      datasets: [
+        { label: pA.name, data: pA.series, borderColor: '#38BDF8', backgroundColor: '#38BDF810', borderWidth: 2, pointRadius: 3, tension: 0.35, fill: false },
+        { label: pB.name, data: pB.series, borderColor: '#F87171', backgroundColor: '#F8717110', borderWidth: 2, pointRadius: 3, tension: 0.35, fill: false },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: true, labels: { color: '#94A3B8', font: { size: 12 }, boxWidth: 12, boxHeight: 12 } },
+        tooltip: { backgroundColor: '#1A2332', borderColor: 'rgba(99,179,237,.2)', borderWidth: 1, titleColor: '#94A3B8', bodyColor: '#E2E8F0', callbacks: { label: c => ` ${c.dataset.label}: $${c.parsed.y.toLocaleString()}` } }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#64748B', font: { size: 11 } } },
+        y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#64748B', font: { size: 11 }, callback: v => '$' + v.toLocaleString() } }
+      }
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => { initNavbar(); runCompare(); });
+runCompare();
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>أسعار المعالجات CPU | GPU Radar — Intel و AMD Ryzen</title>
+  <meta name="description" content="تتبع أسعار جميع معالجات Intel Core وAMD Ryzen. مقارنات i9-14900K، Ryzen 9 7950X وأكثر مع مخططات تاريخية."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://gpu-radar.com/pages/cpu.html"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+    <nav class="nav-menu" id="nav-menu">
+      <a href="../index.html" class="nav-link">الرئيسية</a>
+      <a href="gpu.html"     class="nav-link">بطاقات الرسوميات</a>
+      <a href="cpu.html"     class="nav-link active">المعالجات</a>
+      <a href="compare.html" class="nav-link">المقارنة</a>
+      <a href="blog.html"    class="nav-link">المدونة</a>
+      <a href="about.html"   class="nav-link">من نحن</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="alerts.html" class="btn-alert"><span class="bell-dot"></span>تنبيهات</a>
+      <button class="burger" id="burger" aria-label="فتح القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>أسعار المعالجات CPU</h1>
+      <p>Intel Core و AMD Ryzen — أسعار لحظية لكل الأجيال مع تاريخ 12 شهرًا</p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="filter-bar">
+        <div class="filter-tabs">
+          <button class="ftab active" onclick="filterCPU('all',this)"      aria-pressed="true">الكل</button>
+          <button class="ftab"        onclick="filterCPU('intel',this)"    aria-pressed="false">Intel</button>
+          <button class="ftab"        onclick="filterCPU('amd',this)"      aria-pressed="false">AMD</button>
+          <button class="ftab"        onclick="filterCPU('flagship',this)" aria-pressed="false">Flagship</button>
+          <button class="ftab"        onclick="filterCPU('high-end',this)" aria-pressed="false">High-End</button>
+          <button class="ftab"        onclick="filterCPU('mid-range',this)" aria-pressed="false">Mid-Range</button>
+          <button class="ftab"        onclick="filterCPU('budget',this)"   aria-pressed="false">Budget</button>
+        </div>
+        <select onchange="sortCPU(this.value)" aria-label="ترتيب حسب">
+          <option value="name">الاسم</option>
+          <option value="price-asc">الأقل سعرًا</option>
+          <option value="price-desc">الأعلى سعرًا</option>
+          <option value="drop">أكبر انخفاض</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th scope="col">المعالج</th>
+              <th scope="col">الشركة</th>
+              <th scope="col">الفئة</th>
+              <th scope="col">السعر الحالي</th>
+              <th scope="col">قبل شهر</th>
+              <th scope="col">التغيّر</th>
+              <th scope="col">أعلى / أدنى</th>
+              <th scope="col">6 أشهر</th>
+            </tr>
+          </thead>
+          <tbody id="cpu-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--bg)">
+    <div class="container">
+      <div class="section-head"><h2>دليل شراء المعالجات 2025</h2></div>
+      <div class="content-grid">
+        <article class="content-main">
+          <h3 id="i9">Intel Core i9-14900K — الأسرع في Single-Core</h3>
+          <p>يتميز i9-14900K بأعلى أداء single-core، مما يجعله الخيار الأول للألعاب الحساسة للتردد. انخفض سعره بنسبة 16% خلال 2025 مع اقتراب إطلاق الجيل الخامس عشر.</p>
+          <h3 id="ryzen9">AMD Ryzen 9 7950X — ملك المهام المتعددة</h3>
+          <p>بـ 16 نواة و32 خيطاً، يتفوق Ryzen 9 7950X في تطبيقات التصيير والمونتاج. انخفض سعره بأكثر من 30% منذ إطلاقه — صفقة ممتازة الآن.</p>
+          <h3>أفضل قيمة: Ryzen 5 7600X</h3>
+          <p>للاعبين بميزانية معقولة، يقدم Ryzen 5 7600X أداءً استثنائياً بسعر لا يتجاوز $179. فارق الأداء عن المعالجات الأغلى لا يتعدى 10% في معظم الألعاب.</p>
+          <p>قارن المعالجات مع <a href="gpu.html" style="color:var(--accent)">بطاقات الرسوميات</a> عبر <a href="compare.html" style="color:var(--accent)">أداة المقارنة</a>.</p>
+        </article>
+        <aside class="content-sidebar">
+          <div class="sidebar-widget">
+            <h3>⚡ روابط سريعة</h3>
+            <ul>
+              <li><a href="#i9">Core i9-14900K — $419</a></li>
+              <li><a href="#ryzen9">Ryzen 9 7950X — $549</a></li>
+              <li><a href="compare.html">مقارنة CPU vs CPU</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-widget alert-widget">
+            <h3>🔔 تنبيه السعر</h3>
+            <p>سنخبرك عند انخفاض سعر معالجك</p>
+            <form onsubmit="(function(e){e.preventDefault();document.getElementById('cpu-ok').style.display='block';})(event)">
+              <input type="email" placeholder="بريدك الإلكتروني" required aria-label="البريد الإلكتروني"/>
+              <button type="submit">اشترك مجاناً</button>
+            </form>
+            <div id="cpu-ok" style="display:none;color:#4ade80;font-size:.85rem;margin-top:.5rem">✓ تم الاشتراك!</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+      <p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p>
+    </div>
+    <nav class="footer-nav">
+      <div class="footer-col"><h4>الأسعار</h4><ul>
+        <li><a href="gpu.html">بطاقات GPU</a></li>
+        <li><a href="cpu.html">معالجات CPU</a></li>
+        <li><a href="compare.html">المقارنة</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>الموقع</h4><ul>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="blog.html">المدونة</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>قانوني</h4><ul>
+        <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+        <li><a href="terms.html">الشروط والأحكام</a></li>
+      </ul></div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2025 GPU Radar. جميع الحقوق محفوظة.</p>
+      <p class="footer-disclaimer">الأسعار للأغراض المعلوماتية. نشارك في برامج عمولة.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- data.js يُعرّف CPU_DATA, calcChange, makeSpark, initNavbar -->
+<script src="../js/data.js"></script>
+<script>
+let cpuFilter = 'all', cpuSort = 'name';
+
+function renderCPU() {
+  let d = [...CPU_DATA];
+  if (cpuFilter === 'intel')    d = d.filter(p => p.brand === 'Intel');
+  else if (cpuFilter === 'amd') d = d.filter(p => p.brand === 'AMD');
+  else if (cpuFilter !== 'all') d = d.filter(p => p.tier === cpuFilter);
+
+  if (cpuSort === 'price-asc')       d.sort((a, b) => a.price - b.price);
+  else if (cpuSort === 'price-desc') d.sort((a, b) => b.price - a.price);
+  else if (cpuSort === 'drop')       d.sort((a, b) => parseFloat(calcChange(a.price,a.prev)) - parseFloat(calcChange(b.price,b.prev)));
+
+  document.getElementById('cpu-tbody').innerHTML = d.map(p => {
+    const ch = parseFloat(calcChange(p.price, p.prev));
+    const chCls  = ch > 0 ? 'change-up' : ch < 0 ? 'change-down' : 'change-flat';
+    const chSign = ch > 0 ? '▲' : ch < 0 ? '▼' : '—';
+    return `<tr>
+      <td class="td-name">${p.name}<small>${p.brand} · ${p.tier}</small></td>
+      <td><span class="brand-badge brand-${p.brand.toLowerCase()}">${p.brand}</span></td>
+      <td><span style="font-size:.75rem;color:var(--text3)">${p.tier}</span></td>
+      <td class="td-price">$${p.price.toLocaleString()}</td>
+      <td class="td-prev">$${p.prev.toLocaleString()}</td>
+      <td><span class="change-badge ${chCls}">${chSign}${Math.abs(ch)}%</span></td>
+      <td class="price-range"><span class="high">▲$${p.high52.toLocaleString()}</span> / <span class="low">▼$${p.low52.toLocaleString()}</span></td>
+      <td>${makeSpark(p.series.slice(-6))}</td>
+    </tr>`;
+  }).join('');
+}
+
+function filterCPU(f, btn) {
+  cpuFilter = f;
+  document.querySelectorAll('.ftab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+  btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+  renderCPU();
+}
+function sortCPU(v) { cpuSort = v; renderCPU(); }
+
+document.addEventListener('DOMContentLoaded', () => { initNavbar(); renderCPU(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>بطاقات الرسوميات GPU | GPU Radar — أسعار NVIDIA و AMD</title>
+  <meta name="description" content="تتبع أسعار جميع بطاقات الرسوميات GPU من NVIDIA وAMD. مقارنات RTX 4090، RX 7900 XTX وأكثر مع مخططات تاريخية."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://gpu-radar.com/pages/gpu.html"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+    <nav class="nav-menu" id="nav-menu">
+      <a href="../index.html" class="nav-link">الرئيسية</a>
+      <a href="gpu.html"     class="nav-link active">بطاقات الرسوميات</a>
+      <a href="cpu.html"     class="nav-link">المعالجات</a>
+      <a href="compare.html" class="nav-link">المقارنة</a>
+      <a href="blog.html"    class="nav-link">المدونة</a>
+      <a href="about.html"   class="nav-link">من نحن</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="alerts.html" class="btn-alert"><span class="bell-dot"></span>تنبيهات</a>
+      <button class="burger" id="burger" aria-label="فتح القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>بطاقات الرسوميات GPU</h1>
+      <p>أسعار لحظية لأكثر من 120 بطاقة من NVIDIA و AMD — محدّثة يومياً</p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="filter-bar">
+        <div class="filter-tabs">
+          <button class="ftab active" onclick="filterGPU('all',this)"    aria-pressed="true">الكل</button>
+          <button class="ftab"        onclick="filterGPU('nvidia',this)" aria-pressed="false">NVIDIA</button>
+          <button class="ftab"        onclick="filterGPU('amd',this)"    aria-pressed="false">AMD</button>
+          <button class="ftab"        onclick="filterGPU('flagship',this)"  aria-pressed="false">Flagship</button>
+          <button class="ftab"        onclick="filterGPU('high-end',this)"  aria-pressed="false">High-End</button>
+          <button class="ftab"        onclick="filterGPU('mid-range',this)" aria-pressed="false">Mid-Range</button>
+          <button class="ftab"        onclick="filterGPU('budget',this)"    aria-pressed="false">Budget</button>
+        </div>
+        <select onchange="sortGPU(this.value)" aria-label="ترتيب حسب">
+          <option value="name">الاسم</option>
+          <option value="price-asc">الأقل سعرًا</option>
+          <option value="price-desc">الأعلى سعرًا</option>
+          <option value="drop">أكبر انخفاض</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th scope="col">البطاقة</th>
+              <th scope="col">الشركة</th>
+              <th scope="col">الفئة</th>
+              <th scope="col">السعر الحالي</th>
+              <th scope="col">قبل شهر</th>
+              <th scope="col">التغيّر</th>
+              <th scope="col">أعلى / أدنى</th>
+              <th scope="col">6 أشهر</th>
+            </tr>
+          </thead>
+          <tbody id="gpu-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--bg)">
+    <div class="container">
+      <div class="section-head"><h2>دليل شراء بطاقات الرسوميات 2025</h2></div>
+      <div class="content-grid">
+        <article class="content-main">
+          <h3 id="rtx4090">RTX 4090 — الملك بلا منازع</h3>
+          <p>تظل RTX 4090 أقوى بطاقة للمستهلكين بفارق كبير. أداؤها في 4K لا يُضاهى، لكن سعرها يجعلها خياراً للمحترفين وعشاق الأداء الأقصى فحسب. انخفض سعرها بنسبة 4.4% خلال الشهر الأخير.</p>
+          <h3 id="rtx4080">RTX 4080 Super — أفضل قيمة في الفئة العليا</h3>
+          <p>بعد تخفيضات 2025، أصبحت RTX 4080 Super تمثل أفضل قيمة في الفئة العليا. فرق الأداء عن 4090 لا يتجاوز 20% بينما فرق السعر يتجاوز 50%.</p>
+          <h3 id="rx7900xtx">RX 7900 XTX — أفضل منافس لـ NVIDIA</h3>
+          <p>تقدم AMD بطاقة قوية بذاكرة VRAM تصل إلى 24GB، مما يجعلها خياراً مثالياً للتصميم ثلاثي الأبعاد والذكاء الاصطناعي بسعر أقل من المنافس المباشر.</p>
+          <h3>RTX 4070 Super — ملك الـ Mid-Range</h3>
+          <p>للاعبين بدقة 1440p، تقدم RTX 4070 Super أداءً استثنائياً بسعر معقول. انخفض سعرها بشكل لافت خلال 2025 مع اقتراب إطلاق الجيل الجديد.</p>
+          <p>تصفح أسعار <a href="cpu.html" style="color:var(--accent)">المعالجات CPU</a> أيضاً، أو استخدم <a href="compare.html" style="color:var(--accent)">أداة المقارنة</a> لاختيار الأنسب لك.</p>
+        </article>
+        <aside class="content-sidebar">
+          <div class="sidebar-widget">
+            <h3>⚡ روابط سريعة</h3>
+            <ul>
+              <li><a href="#rtx4090">RTX 4090 — $2,199</a></li>
+              <li><a href="#rtx4080">RTX 4080 Super — $999</a></li>
+              <li><a href="#rx7900xtx">RX 7900 XTX — $879</a></li>
+              <li><a href="compare.html">مقارنة GPU vs GPU</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-widget alert-widget">
+            <h3>🔔 تنبيه السعر</h3>
+            <p>سنخبرك عند انخفاض سعر قطعتك</p>
+            <form onsubmit="(function(e){e.preventDefault();document.getElementById('gpu-alert-ok').style.display='block';})(event)">
+              <input type="email" placeholder="بريدك الإلكتروني" required aria-label="البريد الإلكتروني"/>
+              <button type="submit">اشترك مجاناً</button>
+            </form>
+            <div id="gpu-alert-ok" style="display:none;color:#4ade80;font-size:.85rem;margin-top:.5rem">✓ تم الاشتراك!</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+      <p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p>
+    </div>
+    <nav class="footer-nav">
+      <div class="footer-col"><h4>الأسعار</h4><ul>
+        <li><a href="gpu.html">بطاقات GPU</a></li>
+        <li><a href="cpu.html">معالجات CPU</a></li>
+        <li><a href="compare.html">المقارنة</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>الموقع</h4><ul>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="blog.html">المدونة</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>قانوني</h4><ul>
+        <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+        <li><a href="terms.html">الشروط والأحكام</a></li>
+      </ul></div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2025 GPU Radar. جميع الحقوق محفوظة.</p>
+      <p class="footer-disclaimer">الأسعار للأغراض المعلوماتية. نشارك في برامج عمولة.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- data.js يُعرّف GPU_DATA, calcChange, makeSpark, initNavbar -->
+<script src="../js/data.js"></script>
+<script>
+let gpuFilter = 'all', gpuSort = 'name';
+
+function renderGPU() {
+  let d = [...GPU_DATA];
+  if (gpuFilter === 'nvidia')    d = d.filter(p => p.brand === 'NVIDIA');
+  else if (gpuFilter === 'amd')  d = d.filter(p => p.brand === 'AMD');
+  else if (gpuFilter !== 'all')  d = d.filter(p => p.tier === gpuFilter);
+
+  if (gpuSort === 'price-asc')  d.sort((a, b) => a.price - b.price);
+  else if (gpuSort === 'price-desc') d.sort((a, b) => b.price - a.price);
+  else if (gpuSort === 'drop')  d.sort((a, b) => parseFloat(calcChange(a.price,a.prev)) - parseFloat(calcChange(b.price,b.prev)));
+
+  document.getElementById('gpu-tbody').innerHTML = d.map(p => {
+    const ch = parseFloat(calcChange(p.price, p.prev));
+    const chCls  = ch > 0 ? 'change-up' : ch < 0 ? 'change-down' : 'change-flat';
+    const chSign = ch > 0 ? '▲' : ch < 0 ? '▼' : '—';
+    return `<tr>
+      <td class="td-name">${p.name}<small>${p.brand} · ${p.tier}</small></td>
+      <td><span class="brand-badge brand-${p.brand.toLowerCase()}">${p.brand}</span></td>
+      <td><span style="font-size:.75rem;color:var(--text3)">${p.tier}</span></td>
+      <td class="td-price">$${p.price.toLocaleString()}</td>
+      <td class="td-prev">$${p.prev.toLocaleString()}</td>
+      <td><span class="change-badge ${chCls}">${chSign}${Math.abs(ch)}%</span></td>
+      <td class="price-range"><span class="high">▲$${p.high52.toLocaleString()}</span> / <span class="low">▼$${p.low52.toLocaleString()}</span></td>
+      <td>${makeSpark(p.series.slice(-6))}</td>
+    </tr>`;
+  }).join('');
+}
+
+function filterGPU(f, btn) {
+  gpuFilter = f;
+  document.querySelectorAll('.ftab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+  btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+  renderGPU();
+}
+function sortGPU(v) { gpuSort = v; renderGPU(); }
+
+document.addEventListener('DOMContentLoaded', () => { initNavbar(); renderGPU(); });
+</script>
+</body>
+</html>

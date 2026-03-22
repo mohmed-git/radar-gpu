@@ -1,0 +1,7 @@
+# Netlify Redirects — GPU Radar
+
+# 404 handler
+/*    /404.html    404
+
+# API proxy to backend (if deployed separately)
+# /api/*    https://your-backend.railway.app/api/:splat    200

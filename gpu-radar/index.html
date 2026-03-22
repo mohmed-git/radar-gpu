@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══ SEO CORE ═══ -->
+  <title>GPU Radar | تتبع أسعار GPU و CPU في الوقت الفعلي — مقارنة أسعار قطع الكمبيوتر</title>
+  <meta name="description" content="تتبع أسعار بطاقات الرسوميات GPU والمعالجات CPU لحظةً بلحظة. مقارنات تفصيلية، مخططات تاريخية، وتنبيهات انخفاض الأسعار للمتسوقين العرب." />
+  <meta name="keywords" content="أسعار GPU, أسعار CPU, بطاقات رسوميات, معالجات, RTX 4090, RX 7900, Ryzen, Intel, قطع الكمبيوتر, مقارنة أسعار" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="author" content="GPU Radar" />
+  <meta name="language" content="Arabic" />
+  <link rel="canonical" href="https://gpu-radar.com/" />
+
+  <!-- ═══ OPEN GRAPH ═══ -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gpu-radar.com/" />
+  <meta property="og:title" content="GPU Radar | تتبع أسعار قطع الكمبيوتر" />
+  <meta property="og:description" content="رادار أسعار GPU و CPU — مقارنات فورية، مخططات تاريخية، وتنبيهات الأسعار للمتسوقين العرب." />
+  <meta property="og:image" content="https://gpu-radar.com/assets/og-image.jpg" />
+  <meta property="og:locale" content="ar_AR" />
+  <meta property="og:site_name" content="GPU Radar" />
+
+  <!-- ═══ TWITTER CARD ═══ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@GPURadarAR" />
+  <meta name="twitter:title" content="GPU Radar | تتبع أسعار قطع الكمبيوتر" />
+  <meta name="twitter:description" content="تتبع أسعار GPU و CPU لحظةً بلحظة مع مخططات تاريخية كاملة." />
+  <meta name="twitter:image" content="https://gpu-radar.com/assets/og-image.jpg" />
+
+  <!-- ═══ SCHEMA.ORG JSON-LD ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://gpu-radar.com/#website",
+        "url": "https://gpu-radar.com/",
+        "name": "GPU Radar",
+        "description": "منصة تتبع أسعار GPU و CPU في الوقت الفعلي",
+        "inLanguage": "ar",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://gpu-radar.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://gpu-radar.com/#org",
+        "name": "GPU Radar",
+        "url": "https://gpu-radar.com/",
+        "logo": { "@type": "ImageObject", "url": "https://gpu-radar.com/assets/logo.png" },
+        "sameAs": ["https://twitter.com/GPURadarAR"]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ═══ PERFORMANCE ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════ -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo" aria-label="GPU Radar الرئيسية">
+      <span class="logo-mark">◈</span>
+      <span class="logo-text">GPU<em>Radar</em></span>
+    </a>
+
+    <nav class="nav-menu" id="nav-menu" aria-label="القائمة الرئيسية">
+      <a href="index.html" class="nav-link active">الرئيسية</a>
+      <a href="pages/gpu.html" class="nav-link">بطاقات الرسوميات</a>
+      <a href="pages/cpu.html" class="nav-link">المعالجات</a>
+      <a href="pages/compare.html" class="nav-link">المقارنة</a>
+      <a href="pages/blog.html" class="nav-link">المدونة</a>
+      <a href="pages/about.html" class="nav-link">من نحن</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="pages/alerts.html" class="btn-alert">
+        <span class="bell-dot" aria-hidden="true"></span>
+        تنبيهات الأسعار
+      </a>
+      <button class="burger" id="burger" aria-label="فتح القائمة" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section class="hero" aria-label="القسم الرئيسي">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="live-dot" aria-hidden="true"></span>
+      تحديث يومي · آخر تحديث: <span id="last-update">جارٍ التحميل...</span>
+    </div>
+    <div id="next-update" style="font-size:.75rem;color:var(--text3);margin-bottom:1rem;text-align:center"></div>
+
+    <h1 class="hero-title">
+      رادار أسعار<br/>
+      <span class="accent-text">GPU & CPU</span>
+    </h1>
+
+    <p class="hero-sub">
+      تتبع أسعار أكثر من <strong>200 قطعة</strong> من بطاقات الرسوميات والمعالجات في الوقت الفعلي.
+      مقارنات تفصيلية، مخططات تاريخية لسنة كاملة، وتنبيهات فورية عند انخفاض السعر.
+      أفضل أداة لاتخاذ قرار الشراء الصحيح.
+    </p>
+
+    <div class="hero-search">
+      <div class="search-box">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input type="search" id="hero-search" placeholder="ابحث عن GPU أو CPU... (مثال: RTX 4090)" aria-label="بحث عن قطع الكمبيوتر" />
+        <button class="search-btn" onclick="handleSearch()">بحث</button>
+        <button class="search-clear" id="search-clear-btn" onclick="clearSearch()" style="display:none" aria-label="مسح البحث">✕</button>
+      </div>
+      <div class="search-tags" aria-label="بحث سريع">
+        <button class="search-tag" onclick="quickSearch('RTX 4090')">RTX 4090</button>
+        <button class="search-tag" onclick="quickSearch('RX 7900 XTX')">RX 7900 XTX</button>
+        <button class="search-tag" onclick="quickSearch('i9 14900K')">i9-14900K</button>
+        <button class="search-tag" onclick="quickSearch('Ryzen 9 7950X')">Ryzen 9 7950X</button>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hstat">
+        <strong id="stat-gpu">248</strong>
+        <span>بطاقة GPU</span>
+      </div>
+      <div class="hstat-sep" aria-hidden="true"></div>
+      <div class="hstat">
+        <strong id="stat-cpu">184</strong>
+        <span>معالج CPU</span>
+      </div>
+      <div class="hstat-sep" aria-hidden="true"></div>
+      <div class="hstat">
+        <strong>1 يوم</strong>
+        <span>تحديث يومي</span>
+      </div>
+      <div class="hstat-sep" aria-hidden="true"></div>
+      <div class="hstat">
+        <strong>مجاني</strong>
+        <span>100% بدون تسجيل</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MARKET TICKER
+═══════════════════════════════════════ -->
+<div class="ticker-wrapper" aria-label="أسعار سريعة">
+  <div class="ticker-label">أبرز التغيرات:</div>
+  <div class="ticker-track" id="ticker">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MARKET OVERVIEW CARDS
+═══════════════════════════════════════ -->
+<section class="section market-overview" aria-labelledby="market-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="market-heading">نظرة عامة على السوق</h2>
+      <p>متوسطات الأسعار وأبرز التغيرات هذا الأسبوع</p>
+    </div>
+
+    <div class="overview-grid">
+      <article class="overview-card gpu-card">
+        <div class="ocard-head">
+          <span class="ocard-icon" aria-hidden="true">🎮</span>
+          <div>
+            <h3>بطاقات الرسوميات GPU</h3>
+            <span class="ocard-sub">NVIDIA & AMD</span>
+          </div>
+          <span class="ocard-badge down">▼ 2.1%</span>
+        </div>
+        <div class="ocard-stat">
+          <span class="ostat-val">$847</span>
+          <span class="ostat-lbl">متوسط السعر</span>
+        </div>
+        <div class="ocard-bars" id="gpu-mini-chart" aria-label="مخطط GPU مصغر">
+          <!-- JS rendered -->
+        </div>
+        <a href="pages/gpu.html" class="ocard-link">استعرض جميع بطاقات GPU ←</a>
+      </article>
+
+      <article class="overview-card cpu-card">
+        <div class="ocard-head">
+          <span class="ocard-icon" aria-hidden="true">⚡</span>
+          <div>
+            <h3>المعالجات CPU</h3>
+            <span class="ocard-sub">Intel & AMD</span>
+          </div>
+          <span class="ocard-badge down">▼ 3.4%</span>
+        </div>
+        <div class="ocard-stat">
+          <span class="ostat-val">$412</span>
+          <span class="ostat-lbl">متوسط السعر</span>
+        </div>
+        <div class="ocard-bars" id="cpu-mini-chart" aria-label="مخطط CPU مصغر">
+          <!-- JS rendered -->
+        </div>
+        <a href="pages/cpu.html" class="ocard-link">استعرض جميع معالجات CPU ←</a>
+      </article>
+
+      <article class="overview-card deal-card">
+        <div class="ocard-head">
+          <span class="ocard-icon" aria-hidden="true">🔥</span>
+          <div>
+            <h3>أفضل الصفقات</h3>
+            <span class="ocard-sub">أكبر انخفاضات اليوم</span>
+          </div>
+        </div>
+        <ul class="deals-list" id="deals-list">
+          <!-- JS rendered -->
+        </ul>
+        <a href="pages/gpu.html?sort=drop" class="ocard-link">جميع الصفقات ←</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MAIN PRICE TABLE + CHART
+═══════════════════════════════════════ -->
+<section class="section price-tracker" aria-labelledby="tracker-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="tracker-heading">متتبع الأسعار المباشر</h2>
+      <p>أسعار محدّثة يومياً مع مقارنة الشهر الماضي</p>
+    </div>
+
+    <!-- Search result label -->
+    <div id="search-result-label" style="display:none;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);border-radius:8px;padding:.65rem 1rem;margin-bottom:1rem;font-size:.9rem;color:var(--accent);display:none;align-items:center;justify-content:space-between;">
+      <span id="search-result-text"></span>
+      <button onclick="clearSearch()" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:.85rem;font-family:var(--font-ui);">✕ مسح البحث</button>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar" role="toolbar" aria-label="تصفية القطع">
+      <div class="filter-tabs">
+        <button class="ftab active" onclick="filterParts('all', this)" aria-pressed="true">الكل</button>
+        <button class="ftab" onclick="filterParts('gpu', this)" aria-pressed="false">GPU</button>
+        <button class="ftab" onclick="filterParts('cpu', this)" aria-pressed="false">CPU</button>
+        <button class="ftab" onclick="filterParts('nvidia', this)" aria-pressed="false">NVIDIA</button>
+        <button class="ftab" onclick="filterParts('amd', this)" aria-pressed="false">AMD</button>
+        <button class="ftab" onclick="filterParts('intel', this)" aria-pressed="false">Intel</button>
+      </div>
+      <div class="filter-sort">
+        <label for="sort-select" class="sr-only">ترتيب حسب</label>
+        <select id="sort-select" onchange="sortParts(this.value)" aria-label="ترتيب حسب">
+          <option value="name">الاسم</option>
+          <option value="price-asc">السعر: الأقل أولاً</option>
+          <option value="price-desc">السعر: الأعلى أولاً</option>
+          <option value="drop">أكبر انخفاض</option>
+          <option value="rise">أكبر ارتفاع</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Price Table -->
+    <div class="table-container" role="region" aria-live="polite" aria-label="جدول الأسعار">
+      <table class="price-table" id="price-table">
+        <thead>
+          <tr>
+            <th scope="col">القطعة</th>
+            <th scope="col">الفئة</th>
+            <th scope="col">الشركة</th>
+            <th scope="col">السعر الحالي</th>
+            <th scope="col">قبل شهر</th>
+            <th scope="col">التغيّر</th>
+            <th scope="col">أعلى سعر / أدنى سعر</th>
+            <th scope="col">المخطط</th>
+          </tr>
+        </thead>
+        <tbody id="price-tbody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+    <div class="load-more-wrap">
+      <button class="btn-load" id="load-more-btn" onclick="loadMoreParts()">تحميل المزيد</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FULL CHART SECTION
+═══════════════════════════════════════ -->
+<section class="section chart-section dark-section" aria-labelledby="chart-heading">
+  <div class="container">
+    <div class="section-head light">
+      <h2 id="chart-heading">مخطط التاريخ السعري</h2>
+      <p>تتبع تغيّر الأسعار على مدار 12 شهرًا</p>
+    </div>
+
+    <div class="chart-controls">
+      <div class="chart-part-select" id="chart-selector">
+        <!-- Populated by JS -->
+      </div>
+      <div class="period-btns">
+        <button class="pbtn active" onclick="setChartPeriod(3,this)">3 أشهر</button>
+        <button class="pbtn" onclick="setChartPeriod(6,this)">6 أشهر</button>
+        <button class="pbtn" onclick="setChartPeriod(12,this)">12 شهر</button>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <canvas id="main-chart" aria-label="مخطط تاريخ الأسعار"></canvas>
+    </div>
+
+    <div class="chart-legend" id="chart-legend"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════ -->
+<section class="section how-section" aria-labelledby="how-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="how-heading">كيف يعمل GPU Radar؟</h2>
+      <p>منظومة متكاملة لتتبع الأسعار وتحليلها</p>
+    </div>
+
+    <div class="how-grid">
+      <article class="how-card">
+        <div class="how-num" aria-hidden="true">01</div>
+        <h3>جمع البيانات تلقائيًا</h3>
+        <p>يجمع نظامنا الأسعار يومياً من أبرز متاجر التقنية في المنطقة العربية والأسواق العالمية كـ Amazon وNewegg وB&H.</p>
+      </article>
+      <article class="how-card">
+        <div class="how-num" aria-hidden="true">02</div>
+        <h3>تحليل الاتجاهات</h3>
+        <p>خوارزمياتنا تحلل اتجاهات الأسعار تاريخياً وتكشف عن أنماط الارتفاع والانخفاض الموسمية لمساعدتك على التوقيت الأمثل للشراء.</p>
+      </article>
+      <article class="how-card">
+        <div class="how-num" aria-hidden="true">03</div>
+        <h3>تنبيهات فورية</h3>
+        <p>حدد السعر المستهدف لأي قطعة وسنرسل إليك تنبيهاً فورياً بالبريد الإلكتروني عند وصول السعر لحدك المطلوب.</p>
+      </article>
+      <article class="how-card">
+        <div class="how-num" aria-hidden="true">04</div>
+        <h3>مقارنة ذكية</h3>
+        <p>قارن بين أي قطعتين أو أكثر جنباً إلى جنب من حيث السعر والمواصفات وقيمة الأداء مقابل السعر.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SEO CONTENT BLOCK
+═══════════════════════════════════════ -->
+<section class="section content-section" aria-labelledby="content-heading">
+  <div class="container">
+    <div class="content-grid">
+      <article class="content-main">
+        <h2 id="content-heading">دليل شراء قطع الكمبيوتر بأفضل سعر</h2>
+
+        <p>يُعدّ سوق بطاقات الرسوميات (GPU) والمعالجات (CPU) من أكثر الأسواق تذبذباً في عالم التقنية. فبين ليلة وضحاها قد ترتفع أسعار بطاقات الرسوميات بنسبة 30% أو تنخفض بشكل حاد بسبب إطلاق منتجات منافسة أو تغيّر في سلاسل التوريد.</p>
+
+        <h3>متى يجب شراء GPU؟</h3>
+        <p>أفضل أوقات شراء بطاقات الرسوميات تاريخياً هي فترات ما بعد إطلاق الجيل الجديد، إذ تنخفض أسعار الجيل السابق بشكل ملحوظ. كذلك تُعدّ فترات التخفيضات الكبرى كـ Black Friday وEnd-of-Year Sales فرصاً ذهبية.</p>
+
+        <h3>الفرق بين NVIDIA وAMD</h3>
+        <p>تهيمن NVIDIA على قطاع الرسوميات العليا والمتوسطة بسلسلة RTX 4000، بينما تقدم AMD منافسة قوية بسلسلة RX 7000 بقيمة أفضل في الفئات المتوسطة. الاختيار يعتمد على ميزانيتك واستخداماتك: الألعاب؟ الذكاء الاصطناعي؟ المونتاج؟</p>
+
+        <h3>Intel vs AMD في سوق المعالجات</h3>
+        <p>تشهد حرب المعالجات بين Intel وAMD منافسةً شرسة تصبّ في مصلحة المستهلك. معالجات Ryzen 9000 تقدم أداءً عالياً بأسعار تنافسية، بينما تتميز Intel بأداء single-core أعلى في بعض التطبيقات.</p>
+
+        <h3>كيف تستخدم GPU Radar لاتخاذ قرار شراء ذكي؟</h3>
+        <p>ابدأ بتحديد ميزانيتك والفئة المستهدفة. ثم تتبع سجل سعر القطعة المحددة على مدار آخر 6 أشهر. إذا كان السعر الحالي عند مستوى أدناه التاريخي أو قريباً منه، فهذا توقيت مثالي للشراء. فعّل تنبيه السعر وانتظر اللحظة المناسبة.</p>
+
+        <h3>فهم مؤشرات السوق</h3>
+        <p>يرصد GPU Radar مؤشرات سوق الرسوميات الثانوية (Used Market) جنباً إلى جنب مع السوق الجديد. انخفاض أسعار السوق الثانوي عادةً ما يسبق انخفاضاً في السوق الجديد بأسابيع قليلة — وهو مؤشر ذهبي يجب مراقبته.</p>
+      </article>
+
+      <aside class="content-sidebar">
+        <div class="sidebar-widget">
+          <h3>⚡ أسرع الروابط</h3>
+          <ul>
+            <li><a href="pages/gpu.html#rtx4090">سعر RTX 4090 اليوم</a></li>
+            <li><a href="pages/gpu.html#rtx4080">سعر RTX 4080 Super</a></li>
+            <li><a href="pages/gpu.html#rx7900xtx">سعر RX 7900 XTX</a></li>
+            <li><a href="pages/cpu.html#i9">سعر Core i9-14900K</a></li>
+            <li><a href="pages/cpu.html#ryzen9">سعر Ryzen 9 7950X</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget alert-widget">
+          <h3>🔔 تنبيه السعر</h3>
+          <p>أدخل بريدك واحصل على إشعار عند انخفاض السعر</p>
+          <form id="alert-form" onsubmit="subscribeAlert(event)">
+            <input type="email" placeholder="بريدك الإلكتروني" required aria-label="البريد الإلكتروني للتنبيهات" />
+            <button type="submit">اشترك مجاناً</button>
+          </form>
+          <div id="alert-success" style="display:none;color:#4ade80;font-size:.85rem;margin-top:.5rem;">
+            ✓ تم الاشتراك! ستصلك تنبيهاتك قريباً.
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>📊 إحصائيات السوق</h3>
+          <ul class="market-stats">
+            <li><span>أعلى GPU سعراً:</span><strong>RTX 4090 — $2,199</strong></li>
+            <li><span>أرخص GPU:</span><strong>GT 1030 — $79</strong></li>
+            <li><span>أعلى CPU سعراً:</span><strong>i9-14900K — $589</strong></li>
+            <li><span>أكبر انخفاض أسبوعي:</span><strong>RTX 3080 Ti — 8.2%↓</strong></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     BLOG PREVIEW
+═══════════════════════════════════════ -->
+<section class="section blog-preview" aria-labelledby="blog-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="blog-heading">أحدث التحليلات والمقارنات</h2>
+      <p>محتوى تقني متعمق يساعدك على اتخاذ أفضل قرار</p>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-card">
+        <div class="blog-tag">مقارنة</div>
+        <h3><a href="pages/blog.html">RTX 4080 Super مقابل RX 7900 XTX: أيهما أفضل قيمةً في 2025؟</a></h3>
+        <p>مقارنة شاملة في الأداء والسعر والكفاءة الطاقوية بين أبرز بطاقتَي الفئة العليا...</p>
+        <div class="blog-meta"><time datetime="2025-03-10">10 مارس 2025</time> · 10 دقائق</div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-tag">تحليل سوق</div>
+        <h3><a href="pages/blog.html">لماذا انخفضت أسعار GPU بنسبة 15% خلال فبراير 2025؟</a></h3>
+        <p>تحليل معمق للأسباب الاقتصادية والتقنية وراء موجة انخفاض أسعار بطاقات الرسوميات...</p>
+        <div class="blog-meta"><time datetime="2025-02-28">28 فبراير 2025</time> · 7 دقائق</div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-tag">دليل شراء</div>
+        <h3><a href="pages/blog.html">دليل 2025: أفضل CPU لكل ميزانية — من $150 حتى $600</a></h3>
+        <p>توصيات معالجات مدروسة لكل نوع مستخدم: الألعاب، المونتاج، والعمل المكتبي...</p>
+        <div class="blog-meta"><time datetime="2025-02-15">15 فبراير 2025</time> · 12 دقيقة</div>
+      </article>
+    </div>
+    <div class="text-center mt-2">
+      <a href="pages/blog.html" class="btn-outline">جميع المقالات والتحليلات ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CTA
+═══════════════════════════════════════ -->
+<section class="cta-section" aria-labelledby="cta-heading">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="container cta-inner">
+    <h2 id="cta-heading">ابدأ تتبع أسعارك الآن</h2>
+    <p>فعّل تنبيهات الأسعار وكن أول من يعلم بانخفاض سعر قطعتك المفضلة</p>
+    <a href="pages/alerts.html" class="btn-primary">فعّل التنبيهات مجاناً</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" aria-label="GPU Radar">
+        <span class="logo-mark">◈</span>
+        <span class="logo-text">GPU<em>Radar</em></span>
+      </a>
+      <p>منصة تتبع أسعار قطع الكمبيوتر في الوقت الفعلي للمتسوقين العرب.</p>
+      <div class="footer-social" aria-label="وسائل التواصل">
+        <a href="#" aria-label="تويتر">𝕏</a>
+        <a href="#" aria-label="يوتيوب">▶</a>
+        <a href="#" aria-label="تيليغرام">✈</a>
+        <a href="#" aria-label="واتساب">💬</a>
+      </div>
+    </div>
+
+    <nav class="footer-nav" aria-label="روابط الموقع">
+      <div class="footer-col">
+        <h4>الأسعار</h4>
+        <ul>
+          <li><a href="pages/gpu.html">بطاقات NVIDIA</a></li>
+          <li><a href="pages/gpu.html">بطاقات AMD</a></li>
+          <li><a href="pages/cpu.html">معالجات Intel</a></li>
+          <li><a href="pages/cpu.html">معالجات AMD</a></li>
+          <li><a href="pages/compare.html">مقارنة القطع</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>الموقع</h4>
+        <ul>
+          <li><a href="pages/about.html">من نحن</a></li>
+          <li><a href="pages/blog.html">المدونة</a></li>
+          <li><a href="pages/alerts.html">تنبيهات الأسعار</a></li>
+          <li><a href="pages/contact.html">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>قانوني</h4>
+        <ul>
+          <li><a href="pages/privacy-policy.html">سياسة الخصوصية</a></li>
+          <li><a href="pages/terms.html">الشروط والأحكام</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2025 GPU Radar. جميع الحقوق محفوظة.</p>
+      <p class="footer-disclaimer">الأسعار للأغراض المعلوماتية فقط. نحن نشارك في برامج تسويق بالعمولة.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

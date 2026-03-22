@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تنبيهات الأسعار | GPU Radar — اعرف فور انخفاض السعر</title>
+  <meta name="description" content="فعّل تنبيهات الأسعار على GPU Radar وكن أول من يعلم عند انخفاض سعر بطاقة الرسوميات أو المعالج المطلوب."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://gpu-radar.com/pages/alerts.html"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .alerts-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; align-items: start; }
+    .alert-form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
+    .alert-form-card h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+    .price-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .how-alerts { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; }
+    .how-alerts h3 { font-size: 1rem; margin-bottom: 1.25rem; color: var(--accent); }
+    .alert-steps { display: flex; flex-direction: column; gap: 1rem; }
+    .alert-step { display: flex; gap: .85rem; align-items: flex-start; }
+    .alert-step-num { width: 28px; height: 28px; background: var(--accent-dim); border: 1px solid rgba(56,189,248,.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-data); font-size: .8rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .alert-step p { font-size: .88rem; color: var(--text2); line-height: 1.6; }
+    .active-alerts { margin-top: 2rem; }
+    .active-alerts h3 { font-size: 1rem; margin-bottom: 1rem; }
+    .alert-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .85rem 1rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; font-size: .88rem; }
+    .alert-item .al-name { color: var(--text); font-weight: 500; }
+    .alert-item .al-target { color: var(--green); font-family: var(--font-data); font-weight: 700; }
+    .alert-item .al-del { color: var(--text3); cursor: pointer; font-size: .8rem; padding: .2rem .5rem; border: 1px solid var(--border); border-radius: 4px; background: transparent; transition: var(--transition); }
+    .alert-item .al-del:hover { border-color: var(--red); color: var(--red); }
+    @media(max-width:768px){ .alerts-grid{grid-template-columns:1fr;} .price-input-row{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+    <nav class="nav-menu" id="nav-menu">
+      <a href="../index.html" class="nav-link">الرئيسية</a>
+      <a href="gpu.html" class="nav-link">GPU</a>
+      <a href="cpu.html" class="nav-link">CPU</a>
+      <a href="compare.html" class="nav-link">المقارنة</a>
+      <a href="blog.html" class="nav-link">المدونة</a>
+      <a href="alerts.html" class="nav-link active">التنبيهات</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="burger" id="burger" aria-label="فتح القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>تنبيهات الأسعار</h1>
+      <p>حدد سعرك المستهدف وسنرسل لك إشعاراً فورياً عند الوصول إليه</p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="alerts-grid">
+        <!-- Form -->
+        <div>
+          <div class="alert-form-card">
+            <h2>🔔 إنشاء تنبيه جديد</h2>
+            <form id="alert-form" onsubmit="createAlert(event)">
+              <div class="form-field">
+                <label for="alert-email">البريد الإلكتروني *</label>
+                <input type="email" id="alert-email" required placeholder="your@email.com"/>
+              </div>
+              <div class="form-field">
+                <label for="alert-part">اختر القطعة *</label>
+                <select id="alert-part" required>
+                  <option value="" disabled selected>— اختر GPU أو CPU —</option>
+                  <optgroup label="🎮 بطاقات NVIDIA">
+                    <option value="rtx4090" data-price="2199">RTX 4090 — $2,199</option>
+                    <option value="rtx4080s" data-price="999">RTX 4080 Super — $999</option>
+                    <option value="rtx4070ti" data-price="779">RTX 4070 Ti Super — $779</option>
+                    <option value="rtx4070s" data-price="599">RTX 4070 Super — $599</option>
+                    <option value="rtx4060ti" data-price="399">RTX 4060 Ti — $399</option>
+                    <option value="rtx4060" data-price="299">RTX 4060 — $299</option>
+                  </optgroup>
+                  <optgroup label="🔴 بطاقات AMD">
+                    <option value="rx7900xtx" data-price="879">RX 7900 XTX — $879</option>
+                    <option value="rx7900xt" data-price="699">RX 7900 XT — $699</option>
+                    <option value="rx7800xt" data-price="449">RX 7800 XT — $449</option>
+                    <option value="rx7700xt" data-price="349">RX 7700 XT — $349</option>
+                  </optgroup>
+                  <optgroup label="🔵 معالجات Intel">
+                    <option value="i9-14900k" data-price="419">Core i9-14900K — $419</option>
+                    <option value="i7-14700k" data-price="329">Core i7-14700K — $329</option>
+                    <option value="i5-14600k" data-price="249">Core i5-14600K — $249</option>
+                    <option value="i5-14400" data-price="189">Core i5-14400 — $189</option>
+                  </optgroup>
+                  <optgroup label="🔴 معالجات AMD Ryzen">
+                    <option value="r9-7950x" data-price="549">Ryzen 9 7950X — $549</option>
+                    <option value="r9-7900x" data-price="349">Ryzen 9 7900X — $349</option>
+                    <option value="r7-7700x" data-price="249">Ryzen 7 7700X — $249</option>
+                    <option value="r5-7600x" data-price="179">Ryzen 5 7600X — $179</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div id="current-price-display" style="display:none;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:.65rem 1rem;margin-bottom:1rem;font-size:.85rem;color:var(--text2)">
+                السعر الحالي: <strong id="cp-val" style="color:var(--accent);font-family:var(--font-data)"></strong>
+              </div>
+              <div class="form-field">
+                <label for="alert-price">السعر المستهدف ($) *</label>
+                <input type="number" id="alert-price" required min="1" step="1" placeholder="مثال: 850"/>
+              </div>
+              <button type="submit" class="btn-primary" style="width:100%;margin-top:.5rem">إنشاء التنبيه مجاناً</button>
+              <div id="alert-ok" style="display:none;color:#4ade80;text-align:center;margin-top:.75rem;font-size:.9rem;padding:.6rem;background:var(--green-dim);border-radius:6px">
+                ✓ تم إنشاء التنبيه! ستصلك رسالة تأكيد على بريدك.
+              </div>
+            </form>
+          </div>
+
+          <!-- Active alerts list -->
+          <div class="active-alerts" id="active-alerts-wrap" style="display:none">
+            <h3>تنبيهاتك النشطة</h3>
+            <div id="active-alerts-list"></div>
+          </div>
+        </div>
+
+        <!-- How it works -->
+        <div>
+          <div class="how-alerts">
+            <h3>كيف تعمل التنبيهات؟</h3>
+            <div class="alert-steps">
+              <div class="alert-step">
+                <div class="alert-step-num">1</div>
+                <p>اختر القطعة التي تريد متابعة سعرها من القائمة</p>
+              </div>
+              <div class="alert-step">
+                <div class="alert-step-num">2</div>
+                <p>حدد السعر المستهدف الذي تريد الشراء عنده</p>
+              </div>
+              <div class="alert-step">
+                <div class="alert-step-num">3</div>
+                <p>يراقب نظامنا السعر يومياً بشكل تلقائي</p>
+              </div>
+              <div class="alert-step">
+                <div class="alert-step-num">4</div>
+                <p>عند وصول السعر لحدك المطلوب نرسل لك بريداً إلكترونياً فورياً</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-alerts" style="margin-top:1.25rem">
+            <h3>نصائح لاختيار السعر المستهدف</h3>
+            <ul style="display:flex;flex-direction:column;gap:.6rem">
+              <li style="font-size:.86rem;color:var(--text2);display:flex;gap:.5rem"><span style="color:var(--accent)">◈</span>ابحث عن أدنى سعر تاريخي للقطعة (أدنى 52 أسبوع)</li>
+              <li style="font-size:.86rem;color:var(--text2);display:flex;gap:.5rem"><span style="color:var(--accent)">◈</span>اضبط السعر المستهدف بنسبة 5-10% أعلى من الأدنى التاريخي</li>
+              <li style="font-size:.86rem;color:var(--text2);display:flex;gap:.5rem"><span style="color:var(--accent)">◈</span>انخفاضات موسمية كبيرة تحدث في نوفمبر وفبراير عادةً</li>
+              <li style="font-size:.86rem;color:var(--text2);display:flex;gap:.5rem"><span style="color:var(--accent)">◈</span>إطلاق جيل جديد يخفض أسعار الجيل السابق بـ 15-25%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand"><a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a><p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p></div>
+    <nav class="footer-nav">
+      <div class="footer-col"><h4>الأسعار</h4><ul><li><a href="gpu.html">GPU</a></li><li><a href="cpu.html">CPU</a></li></ul></div>
+      <div class="footer-col"><h4>الموقع</h4><ul><li><a href="about.html">من نحن</a></li><li><a href="contact.html">تواصل</a></li></ul></div>
+      <div class="footer-col"><h4>قانوني</h4><ul><li><a href="privacy-policy.html">الخصوصية</a></li><li><a href="terms.html">الشروط</a></li></ul></div>
+    </nav>
+  </div>
+  <div class="footer-bottom"><div class="container footer-bottom-inner"><p>© 2025 GPU Radar.</p></div></div>
+</footer>
+
+<script>
+let localAlerts = JSON.parse(localStorage.getItem('gpuradar_alerts') || '[]');
+
+// Show current price when part is selected
+document.getElementById('alert-part').addEventListener('change', function() {
+  const opt = this.options[this.selectedIndex];
+  const price = opt.dataset.price;
+  const display = document.getElementById('current-price-display');
+  if (price) {
+    document.getElementById('cp-val').textContent = '$' + parseInt(price).toLocaleString();
+    display.style.display = 'block';
+    document.getElementById('alert-price').value = Math.round(parseInt(price) * 0.9);
+  }
+});
+
+function createAlert(e) {
+  e.preventDefault();
+  const email = document.getElementById('alert-email').value;
+  const partSel = document.getElementById('alert-part');
+  const partId = partSel.value;
+  const partName = partSel.options[partSel.selectedIndex].text.split(' — ')[0];
+  const targetPrice = parseInt(document.getElementById('alert-price').value);
+
+  const alert = { id: Date.now(), email, partId, partName, targetPrice, created: new Date().toLocaleDateString('ar') };
+  localAlerts.push(alert);
+  localStorage.setItem('gpuradar_alerts', JSON.stringify(localAlerts));
+
+  // Show success
+  document.getElementById('alert-ok').style.display = 'block';
+  setTimeout(() => document.getElementById('alert-ok').style.display = 'none', 4000);
+  e.target.reset();
+  document.getElementById('current-price-display').style.display = 'none';
+
+  // In production: POST to /api/alerts
+  renderActiveAlerts();
+}
+
+function deleteAlert(id) {
+  localAlerts = localAlerts.filter(a => a.id !== id);
+  localStorage.setItem('gpuradar_alerts', JSON.stringify(localAlerts));
+  renderActiveAlerts();
+}
+
+function renderActiveAlerts() {
+  const wrap = document.getElementById('active-alerts-wrap');
+  const list = document.getElementById('active-alerts-list');
+  if (localAlerts.length === 0) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  list.innerHTML = localAlerts.map(a => `
+    <div class="alert-item">
+      <div>
+        <div class="al-name">${a.partName}</div>
+        <div style="font-size:.75rem;color:var(--text3)">${a.email} · ${a.created}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <span class="al-target">≤ $${a.targetPrice.toLocaleString()}</span>
+        <button class="al-del" onclick="deleteAlert(${a.id})">حذف</button>
+      </div>
+    </div>`).join('');
+}
+
+// Navbar
+renderActiveAlerts();
+</script>
+<script src="../js/data.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => { initNavbar(); });</script>
+</body>
+</html>
