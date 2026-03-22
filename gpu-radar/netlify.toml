@@ -1,0 +1,7 @@
+[build]
+  publish = "gpu-radar"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
