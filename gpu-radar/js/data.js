@@ -80,16 +80,20 @@ function initNavbar() {
 // إذا فشل الجلب، يستخدم البيانات الثابتة كـ fallback
 
 // ← غيّر هذا الرابط بعد نشر Backend على Railway/Render
-const API_BASE = window.location.hostname === 'localhost'
-  ? 'http://localhost:3001'
-  : '';  // إذا Frontend وBackend على نفس الدومين اتركه فارغاً
-         // وإلا أدخل: 'https://your-app.railway.app'
+// لا يوجد Backend حالياً — يعمل بالبيانات الثابتة مباشرةً
+// عند نشر Backend على Railway، أدخل رابطه هنا بدل null
+const API_BASE = null;
 
 let LIVE_DATA      = null; // يُملأ بعد الجلب
 let LAST_UPDATED   = null;
 let NEXT_UPDATE    = null;
 
 async function fetchLivePrices() {
+  // إذا لم يكن هناك Backend، استخدم البيانات الثابتة مباشرةً
+  if (!API_BASE) {
+    console.log('[GPU Radar] No backend configured — using static data');
+    return false;
+  }
   try {
     const res  = await fetch(`${API_BASE}/api/prices/live`, {
       signal: AbortSignal.timeout(8000) // 8 sec timeout
@@ -145,3 +149,4 @@ function getUpdateInfo() {
     isLive:      LIVE_DATA !== null,
   };
 }
+
