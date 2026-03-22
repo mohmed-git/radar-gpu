@@ -3,7 +3,7 @@
 // بدون أي API Key مدفوع!
 // ============================================================
 
-require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
+require('dotenv').config();
 
 const express  = require('express');
 const cors     = require('cors');
@@ -13,13 +13,13 @@ const {
   initDB, getAllPrices, getPrice,
   getHistory, getAllHistory, getLastUpdateTime,
   addAlert, removeAlert, loadAlerts,
-} = require('./db/priceDB');
+} = require(path.join(__dirname, 'db/priceDB'));
 
-const { PRODUCT_CATALOG } = require('./scrapers/freeScraper');
+const { PRODUCT_CATALOG } = require(path.join(__dirname, 'scrapers/freeScraper'));
 const {
   startScheduler, runDailyUpdate,
   triggerManualUpdate, nextRunTime
-} = require('./jobs/dailyUpdate');
+} = require(path.join(__dirname, 'jobs/dailyUpdate'));
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3001;
 // ── MIDDLEWARE ────────────────────────────────────────────
 app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '../..')));
 
 // Logger (API requests only)
 app.use((req, _res, next) => {
