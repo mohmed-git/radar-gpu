@@ -6,31 +6,34 @@
 const MONTHS_AR = ['أبر','مايو','يون','يول','أغس','سبت','أكت','نوف','ديس','يناير','فبر','مارس'];
 
 const GPU_DATA = [
-  { id:'rtx4090',   name:'RTX 4090',         brand:'NVIDIA', type:'GPU', tier:'flagship',  price:2199, prev:2299, high52:2799, low52:1999, color:'#76B900', series:[2400,2350,2320,2299,2280,2310,2250,2230,2300,2280,2299,2199] },
-  { id:'rtx4080s',  name:'RTX 4080 Super',    brand:'NVIDIA', type:'GPU', tier:'high-end',  price:999,  prev:1049, high52:1199, low52:899,  color:'#76B900', series:[1150,1100,1080,1060,1050,1020,1000,1010,1049,1040,1049,999] },
-  { id:'rtx4070ti', name:'RTX 4070 Ti Super', brand:'NVIDIA', type:'GPU', tier:'high-end',  price:779,  prev:799,  high52:899,  low52:749,  color:'#76B900', series:[880,860,840,820,800,810,799,790,785,800,799,779] },
-  { id:'rtx4070s',  name:'RTX 4070 Super',    brand:'NVIDIA', type:'GPU', tier:'mid-range', price:599,  prev:619,  high52:699,  low52:549,  color:'#76B900', series:[680,660,640,630,620,625,619,612,608,615,619,599] },
-  { id:'rtx4060ti', name:'RTX 4060 Ti',       brand:'NVIDIA', type:'GPU', tier:'mid-range', price:399,  prev:429,  high52:499,  low52:349,  color:'#76B900', series:[480,460,450,440,430,428,425,420,429,432,429,399] },
-  { id:'rtx4060',   name:'RTX 4060',          brand:'NVIDIA', type:'GPU', tier:'budget',    price:299,  prev:299,  high52:329,  low52:269,  color:'#76B900', series:[320,310,305,302,299,298,299,300,299,299,299,299] },
-  { id:'rtx3080',   name:'RTX 3080 12GB',     brand:'NVIDIA', type:'GPU', tier:'high-end',  price:449,  prev:489,  high52:699,  low52:399,  color:'#76B900', series:[699,650,600,570,540,510,490,475,460,470,489,449] },
-  { id:'rx7900xtx', name:'RX 7900 XTX',       brand:'AMD',    type:'GPU', tier:'flagship',  price:879,  prev:949,  high52:1099, low52:799,  color:'#ED1C24', series:[1050,1020,990,970,950,945,949,930,910,950,949,879] },
-  { id:'rx7900xt',  name:'RX 7900 XT',        brand:'AMD',    type:'GPU', tier:'high-end',  price:699,  prev:749,  high52:899,  low52:649,  color:'#ED1C24', series:[880,850,820,790,760,755,749,740,730,745,749,699] },
-  { id:'rx7800xt',  name:'RX 7800 XT',        brand:'AMD',    type:'GPU', tier:'mid-range', price:449,  prev:479,  high52:549,  low52:399,  color:'#ED1C24', series:[530,510,495,480,475,479,479,465,455,475,479,449] },
-  { id:'rx7700xt',  name:'RX 7700 XT',        brand:'AMD',    type:'GPU', tier:'mid-range', price:349,  prev:369,  high52:429,  low52:319,  color:'#ED1C24', series:[420,405,390,380,372,369,365,360,355,365,369,349] },
-  { id:'rx7600',    name:'RX 7600',           brand:'AMD',    type:'GPU', tier:'budget',    price:269,  prev:279,  high52:329,  low52:239,  color:'#ED1C24', series:[329,315,299,285,279,275,279,272,268,272,279,269] },
+  // الأسعار محدّثة من Tom's Hardware & BestValueGPU — أبريل 2026
+  // السوق يعاني من ارتفاع حاد بسبب أزمة ذاكرة AI وانتهاء إنتاج RTX 40
+  { id:'rtx4090',   name:'RTX 4090',         brand:'NVIDIA', type:'GPU', tier:'flagship',  price:3199, prev:2199, high52:3599, low52:1599, color:'#76B900', series:[1599,1799,1999,2100,2199,2350,2450,2600,2750,2900,3050,3199] },
+  { id:'rtx4080s',  name:'RTX 4080 Super',    brand:'NVIDIA', type:'GPU', tier:'high-end',  price:1498, prev:999,  high52:1529, low52:902,  color:'#76B900', series:[902,950,999,1050,1100,1150,1199,1250,1350,1420,1465,1498] },
+  { id:'rtx4070ti', name:'RTX 4070 Ti Super', brand:'NVIDIA', type:'GPU', tier:'high-end',  price:1465, prev:779,  high52:1465, low52:739,  color:'#76B900', series:[739,799,820,850,899,950,999,1050,1150,1280,1380,1465] },
+  { id:'rtx4070s',  name:'RTX 4070 Super',    brand:'NVIDIA', type:'GPU', tier:'mid-range', price:898,  prev:599,  high52:898,  low52:560,  color:'#76B900', series:[560,599,620,640,660,689,710,740,780,830,868,898] },
+  { id:'rtx4060ti', name:'RTX 4060 Ti',       brand:'NVIDIA', type:'GPU', tier:'mid-range', price:447,  prev:399,  high52:499,  low52:329,  color:'#76B900', series:[329,349,370,390,399,415,420,425,430,438,443,447] },
+  { id:'rtx4060',   name:'RTX 4060',          brand:'NVIDIA', type:'GPU', tier:'budget',    price:424,  prev:299,  high52:466,  low52:259,  color:'#76B900', series:[259,275,290,299,310,330,350,370,390,405,415,424] },
+  { id:'rtx3080',   name:'RTX 3080 12GB',     brand:'NVIDIA', type:'GPU', tier:'high-end',  price:799,  prev:449,  high52:899,  low52:399,  color:'#76B900', series:[399,420,440,449,460,481,510,560,620,680,740,799] },
+  { id:'rx7900xtx', name:'RX 7900 XTX',       brand:'AMD',    type:'GPU', tier:'flagship',  price:1169, prev:879,  high52:1334, low52:749,  color:'#ED1C24', series:[749,799,849,879,910,950,980,1020,1060,1099,1130,1169] },
+  { id:'rx7900xt',  name:'RX 7900 XT',        brand:'AMD',    type:'GPU', tier:'high-end',  price:669,  prev:699,  high52:1129, low52:559,  color:'#ED1C24', series:[559,599,629,649,669,680,695,720,749,780,720,669] },
+  { id:'rx7800xt',  name:'RX 7800 XT',        brand:'AMD',    type:'GPU', tier:'mid-range', price:499,  prev:449,  high52:499,  low52:429,  color:'#ED1C24', series:[429,440,449,455,460,468,472,478,482,488,493,499] },
+  { id:'rx7700xt',  name:'RX 7700 XT',        brand:'AMD',    type:'GPU', tier:'mid-range', price:399,  prev:349,  high52:419,  low52:309,  color:'#ED1C24', series:[309,319,330,340,349,355,360,365,372,380,389,399] },
+  { id:'rx7600',    name:'RX 7600',           brand:'AMD',    type:'GPU', tier:'budget',    price:279,  prev:269,  high52:329,  low52:239,  color:'#ED1C24', series:[239,249,259,265,269,272,274,275,277,278,279,279] },
 ];
 
 const CPU_DATA = [
-  { id:'i9-14900k', name:'Core i9-14900K', brand:'Intel', type:'CPU', tier:'flagship',  price:419, prev:499, high52:589, low52:399, color:'#0071C5', series:[589,565,540,520,505,499,489,475,460,475,499,419] },
-  { id:'i7-14700k', name:'Core i7-14700K', brand:'Intel', type:'CPU', tier:'high-end',  price:329, prev:389, high52:419, low52:299, color:'#0071C5', series:[419,405,395,390,389,385,379,365,349,369,389,329] },
-  { id:'i5-14600k', name:'Core i5-14600K', brand:'Intel', type:'CPU', tier:'mid-range', price:249, prev:289, high52:319, low52:229, color:'#0071C5', series:[319,309,299,295,289,285,280,275,269,280,289,249] },
-  { id:'i5-14400',  name:'Core i5-14400',  brand:'Intel', type:'CPU', tier:'budget',    price:189, prev:199, high52:219, low52:179, color:'#0071C5', series:[219,215,209,205,199,198,196,194,192,196,199,189] },
-  { id:'i3-14100',  name:'Core i3-14100',  brand:'Intel', type:'CPU', tier:'entry',     price:129, prev:134, high52:149, low52:119, color:'#0071C5', series:[149,145,140,138,135,134,133,131,130,132,134,129] },
-  { id:'r9-7950x',  name:'Ryzen 9 7950X',  brand:'AMD',   type:'CPU', tier:'flagship',  price:549, prev:649, high52:799, low52:499, color:'#ED1C24', series:[799,769,730,700,670,650,649,630,610,640,649,549] },
-  { id:'r9-7900x',  name:'Ryzen 9 7900X',  brand:'AMD',   type:'CPU', tier:'high-end',  price:349, prev:399, high52:549, low52:299, color:'#ED1C24', series:[549,519,490,460,420,399,390,380,365,385,399,349] },
-  { id:'r7-7700x',  name:'Ryzen 7 7700X',  brand:'AMD',   type:'CPU', tier:'mid-range', price:249, prev:299, high52:399, low52:219, color:'#ED1C24', series:[399,369,340,320,305,299,290,279,265,279,299,249] },
-  { id:'r5-7600x',  name:'Ryzen 5 7600X',  brand:'AMD',   type:'CPU', tier:'mid-range', price:179, prev:199, high52:299, low52:169, color:'#ED1C24', series:[299,279,259,239,210,199,195,190,182,192,199,179] },
-  { id:'r5-7500f',  name:'Ryzen 5 7500F',  brand:'AMD',   type:'CPU', tier:'budget',    price:149, prev:159, high52:199, low52:139, color:'#ED1C24', series:[199,189,175,165,160,159,155,152,148,152,159,149] },
+  // الأسعار محدّثة من Newegg & PCPartPicker & Tom's Hardware — أبريل 2026
+  { id:'i9-14900k', name:'Core i9-14900K', brand:'Intel', type:'CPU', tier:'flagship',  price:468, prev:419, high52:599, low52:369, color:'#0071C5', series:[589,565,520,499,480,460,440,420,410,415,429,468] },
+  { id:'i7-14700k', name:'Core i7-14700K', brand:'Intel', type:'CPU', tier:'high-end',  price:465, prev:329, high52:499, low52:299, color:'#0071C5', series:[419,395,370,345,319,305,299,310,320,339,349,465] },
+  { id:'i5-14600k', name:'Core i5-14600K', brand:'Intel', type:'CPU', tier:'mid-range', price:279, prev:249, high52:329, low52:189, color:'#0071C5', series:[319,299,275,259,249,239,235,234,240,259,265,279] },
+  { id:'i5-14400',  name:'Core i5-14400',  brand:'Intel', type:'CPU', tier:'budget',    price:189, prev:189, high52:219, low52:155, color:'#0071C5', series:[219,210,199,188,175,165,158,155,162,172,183,189] },
+  { id:'i3-14100',  name:'Core i3-14100',  brand:'Intel', type:'CPU', tier:'entry',     price:129, prev:129, high52:149, low52:99,  color:'#0071C5', series:[149,139,130,119,109,102,99, 105,110,118,124,129] },
+  { id:'r9-7950x',  name:'Ryzen 9 7950X',  brand:'AMD',   type:'CPU', tier:'flagship',  price:450, prev:549, high52:799, low52:400, color:'#ED1C24', series:[799,749,699,649,599,549,480,445,410,420,435,450] },
+  { id:'r9-7900x',  name:'Ryzen 9 7900X',  brand:'AMD',   type:'CPU', tier:'high-end',  price:299, prev:349, high52:549, low52:251, color:'#ED1C24', series:[549,489,430,389,360,340,320,300,280,275,285,299] },
+  { id:'r7-7700x',  name:'Ryzen 7 7700X',  brand:'AMD',   type:'CPU', tier:'mid-range', price:225, prev:249, high52:399, low52:189, color:'#ED1C24', series:[399,349,310,279,255,240,225,210,198,205,219,225] },
+  { id:'r5-7600x',  name:'Ryzen 5 7600X',  brand:'AMD',   type:'CPU', tier:'mid-range', price:189, prev:179, high52:299, low52:169, color:'#ED1C24', series:[299,259,220,199,185,179,175,172,169,175,183,189] },
+  { id:'r5-7500f',  name:'Ryzen 5 7500F',  brand:'AMD',   type:'CPU', tier:'budget',    price:149, prev:149, high52:199, low52:129, color:'#ED1C24', series:[199,180,165,155,149,143,138,135,132,138,143,149] },
 ];
 
 // Combined — used by index.html

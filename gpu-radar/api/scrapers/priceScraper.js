@@ -16,49 +16,50 @@ const https = require('https');
 const PRODUCT_CATALOG = [
   // GPUs — NVIDIA
   // ASUS TUF RTX 4090 24G — N82E16814126596 (verified)
-  { id:'rtx4090',   name:'RTX 4090',         brand:'NVIDIA', type:'GPU', tier:'flagship',  asin:'B0BG9XWGNG', neweggId:'N82E16814126596', basePrice:1999 },
+  // الأسعار الأساسية محدّثة لتعكس سوق أبريل 2026
+  { id:'rtx4090',   name:'RTX 4090',         brand:'NVIDIA', type:'GPU', tier:'flagship',  asin:'B0BG9XWGNG', neweggId:'N82E16814126596', basePrice:3199 },
   // MSI RTX 4080 SUPER 16G GAMING X SLIM — N82E16814137854 (verified)
-  { id:'rtx4080s',  name:'RTX 4080 Super',   brand:'NVIDIA', type:'GPU', tier:'high-end',  asin:'B0CSVNFKGQ', neweggId:'N82E16814137854', basePrice:999  },
+  { id:'rtx4080s',  name:'RTX 4080 Super',   brand:'NVIDIA', type:'GPU', tier:'high-end',  asin:'B0CSVNFKGQ', neweggId:'N82E16814137854', basePrice:1498 },
   // ASUS TUF RTX 4070 Ti SUPER OC — N82E16814126685 (verified)
-  { id:'rtx4070ti', name:'RTX 4070 Ti Super',brand:'NVIDIA', type:'GPU', tier:'high-end',  asin:'B0CRS8GZ7W', neweggId:'N82E16814126685', basePrice:779  },
+  { id:'rtx4070ti', name:'RTX 4070 Ti Super',brand:'NVIDIA', type:'GPU', tier:'high-end',  asin:'B0CRS8GZ7W', neweggId:'N82E16814126685', basePrice:1465 },
   // ASUS TUF RTX 4070 SUPER OC 12G — N82E16814126697 (verified)
-  { id:'rtx4070s',  name:'RTX 4070 Super',   brand:'NVIDIA', type:'GPU', tier:'mid-range', asin:'B0CQNQLF3V', neweggId:'N82E16814126697', basePrice:599  },
+  { id:'rtx4070s',  name:'RTX 4070 Super',   brand:'NVIDIA', type:'GPU', tier:'mid-range', asin:'B0CQNQLF3V', neweggId:'N82E16814126697', basePrice:898  },
   // MSI RTX 4060 Ti GAMING X SLIM 16G — N82E16814137836 (verified April 2026)
-  { id:'rtx4060ti', name:'RTX 4060 Ti',      brand:'NVIDIA', type:'GPU', tier:'mid-range', asin:'B0C5YTNBVT', neweggId:'N82E16814137836', basePrice:399  },
+  { id:'rtx4060ti', name:'RTX 4060 Ti',      brand:'NVIDIA', type:'GPU', tier:'mid-range', asin:'B0C5YTNBVT', neweggId:'N82E16814137836', basePrice:447  },
   // MSI RTX 4060 GAMING X 8G — N82E16814137805 (verified April 2026)
-  { id:'rtx4060',   name:'RTX 4060',         brand:'NVIDIA', type:'GPU', tier:'budget',    asin:'B0C5YNKBT3', neweggId:'N82E16814137805', basePrice:299  },
+  { id:'rtx4060',   name:'RTX 4060',         brand:'NVIDIA', type:'GPU', tier:'budget',    asin:'B0C5YNKBT3', neweggId:'N82E16814137805', basePrice:424  },
   // MSI RTX 3080 GAMING Z TRIO 12G LHR — N82E16814137711 (verified April 2026)
-  { id:'rtx3080',   name:'RTX 3080 12GB',    brand:'NVIDIA', type:'GPU', tier:'high-end',  asin:'B09FMGPLL8', neweggId:'N82E16814137711', basePrice:449  },
+  { id:'rtx3080',   name:'RTX 3080 12GB',    brand:'NVIDIA', type:'GPU', tier:'high-end',  asin:'B09FMGPLL8', neweggId:'N82E16814137711', basePrice:799  },
 
   // GPUs — AMD
   // SAPPHIRE PULSE RX 7900 XTX 24GB — N82E16814202429 (verified)
-  { id:'rx7900xtx', name:'RX 7900 XTX',      brand:'AMD',    type:'GPU', tier:'flagship',  asin:'B0BLP619C5', neweggId:'N82E16814202429', basePrice:879  },
+  { id:'rx7900xtx', name:'RX 7900 XTX',      brand:'AMD',    type:'GPU', tier:'flagship',  asin:'B0BLP619C5', neweggId:'N82E16814202429', basePrice:1169 },
   // ASRock RX 7900 XT 20GB — N82E16814930085 (verified)
-  { id:'rx7900xt',  name:'RX 7900 XT',       brand:'AMD',    type:'GPU', tier:'high-end',  asin:'B0BLP619C4', neweggId:'N82E16814930085', basePrice:699  },
+  { id:'rx7900xt',  name:'RX 7900 XT',       brand:'AMD',    type:'GPU', tier:'high-end',  asin:'B0BLP619C4', neweggId:'N82E16814930085', basePrice:669  },
   // SAPPHIRE PULSE RX 7800 XT 16GB — N82E16814202434 (verified)
-  { id:'rx7800xt',  name:'RX 7800 XT',       brand:'AMD',    type:'GPU', tier:'mid-range', asin:'B0CF7MHR2H', neweggId:'N82E16814202434', basePrice:449  },
+  { id:'rx7800xt',  name:'RX 7800 XT',       brand:'AMD',    type:'GPU', tier:'mid-range', asin:'B0CF7MHR2H', neweggId:'N82E16814202434', basePrice:499  },
   // SAPPHIRE PULSE RX 7700 XT 12GB — N82E16814202436 (verified)
-  { id:'rx7700xt',  name:'RX 7700 XT',       brand:'AMD',    type:'GPU', tier:'mid-range', asin:'B0CF7MHR2G', neweggId:'N82E16814202436', basePrice:349  },
+  { id:'rx7700xt',  name:'RX 7700 XT',       brand:'AMD',    type:'GPU', tier:'mid-range', asin:'B0CF7MHR2G', neweggId:'N82E16814202436', basePrice:399  },
   // SAPPHIRE PULSE RX 7600 8GB — N82E16814202432 (verified)
-  { id:'rx7600',    name:'RX 7600',          brand:'AMD',    type:'GPU', tier:'budget',    asin:'B0C4KHXWK8', neweggId:'N82E16814202432', basePrice:269  },
+  { id:'rx7600',    name:'RX 7600',          brand:'AMD',    type:'GPU', tier:'budget',    asin:'B0C4KHXWK8', neweggId:'N82E16814202432', basePrice:279  },
 
   // CPUs — Intel (verified April 2026)
-  { id:'i9-14900k', name:'Core i9-14900K', brand:'Intel', type:'CPU', tier:'flagship',  asin:'B0CGJ41N2N', neweggId:'N82E16819118462', basePrice:419 },
-  { id:'i7-14700k', name:'Core i7-14700K', brand:'Intel', type:'CPU', tier:'high-end',  asin:'B0CGJ3Y4M9', neweggId:'N82E16819118466', basePrice:329 },
-  { id:'i5-14600k', name:'Core i5-14600K', brand:'Intel', type:'CPU', tier:'mid-range', asin:'B0CGJ3T7LH', neweggId:'N82E16819118470', basePrice:249 },
+  { id:'i9-14900k', name:'Core i9-14900K', brand:'Intel', type:'CPU', tier:'flagship',  asin:'B0CGJ41N2N', neweggId:'N82E16819118462', basePrice:468 },
+  { id:'i7-14700k', name:'Core i7-14700K', brand:'Intel', type:'CPU', tier:'high-end',  asin:'B0CGJ3Y4M9', neweggId:'N82E16819118466', basePrice:465 },
+  { id:'i5-14600k', name:'Core i5-14600K', brand:'Intel', type:'CPU', tier:'mid-range', asin:'B0CGJ3T7LH', neweggId:'N82E16819118470', basePrice:279 },
   // Intel Core i5-14400 — N82E16819118480 (verified April 2026)
   { id:'i5-14400',  name:'Core i5-14400',  brand:'Intel', type:'CPU', tier:'budget',    asin:'B0CGJ41N1F', neweggId:'N82E16819118480', basePrice:189 },
   // Intel Core i3-14100 — N82E16819118483 (verified April 2026)
   { id:'i3-14100',  name:'Core i3-14100',  brand:'Intel', type:'CPU', tier:'entry',     asin:'B0CGJ3Y4J8', neweggId:'N82E16819118483', basePrice:129 },
 
   // CPUs — AMD Ryzen (verified April 2026)
-  { id:'r9-7950x',  name:'Ryzen 9 7950X',  brand:'AMD', type:'CPU', tier:'flagship',  asin:'B0BBHD5D8Y', neweggId:'N82E16819113771', basePrice:549 },
+  { id:'r9-7950x',  name:'Ryzen 9 7950X',  brand:'AMD', type:'CPU', tier:'flagship',  asin:'B0BBHD5D8Y', neweggId:'N82E16819113771', basePrice:450 },
   // AMD Ryzen 9 7900X Boxed — N82E16819113769 (verified April 2026)
-  { id:'r9-7900x',  name:'Ryzen 9 7900X',  brand:'AMD', type:'CPU', tier:'high-end',  asin:'B0BBHHTBM4', neweggId:'N82E16819113769', basePrice:349 },
+  { id:'r9-7900x',  name:'Ryzen 9 7900X',  brand:'AMD', type:'CPU', tier:'high-end',  asin:'B0BBHHTBM4', neweggId:'N82E16819113769', basePrice:299 },
   // AMD Ryzen 7 7700X Boxed — N82E16819113768 (verified April 2026)
-  { id:'r7-7700x',  name:'Ryzen 7 7700X',  brand:'AMD', type:'CPU', tier:'mid-range', asin:'B0BBHD5D8Z', neweggId:'N82E16819113768', basePrice:249 },
+  { id:'r7-7700x',  name:'Ryzen 7 7700X',  brand:'AMD', type:'CPU', tier:'mid-range', asin:'B0BBHD5D8Z', neweggId:'N82E16819113768', basePrice:225 },
   // AMD Ryzen 5 7600X Boxed — N82E16819113770 (verified April 2026)
-  { id:'r5-7600x',  name:'Ryzen 5 7600X',  brand:'AMD', type:'CPU', tier:'mid-range', asin:'B0BBHHTBM5', neweggId:'N82E16819113770', basePrice:179 },
+  { id:'r5-7600x',  name:'Ryzen 5 7600X',  brand:'AMD', type:'CPU', tier:'mid-range', asin:'B0BBHHTBM5', neweggId:'N82E16819113770', basePrice:189 },
   // AMD Ryzen 5 7500F Boxed — N82E16819113827 (verified April 2026)
   { id:'r5-7500f',  name:'Ryzen 5 7500F',  brand:'AMD', type:'CPU', tier:'budget',    asin:'B0C5T4LJMZ', neweggId:'N82E16819113827', basePrice:149 },
 ];

@@ -28,7 +28,7 @@ const PRODUCT_CATALOG = [
     // ASUS TUF Gaming RTX 4090 24G — N82E16814126596
     newegg: 'https://www.newegg.com/asus-tuf-gaming-tuf-rtx4090-24g-gaming-geforce-rtx-4090-24gb-graphics-card-triple-fans/p/N82E16814126596',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RTX+4090+24GB&N=100007709+601408874',
-    basePrice: 1999,
+    basePrice: 3199,
     // keywords that MUST appear in a Newegg product title for price to be accepted
     keywords: ['4090', '24g'],
   },
@@ -41,7 +41,7 @@ const PRODUCT_CATALOG = [
     // MSI RTX 4080 SUPER 16G GAMING X SLIM — N82E16814137854
     newegg: 'https://www.newegg.com/msi-rtx-4080-super-16g-gaming-x-slim-geforce-rtx-4080-super-16gb-graphics-card-triple-fans/p/N82E16814137854',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RTX+4080+Super+16GB&N=100007709',
-    basePrice: 999,
+    basePrice: 1498,
     keywords: ['4080', 'super', '16g'],
   },
   {
@@ -53,7 +53,7 @@ const PRODUCT_CATALOG = [
     // ASUS TUF RTX 4070 Ti SUPER OC — N82E16814126685
     newegg: 'https://www.newegg.com/asus-tuf-gaming-tuf-rtx4070tis-o16g-gaming-geforce-rtx-4070-ti-super-16gb-graphics-card-triple-fans/p/N82E16814126685',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RTX+4070+Ti+Super+16GB&N=100007709',
-    basePrice: 779,
+    basePrice: 1465,
     keywords: ['4070', 'ti', 'super', '16g'],
   },
   {
@@ -65,7 +65,7 @@ const PRODUCT_CATALOG = [
     // ASUS TUF RTX 4070 SUPER OC — N82E16814126697
     newegg: 'https://www.newegg.com/asus-tuf-gaming-tuf-rtx4070s-o12g-gaming-geforce-rtx-4070-super-12gb-graphics-card-triple-fans/p/N82E16814126697',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RTX+4070+Super+12GB&N=100007709',
-    basePrice: 599,
+    basePrice: 898,
     keywords: ['4070', 'super', '12g'],
   },
   {
@@ -77,7 +77,7 @@ const PRODUCT_CATALOG = [
     // MSI Gaming GeForce RTX 4060 Ti 16GB GAMING X SLIM — N82E16814137836 (verified April 2026)
     newegg: 'https://www.newegg.com/msi-rtx-4060-ti-gaming-x-slim-16g-geforce-rtx-4060-ti-16gb-graphics-card-triple-fans/p/N82E16814137836',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RTX+4060+Ti+16GB&N=100007709',
-    basePrice: 399,
+    basePrice: 447,
     keywords: ['4060', 'ti', '16g'],
   },
   {
@@ -89,7 +89,7 @@ const PRODUCT_CATALOG = [
     // MSI Gaming GeForce RTX 4060 8GB GAMING X — N82E16814137805 (verified April 2026)
     newegg: 'https://www.newegg.com/msi-rtx-4060-gaming-x-8g-geforce-rtx-4060-8gb-graphics-card-double-fans/p/N82E16814137805',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RTX+4060+8GB+-Ti&N=100007709',
-    basePrice: 299,
+    basePrice: 424,
     keywords: ['4060', '8g'],
   },
   {
@@ -101,7 +101,7 @@ const PRODUCT_CATALOG = [
     // MSI Gaming GeForce RTX 3080 12GB GAMING Z TRIO LHR — N82E16814137711 (verified April 2026)
     newegg: 'https://www.newegg.com/msi-rtx-3080-gaming-z-trio-12g-lhr-geforce-rtx-3080-12gb-graphics-card-triple-fans/p/N82E16814137711',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RTX+3080+12GB&N=100007709',
-    basePrice: 449,
+    basePrice: 799,
     keywords: ['3080', '12g'],
   },
 
@@ -115,7 +115,7 @@ const PRODUCT_CATALOG = [
     // SAPPHIRE PULSE RX 7900 XTX 24GB — N82E16814202429
     newegg: 'https://www.newegg.com/sapphire-tech-pulse-11322-02-20g-radeon-rx-7900-xtx-24gb-graphics-card-triple-fans/p/N82E16814202429',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RX+7900+XTX+24GB&N=100007709',
-    basePrice: 879,
+    basePrice: 1169,
     keywords: ['7900', 'xtx', '24g'],
   },
   {
@@ -127,7 +127,7 @@ const PRODUCT_CATALOG = [
     // ASRock Radeon RX 7900 XT 20GB — N82E16814930085
     newegg: 'https://www.newegg.com/asrock-radeon-rx7900xt-20g-radeon-rx-7900-xt-20gb-graphics-card-triple-fans/p/N82E16814930085',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RX+7900+XT+20GB&N=100007709',
-    basePrice: 699,
+    basePrice: 669,
     keywords: ['7900', 'xt', '20g'],
   },
   {
@@ -139,7 +139,7 @@ const PRODUCT_CATALOG = [
     // SAPPHIRE PULSE RX 7800 XT 16GB — N82E16814202434
     newegg: 'https://www.newegg.com/sapphire-tech-pulse-11330-02-20g-radeon-rx-7800-xt-16gb-graphics-card-double-fans/p/N82E16814202434',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RX+7800+XT+16GB&N=100007709',
-    basePrice: 449,
+    basePrice: 499,
     keywords: ['7800', 'xt', '16g'],
   },
   {
@@ -151,7 +151,7 @@ const PRODUCT_CATALOG = [
     // SAPPHIRE PULSE RX 7700 XT 12GB — N82E16814202436
     newegg: 'https://www.newegg.com/sapphire-tech-pulse-11335-04-20g-radeon-rx-7700-xt-12gb-graphics-card-double-fans/p/N82E16814202436',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RX+7700+XT+12GB&N=100007709',
-    basePrice: 349,
+    basePrice: 399,
     keywords: ['7700', 'xt', '12g'],
   },
   {
@@ -163,7 +163,7 @@ const PRODUCT_CATALOG = [
     // SAPPHIRE PULSE RX 7600 8GB — N82E16814202432
     newegg: 'https://www.newegg.com/sapphire-tech-pulse-11324-01-20g-radeon-rx-7600-8gb-graphics-card-double-fans/p/N82E16814202432',
     neweggSearch: 'https://www.newegg.com/p/pl?d=RX+7600+8GB&N=100007709',
-    basePrice: 269,
+    basePrice: 279,
     keywords: ['7600', '8g'],
   },
 
@@ -177,7 +177,7 @@ const PRODUCT_CATALOG = [
     // Intel Core i9-14900K Boxed — N82E16819118462
     newegg: 'https://www.newegg.com/intel-core-i9-14th-gen-core-i9-14900k-raptor-lake-lga-1700-desktop-cpu-processor/p/N82E16819118462',
     neweggSearch: 'https://www.newegg.com/p/pl?d=Core+i9-14900K&N=100007671',
-    basePrice: 419,
+    basePrice: 468,
     keywords: ['i9', '14900k'],
   },
   {
@@ -189,7 +189,7 @@ const PRODUCT_CATALOG = [
     // Intel Core i7-14700K Boxed — N82E16819118466
     newegg: 'https://www.newegg.com/intel-core-i7-14th-gen-core-i7-14700k-raptor-lake-lga-1700-desktop-cpu-processor/p/N82E16819118466',
     neweggSearch: 'https://www.newegg.com/p/pl?d=Core+i7-14700K&N=100007671',
-    basePrice: 329,
+    basePrice: 465,
     keywords: ['i7', '14700k'],
   },
   {
@@ -201,7 +201,7 @@ const PRODUCT_CATALOG = [
     // Intel Core i5-14600K Boxed — N82E16819118470
     newegg: 'https://www.newegg.com/intel-core-i5-14th-gen-core-i5-14600k-raptor-lake-lga-1700-desktop-cpu-processor/p/N82E16819118470',
     neweggSearch: 'https://www.newegg.com/p/pl?d=Core+i5-14600K&N=100007671',
-    basePrice: 249,
+    basePrice: 279,
     keywords: ['i5', '14600k'],
   },
   {
@@ -239,7 +239,7 @@ const PRODUCT_CATALOG = [
     // AMD Ryzen 9 7950X — N82E16819113771
     newegg: 'https://www.newegg.com/amd-ryzen-9-7950x-ryzen-9-7000-series-raphael-zen-4-socket-am5/p/N82E16819113771',
     neweggSearch: 'https://www.newegg.com/p/pl?d=Ryzen+9+7950X&N=100007671',
-    basePrice: 549,
+    basePrice: 450,
     keywords: ['7950x'],
   },
   {
@@ -251,7 +251,7 @@ const PRODUCT_CATALOG = [
     // AMD Ryzen 9 7900X Boxed — N82E16819113769 (verified April 2026)
     newegg: 'https://www.newegg.com/amd-ryzen-9-7900x-ryzen-9-7000-series-raphael-zen-4-socket-am5/p/N82E16819113769',
     neweggSearch: 'https://www.newegg.com/p/pl?d=Ryzen+9+7900X&N=100007671',
-    basePrice: 349,
+    basePrice: 299,
     keywords: ['7900x'],
   },
   {
@@ -263,7 +263,7 @@ const PRODUCT_CATALOG = [
     // AMD Ryzen 7 7700X Boxed — N82E16819113768 (verified April 2026)
     newegg: 'https://www.newegg.com/amd-ryzen-7-7700x-ryzen-7-7000-series-raphael-zen-4-socket-am5/p/N82E16819113768',
     neweggSearch: 'https://www.newegg.com/p/pl?d=Ryzen+7+7700X&N=100007671',
-    basePrice: 249,
+    basePrice: 225,
     keywords: ['7700x'],
   },
   {
@@ -275,7 +275,7 @@ const PRODUCT_CATALOG = [
     // AMD Ryzen 5 7600X Boxed — N82E16819113770 (verified April 2026)
     newegg: 'https://www.newegg.com/amd-ryzen-5-7600x-ryzen-5-7000-series-raphael-zen-4-socket-am5/p/N82E16819113770',
     neweggSearch: 'https://www.newegg.com/p/pl?d=Ryzen+5+7600X&N=100007671',
-    basePrice: 179,
+    basePrice: 189,
     keywords: ['7600x'],
   },
   {
