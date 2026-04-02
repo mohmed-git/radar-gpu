@@ -79,26 +79,31 @@ const PRODUCT_CATALOG = [
   // CPUs — Intel
   {
     id:'i9-14900k', name:'Core i9-14900K',   brand:'Intel',  type:'CPU', tier:'flagship',  basePrice:419,
-    newegg:'https://www.newegg.com/p/N82E16819118428',
+    newegg:'https://www.newegg.com/p/N82E16819118412',
     bestbuy_sku:'6531726',
+    amazon_asin:'B0CGJDKLB8',
   },
   {
     id:'i7-14700k', name:'Core i7-14700K',   brand:'Intel',  type:'CPU', tier:'high-end',  basePrice:329,
-    newegg:'https://www.newegg.com/p/N82E16819118429',
+    newegg:'https://www.newegg.com/p/N82E16819118413',
     bestbuy_sku:'6531727',
+    amazon_asin:'B0CGJ3R5KN',
   },
   {
     id:'i5-14600k', name:'Core i5-14600K',   brand:'Intel',  type:'CPU', tier:'mid-range', basePrice:249,
-    newegg:'https://www.newegg.com/p/N82E16819118430',
+    newegg:'https://www.newegg.com/p/N82E16819118414',
     bestbuy_sku:'6531728',
+    amazon_asin:'B0CGJ41J9T',
   },
   {
     id:'i5-14400',  name:'Core i5-14400',    brand:'Intel',  type:'CPU', tier:'budget',    basePrice:189,
-    newegg:'https://www.newegg.com/p/N82E16819118431',
+    newegg:'https://www.newegg.com/p/N82E16819118419',
+    amazon_asin:'B0CGJ45SCF',
   },
   {
     id:'i3-14100',  name:'Core i3-14100',    brand:'Intel',  type:'CPU', tier:'entry',     basePrice:129,
-    newegg:'https://www.newegg.com/p/N82E16819118432',
+    newegg:'https://www.newegg.com/p/N82E16819118420',
+    amazon_asin:'B0CGJ4R7YD',
   },
   // CPUs — AMD Ryzen
   {
@@ -253,6 +258,42 @@ async function fetchWalmart(walmartId) {
   return null;
 }
 
+
+// ── SOURCE 3b: Amazon (via product page scraping) ─────────
+async function fetchAmazon(asin) {
+  if (!asin) return null;
+  try {
+    const url = 'https://www.amazon.com/dp/' + asin;
+    const { status, body } = await fetchURL(url);
+    if (status !== 200) return null;
+
+    // Method 1: priceAmount in JSON
+    const m1 = body.match(/"priceAmount":"([d.]+)"/);
+    if (m1) {
+      const p = parseFloat(m1[1]);
+      if (p > 10) { console.log('  [Amazon] ASIN ' + asin + ': $' + p); return p; }
+    }
+
+    // Method 2: data-asin-price attribute
+    const m2 = body.match(/data-asin-price="([d.]+)"/);
+    if (m2) {
+      const p = parseFloat(m2[1]);
+      if (p > 10) { console.log('  [Amazon attr] ASIN ' + asin + ': $' + p); return p; }
+    }
+
+    // Method 3: a-price-whole span
+    const m3 = body.match(/class="a-price-whole"[^>]*>([d,]+)/);
+    if (m3) {
+      const p = parseFloat(m3[1].replace(/,/g, ''));
+      if (p > 10) { console.log('  [Amazon HTML] ASIN ' + asin + ': $' + p); return p; }
+    }
+
+  } catch (e) {
+    console.warn('  [Amazon] Error: ' + e.message);
+  }
+  return null;
+}
+
 // ── SOURCE 4: CamelCamelCamel (تاريخ أسعار Amazon) ───────
 // يُستخدم للحصول على أعلى/أدنى سعر تاريخي
 async function fetchCamelHistory(productName) {
@@ -332,6 +373,9 @@ async function fetchProductPrice(product, currentPrice) {
 
   // Try Walmart
   if (!price) price = await fetchWalmart(product.walmart_id);
+
+  // Try Amazon (reliable for CPUs)
+  if (!price) price = await fetchAmazon(product.amazon_asin);
 
   // Try Newegg HTML
   if (!price) price = await fetchNewegg(product.newegg);
