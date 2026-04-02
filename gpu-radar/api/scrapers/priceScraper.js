@@ -109,10 +109,10 @@ const PRODUCT_CATALOG = [
   // ── CPUs — Intel 13th Gen (Raptor Lake) — LGA1700 ─────────
   { id:'i9-13900ks', name:'Core i9-13900KS',   brand:'Intel', type:'CPU', tier:'flagship',  asin:'B0BCPWMLPT', neweggId:'',               basePrice:429 },
   { id:'i9-13900k',  name:'Core i9-13900K',    brand:'Intel', type:'CPU', tier:'flagship',  asin:'B0BCF54SR1', neweggId:'',               basePrice:349 },
-  { id:'i7-13700k',  name:'Core i7-13700K',    brand:'Intel', type:'CPU', tier:'high-end',  asin:'B0BCF54ZRB', neweggId:'',               basePrice:279 },
-  { id:'i5-13600k',  name:'Core i5-13600K',    brand:'Intel', type:'CPU', tier:'mid-range', asin:'B0BCF54ZRW', neweggId:'',               basePrice:219 },
-  { id:'i5-13400',   name:'Core i5-13400',     brand:'Intel', type:'CPU', tier:'budget',    asin:'B0BCF54ZRX', neweggId:'',               basePrice:169 },
-  { id:'i3-13100',   name:'Core i3-13100',     brand:'Intel', type:'CPU', tier:'entry',     asin:'B0BCF54ZRY', neweggId:'',               basePrice:99  },
+  { id:'i7-13700k',  name:'Core i7-13700K',    brand:'Intel', type:'CPU', tier:'high-end',  asin:'B0BCF54ZRB', neweggId:'N82E16819118420', basePrice:279 },
+  { id:'i5-13600k',  name:'Core i5-13600K',    brand:'Intel', type:'CPU', tier:'mid-range', asin:'B0BCF54ZRW', neweggId:'N82E16819118422', basePrice:219 },
+  { id:'i5-13400',   name:'Core i5-13400',     brand:'Intel', type:'CPU', tier:'budget',    asin:'B0BCF54ZRX', neweggId:'N82E16819118412', basePrice:169 },
+  { id:'i3-13100',   name:'Core i3-13100',     brand:'Intel', type:'CPU', tier:'entry',     asin:'B0BCF54ZRY', neweggId:'N82E16819118432', basePrice:119 },
 
   // ── CPUs — AMD Ryzen 9000-Series (Zen 5) — AM5 ────────────
   { id:'r9-9950x3d', name:'Ryzen 9 9950X3D',   brand:'AMD', type:'CPU', tier:'flagship',  asin:'B0D4RDLNNB', neweggId:'N82E16819113884', basePrice:675 },
@@ -139,13 +139,13 @@ const PRODUCT_CATALOG = [
   { id:'r5-7500f',   name:'Ryzen 5 7500F',     brand:'AMD', type:'CPU', tier:'budget',    asin:'B0C5T4LJMZ', neweggId:'N82E16819113827', basePrice:149 },
 
   // ── CPUs — AMD Ryzen 5000-Series (Zen 3) — AM4 ────────────
-  { id:'r9-5950x',   name:'Ryzen 9 5950X',     brand:'AMD', type:'CPU', tier:'flagship',  asin:'B0815684V1', neweggId:'',               basePrice:249 },
-  { id:'r9-5900x',   name:'Ryzen 9 5900X',     brand:'AMD', type:'CPU', tier:'high-end',  asin:'B08164VTWH', neweggId:'',               basePrice:199 },
-  { id:'r7-5800x3d', name:'Ryzen 7 5800X3D',   brand:'AMD', type:'CPU', tier:'high-end',  asin:'B09VCJ2JXP', neweggId:'',               basePrice:219 },
-  { id:'r7-5800x',   name:'Ryzen 7 5800X',     brand:'AMD', type:'CPU', tier:'mid-range', asin:'B0815684W1', neweggId:'',               basePrice:169 },
-  { id:'r5-5600x',   name:'Ryzen 5 5600X',     brand:'AMD', type:'CPU', tier:'mid-range', asin:'B08166SLDF', neweggId:'',               basePrice:119 },
-  { id:'r5-5600',    name:'Ryzen 5 5600',      brand:'AMD', type:'CPU', tier:'budget',    asin:'B09VCHR1VH', neweggId:'',               basePrice:99  },
-  { id:'r5-5500',    name:'Ryzen 5 5500',      brand:'AMD', type:'CPU', tier:'entry',     asin:'B09VCHY4XR', neweggId:'',               basePrice:79  },
+  { id:'r9-5950x',   name:'Ryzen 9 5950X',     brand:'AMD', type:'CPU', tier:'flagship',  asin:'B0815684V1', neweggId:'N82E16819113663', basePrice:349 },
+  { id:'r9-5900x',   name:'Ryzen 9 5900X',     brand:'AMD', type:'CPU', tier:'high-end',  asin:'B08164VTWH', neweggId:'N82E16819113668', basePrice:209 },
+  { id:'r7-5800x3d', name:'Ryzen 7 5800X3D',   brand:'AMD', type:'CPU', tier:'high-end',  asin:'B09VCJ2JXP', neweggId:'N82E16819113775', basePrice:219 },
+  { id:'r7-5800x',   name:'Ryzen 7 5800X',     brand:'AMD', type:'CPU', tier:'mid-range', asin:'B0815684W1', neweggId:'N82E16819113556', basePrice:199 },
+  { id:'r5-5600x',   name:'Ryzen 5 5600X',     brand:'AMD', type:'CPU', tier:'mid-range', asin:'B08166SLDF', neweggId:'N82E16819113670', basePrice:145 },
+  { id:'r5-5600',    name:'Ryzen 5 5600',      brand:'AMD', type:'CPU', tier:'budget',    asin:'B09VCHR1VH', neweggId:'N82E16819113747', basePrice:129 },
+  { id:'r5-5500',    name:'Ryzen 5 5500',      brand:'AMD', type:'CPU', tier:'entry',     asin:'B09VCHY4XR', neweggId:'N82E16819113737', basePrice:79  },
 ];
 
 // ── AMAZON API SCRAPER ────────────────────────────────────
