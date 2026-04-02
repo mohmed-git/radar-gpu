@@ -200,13 +200,13 @@ async function fetchPrice(product, currentPrice) {
   // Fallback to smart simulation
   if (!price) {
     price = simulateRealisticPrice(product, currentPrice);
-    console.log(`[Simulation] ${product.name}: $${price} (${changePercent(currentPrice, price)}%)`);
+    console.log(`[Simulation] ${product.name}: $${price} (${calcChangePercent(currentPrice, price)}%)`);
   }
 
   return price;
 }
 
-function changePercent(old, newVal) {
+function calcChangePercent(old, newVal) {
   return ((newVal - old) / old * 100).toFixed(2);
 }
 
