@@ -111,7 +111,7 @@ const CPU_DATA = [
   { id:'i7-13700k',   name:'Core i7-13700K',      brand:'Intel', type:'CPU', tier:'high-end',  price:279,  prev:319,  high52:419,  low52:219,  color:'#0071C5', series:[419,389,359,339,319,299,279,259,245,254,265,279] },
   { id:'i5-13600k',   name:'Core i5-13600K',      brand:'Intel', type:'CPU', tier:'mid-range', price:219,  prev:239,  high52:319,  low52:169,  color:'#0071C5', series:[319,289,264,249,239,229,219,209,199,205,212,219] },
   { id:'i5-13400',    name:'Core i5-13400',       brand:'Intel', type:'CPU', tier:'budget',    price:169,  prev:179,  high52:219,  low52:139,  color:'#0071C5', series:[219,199,184,175,169,164,159,155,152,155,162,169] },
-  { id:'i3-13100',    name:'Core i3-13100',       brand:'Intel', type:'CPU', tier:'entry',     price:99,   prev:109,  high52:149,  low52:79,   color:'#0071C5', series:[149,134,119,109,103,99,95,91,88,91,95,99] },
+  { id:'i3-13100',    name:'Core i3-13100',       brand:'Intel', type:'CPU', tier:'entry',     price:119,  prev:109,  high52:149,  low52:89,   color:'#0071C5', series:[149,134,124,116,109,105,102,99,97,105,112,119] },
 
   // ── AMD Ryzen 9000-Series (Zen 5) — AM5 ─────────────────
   { id:'r9-9950x3d',  name:'Ryzen 9 9950X3D',    brand:'AMD',   type:'CPU', tier:'flagship',  price:675,  prev:699,  high52:749,  low52:649,  color:'#ED1C24', series:[699,699,695,689,685,680,679,677,676,676,675,675] },
@@ -138,13 +138,13 @@ const CPU_DATA = [
   { id:'r5-7500f',    name:'Ryzen 5 7500F',      brand:'AMD',   type:'CPU', tier:'budget',    price:149,  prev:149,  high52:199,  low52:129,  color:'#ED1C24', series:[199,180,165,155,149,143,138,135,132,138,143,149] },
 
   // ── AMD Ryzen 5000-Series (Zen 3) — AM4 ─────────────────
-  { id:'r9-5950x',    name:'Ryzen 9 5950X',      brand:'AMD',   type:'CPU', tier:'flagship',  price:249,  prev:279,  high52:349,  low52:199,  color:'#ED1C24', series:[349,319,299,279,264,254,249,244,239,234,241,249] },
-  { id:'r9-5900x',    name:'Ryzen 9 5900X',      brand:'AMD',   type:'CPU', tier:'high-end',  price:199,  prev:219,  high52:299,  low52:159,  color:'#ED1C24', series:[299,269,249,234,224,219,214,209,199,189,194,199] },
+  { id:'r9-5950x',    name:'Ryzen 9 5950X',      brand:'AMD',   type:'CPU', tier:'flagship',  price:349,  prev:279,  high52:399,  low52:249,  color:'#ED1C24', series:[399,379,359,339,319,299,279,264,254,289,319,349] },
+  { id:'r9-5900x',    name:'Ryzen 9 5900X',      brand:'AMD',   type:'CPU', tier:'high-end',  price:209,  prev:219,  high52:299,  low52:169,  color:'#ED1C24', series:[299,279,259,244,234,224,219,214,209,204,207,209] },
   { id:'r7-5800x3d',  name:'Ryzen 7 5800X3D',    brand:'AMD',   type:'CPU', tier:'high-end',  price:219,  prev:239,  high52:299,  low52:179,  color:'#ED1C24', series:[299,279,259,249,239,234,229,224,219,214,216,219] },
-  { id:'r7-5800x',    name:'Ryzen 7 5800X',      brand:'AMD',   type:'CPU', tier:'mid-range', price:169,  prev:189,  high52:249,  low52:139,  color:'#ED1C24', series:[249,229,209,194,184,179,174,169,164,159,164,169] },
-  { id:'r5-5600x',    name:'Ryzen 5 5600X',      brand:'AMD',   type:'CPU', tier:'mid-range', price:119,  prev:129,  high52:179,  low52:99,   color:'#ED1C24', series:[179,159,144,134,129,124,119,114,109,104,111,119] },
-  { id:'r5-5600',     name:'Ryzen 5 5600',       brand:'AMD',   type:'CPU', tier:'budget',    price:99,   prev:109,  high52:149,  low52:79,   color:'#ED1C24', series:[149,134,119,109,103,99,94,89,84,81,89,99] },
-  { id:'r5-5500',     name:'Ryzen 5 5500',       brand:'AMD',   type:'CPU', tier:'entry',     price:79,   prev:89,   high52:119,  low52:59,   color:'#ED1C24', series:[119,104,94,89,84,79,74,69,64,62,70,79] },
+  { id:'r7-5800x',    name:'Ryzen 7 5800X',      brand:'AMD',   type:'CPU', tier:'mid-range', price:199,  prev:189,  high52:249,  low52:149,  color:'#ED1C24', series:[249,234,219,209,199,194,189,184,179,179,189,199] },
+  { id:'r5-5600x',    name:'Ryzen 5 5600X',      brand:'AMD',   type:'CPU', tier:'mid-range', price:145,  prev:129,  high52:179,  low52:105,  color:'#ED1C24', series:[179,164,154,144,134,129,124,119,114,119,132,145] },
+  { id:'r5-5600',     name:'Ryzen 5 5600',       brand:'AMD',   type:'CPU', tier:'budget',    price:129,  prev:109,  high52:149,  low52:97,   color:'#ED1C24', series:[149,139,134,129,124,119,112,107,103,107,118,129] },
+  { id:'r5-5500',     name:'Ryzen 5 5500',       brand:'AMD',   type:'CPU', tier:'entry',     price:79,   prev:89,   high52:109,  low52:59,   color:'#ED1C24', series:[109,99,94,89,84,79,74,69,64,62,70,79] },
 ];
 
 // Combined — used by index.html
