@@ -5,7 +5,7 @@
 const https = require("https");
 const fs = require("fs");
 
-const DATA_FILE = "././js/data.js";
+const DATA_FILE = "../../js/data.js";
 
 // ─────────────────────────────────────────────
 // 🔹 Simple HTTPS Fetch
