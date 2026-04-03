@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>المدونة والتحليلات | GPU Radar — مقارنات ودلائل شراء GPU و CPU</title>
-  <meta name="description" content="مقالات تقنية متعمقة: مقارنات GPU و CPU، دلائل الشراء، تحليل السوق، ونصائح الشراء بأفضل سعر للمتسوقين العرب." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://gpu-radar.com/pages/blog.html" />
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>المدونة | PriceBench — مقارنات GPU و CPU ودلائل الشراء</title>
+  <meta name="description" content="مقالات تقنية متعمقة: مقارنات GPU و CPU، دلائل الشراء، تحليل السوق، ونصائح الشراء بأفضل سعر للمتسوقين العرب."/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="google-adsense-account" content="ca-pub-1686978448234868">
+
+  <link rel="canonical" href="https://pricebench.online/pages/blog"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .blog-hero { background:var(--bg2); padding:6rem 0 3rem; text-align:center; border-bottom:1px solid var(--border); }
+    .blog-hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); margin-bottom:.5rem; }
+    .blog-hero p { color:var(--text2); }
+    .blog-layout { display:grid; grid-template-columns:1fr 300px; gap:2.5rem; padding:3rem 0; align-items:start; }
+    .cards-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    .bcard { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column; }
+    .bcard:hover { border-color:var(--border2); box-shadow:var(--glow); transform:translateY(-3px); }
+    .bcard-body { padding:1.5rem; flex:1; }
+    .bcard-meta { display:flex; align-items:center; gap:.75rem; margin-bottom:.85rem; flex-wrap:wrap; }
+    .bcard-tag { padding:.2rem .7rem; border-radius:4px; font-size:.7rem; font-weight:700; font-family:var(--font-data); letter-spacing:.5px; background:var(--accent-dim); border:1px solid rgba(56,189,248,.2); color:var(--accent); }
+    .bcard-date { font-size:.75rem; color:var(--text3); }
+    .bcard-time { font-size:.75rem; color:var(--text3); }
+    .bcard h2 { font-size:1rem; font-weight:700; margin-bottom:.65rem; line-height:1.45; color:var(--white); }
+    .bcard p { font-size:.85rem; color:var(--text2); line-height:1.7; margin-bottom:1rem; }
+    .bcard-footer { padding:.85rem 1.5rem; border-top:1px solid rgba(255,255,255,.05); }
+    .read-btn { display:inline-flex; align-items:center; gap:.4rem; font-size:.82rem; font-weight:700; color:var(--accent); transition:var(--transition); }
+    .read-btn:hover { gap:.7rem; }
+    .read-btn::after { content:'←'; }
+    .side-widget { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.25rem; }
+    .side-widget h3 { font-size:.9rem; font-weight:700; margin-bottom:1rem; padding-bottom:.6rem; border-bottom:1px solid var(--border); color:var(--white); }
+    .side-widget ul { display:flex; flex-direction:column; gap:.45rem; }
+    .side-widget li a { font-size:.83rem; color:var(--text2); display:block; padding:.3rem 0; border-bottom:1px solid rgba(255,255,255,.04); transition:var(--transition); }
+    .side-widget li a:hover { color:var(--accent); }
+    .alert-side { background:linear-gradient(135deg,var(--bg3),var(--surface)); border-color:rgba(56,189,248,.2); }
+    .alert-side p { font-size:.83rem; color:var(--text2); margin-bottom:.65rem; }
+    .alert-side input { width:100%; padding:.55rem .85rem; background:var(--bg3); border:1px solid var(--border); border-radius:6px; color:var(--text); font-family:var(--font-ui); font-size:.84rem; outline:none; direction:rtl; margin-bottom:.5rem; transition:var(--transition); }
+    .alert-side input:focus { border-color:var(--accent); }
+    .alert-side button { width:100%; padding:.55rem; background:var(--accent); color:#000; border:none; border-radius:6px; font-family:var(--font-ui); font-weight:700; font-size:.84rem; cursor:pointer; transition:var(--transition); }
+    .alert-side button:hover { background:#7DD3FC; }
+    .sidebar-sticky { position:sticky; top:80px; }
+    .filter-row { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .fcat { padding:.35rem .9rem; border:1px solid var(--border); border-radius:50px; font-size:.78rem; color:var(--text2); background:transparent; cursor:pointer; font-family:var(--font-ui); transition:var(--transition); }
+    .fcat:hover, .fcat.active { background:var(--accent-dim); border-color:var(--accent); color:var(--accent); }
+    @media(max-width:900px){ .blog-layout{grid-template-columns:1fr;} .sidebar-sticky{position:static;} }
+    @media(max-width:640px){ .cards-grid{grid-template-columns:1fr;} }
+  </style>
 </head>
 <body>
 <header class="navbar" id="navbar">
   <div class="nav-container">
-    <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+    <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">Price<em>Bench</em></span></a>
     <nav class="nav-menu" id="nav-menu">
       <a href="../index.html" class="nav-link">الرئيسية</a>
       <a href="gpu.html" class="nav-link">بطاقات الرسوميات</a>
@@ -28,40 +68,348 @@
     </div>
   </div>
 </header>
+
+<section class="blog-hero">
+  <div class="container">
+    <h1>المدونة والتحليلات</h1>
+    <p>مقارنات تقنية، تحليلات السوق، ودلائل شراء قطع الكمبيوتر بأفضل سعر</p>
+  </div>
+</section>
+
 <main>
-  <section class="page-hero">
-    <div class="container"><h1>المدونة والتحليلات</h1><p>مقارنات تقنية، تحليلات السوق، ودلائل الشراء بقلم خبرائنا</p></div>
-  </section>
-  <section class="section" style="background:var(--bg2)">
-    <div class="container">
-      <div class="blog-grid">
-        <article class="blog-card"><div class="blog-tag">مقارنة</div><h3><a href="#">RTX 4080 Super مقابل RX 7900 XTX: أيهما أفضل قيمةً في 2025؟</a></h3><p>مقارنة شاملة في الأداء والسعر والكفاءة الطاقوية بين أبرز بطاقتَي الفئة العليا من NVIDIA وAMD في 2025. من يفوز بتاج قيمة المال؟</p><div class="blog-meta"><time datetime="2025-03-10">10 مارس 2025</time> · 10 دقائق</div></article>
-        <article class="blog-card"><div class="blog-tag">تحليل سوق</div><h3><a href="#">لماذا انخفضت أسعار GPU بنسبة 15% خلال فبراير 2025؟</a></h3><p>تحليل معمق للأسباب الاقتصادية والتقنية وراء موجة انخفاض أسعار بطاقات الرسوميات وتوقعات الأشهر القادمة.</p><div class="blog-meta"><time datetime="2025-02-28">28 فبراير 2025</time> · 7 دقائق</div></article>
-        <article class="blog-card"><div class="blog-tag">دليل شراء</div><h3><a href="#">دليل 2025: أفضل CPU لكل ميزانية من $150 حتى $600</a></h3><p>توصيات معالجات مدروسة لكل نوع مستخدم: الألعاب، المونتاج، والعمل المكتبي — مع مقارنة الأداء مقابل السعر.</p><div class="blog-meta"><time datetime="2025-02-15">15 فبراير 2025</time> · 12 دقيقة</div></article>
-        <article class="blog-card"><div class="blog-tag">نصائح</div><h3><a href="#">متى تشتري بطاقة رسوميات؟ 5 مؤشرات للتوقيت الأمثل</a></h3><p>بناءً على تاريخ الأسعار لآخر 3 سنوات، هذه هي أنماط الأسعار الموسمية التي يجب أن تعرفها قبل أي عملية شراء.</p><div class="blog-meta"><time datetime="2025-01-30">30 يناير 2025</time> · 8 دقائق</div></article>
-        <article class="blog-card"><div class="blog-tag">تقنية</div><h3><a href="#">فهم معمار RDNA 4: ما الجديد في بطاقات AMD القادمة؟</a></h3><p>تحليل معمار RDNA 4 الجديد من AMD وما يعنيه للمستهلكين من حيث الأداء والكفاءة والأسعار المتوقعة.</p><div class="blog-meta"><time datetime="2025-01-15">15 يناير 2025</time> · 15 دقيقة</div></article>
-        <article class="blog-card"><div class="blog-tag">مقارنة</div><h3><a href="#">Intel vs AMD 2025: من يسيطر على سوق المعالجات؟</a></h3><p>تحليل شامل للمشهد التنافسي بين Intel وAMD في جميع الفئات السعرية ومن يقدم أفضل قيمة لكل نوع مستخدم.</p><div class="blog-meta"><time datetime="2025-01-05">5 يناير 2025</time> · 11 دقيقة</div></article>
-        <article class="blog-card"><div class="blog-tag">دليل شراء</div><h3><a href="#">كيف تختار بطاقة رسوميات للذكاء الاصطناعي في 2025؟</a></h3><p>دليل متخصص لاختيار GPU لمهام الذكاء الاصطناعي وتعلم الآلة، مع مقارنة بين RTX 4090 وRX 7900 XTX.</p><div class="blog-meta"><time datetime="2024-12-20">20 ديسمبر 2024</time> · 14 دقيقة</div></article>
-        <article class="blog-card"><div class="blog-tag">تحليل سوق</div><h3><a href="#">توقعات أسعار GPU في 2025: هل ستنخفض أكثر؟</a></h3><p>تحليل العوامل الاقتصادية وسلاسل التوريد وتوقعات الخبراء لمستوى أسعار بطاقات الرسوميات طوال عام 2025.</p><div class="blog-meta"><time datetime="2024-12-01">1 ديسمبر 2024</time> · 9 دقائق</div></article>
-        <article class="blog-card"><div class="blog-tag">نصائح</div><h3><a href="#">سوق GPU المستعمل: دليل الشراء الآمن بأفضل سعر</a></h3><p>كيف تتحقق من سلامة بطاقة الرسوميات المستعملة، أين تشتري، وكيف تتفاوض على السعر بثقة.</p><div class="blog-meta"><time datetime="2024-11-15">15 نوفمبر 2024</time> · 10 دقائق</div></article>
-        <article class="blog-card"><div class="blog-tag">مقارنة</div><h3><a href="#">RTX 4070 vs RX 7800 XT: معركة الـ $400</a></h3><p>أي من البطاقتين يستحق أموالك في نطاق $400؟ مقارنة ميدانية في 20 لعبة مختلفة مع اختبار الكفاءة والحرارة.</p><div class="blog-meta"><time datetime="2024-11-01">1 نوفمبر 2024</time> · 13 دقيقة</div></article>
+  <div class="container">
+    <div class="blog-layout">
+
+      <div>
+        <!-- Filter -->
+        <div class="filter-row">
+          <button class="fcat active" onclick="filterBlog('all',this)">الكل</button>
+          <button class="fcat" onclick="filterBlog('مقارنة',this)">مقارنات</button>
+          <button class="fcat" onclick="filterBlog('دليل',this)">دلائل الشراء</button>
+          <button class="fcat" onclick="filterBlog('تحليل',this)">تحليل السوق</button>
+          <button class="fcat" onclick="filterBlog('نصائح',this)">نصائح</button>
+          <button class="fcat" onclick="filterBlog('تقنية',this)">تقنية</button>
+        </div>
+
+        <!-- Cards grid -->
+        <div class="cards-grid" id="blog-cards">
+
+          <article class="bcard" data-cat="مقارنة">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">مقارنة</span>
+                <span class="bcard-date">15 مارس 2025</span>
+                <span class="bcard-time">10 دقائق</span>
+              </div>
+              <h2>RTX 4080 Super مقابل RX 7900 XTX: أيهما أفضل قيمةً في 2025؟</h2>
+              <p>مع انخفاض أسعار كلتا البطاقتين، أصبحت المقارنة بينهما أكثر إثارةً. نُقدّم تحليلاً شاملاً في الأداء والسعر والكفاءة الطاقوية.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/rtx4080s-vs-rx7900xtx.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="تحليل">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">تحليل سوق</span>
+                <span class="bcard-date">28 فبراير 2025</span>
+                <span class="bcard-time">7 دقائق</span>
+              </div>
+              <h2>لماذا انخفضت أسعار GPU بنسبة 15% خلال فبراير 2025؟</h2>
+              <p>شهد فبراير 2025 موجة انخفاض غير مسبوقة في أسعار بطاقات الرسوميات. نُحلل الأسباب الحقيقية وهل ستستمر.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/gpu-prices-drop-2025.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="دليل">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">دليل شراء</span>
+                <span class="bcard-date">15 فبراير 2025</span>
+                <span class="bcard-time">12 دقيقة</span>
+              </div>
+              <h2>دليل 2025 الشامل: أفضل CPU لكل ميزانية من $150 حتى $600</h2>
+              <p>توصيات مدروسة لكل فئة سعرية ولكل نوع مستخدم — من الألعاب إلى المونتاج إلى العمل المكتبي.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/best-cpu-2025.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="نصائح">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">نصائح</span>
+                <span class="bcard-date">30 يناير 2025</span>
+                <span class="bcard-time">8 دقائق</span>
+              </div>
+              <h2>متى تشتري بطاقة رسوميات؟ 5 مؤشرات للتوقيت الأمثل</h2>
+              <p>التوقيت يمكن أن يوفر عليك مئات الدولارات. بناءً على تحليل بيانات 3 سنوات، إليك المؤشرات الذهبية.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/best-time-buy-gpu.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="تقنية">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">تقنية</span>
+                <span class="bcard-date">15 يناير 2025</span>
+                <span class="bcard-time">15 دقيقة</span>
+              </div>
+              <h2>فهم معمار RDNA 4: ما الجديد في بطاقات AMD القادمة؟</h2>
+              <p>RDNA 4 هي القفزة التقنية الأكبر من AMD منذ سنوات. نُحلل ما تغيّر وتأثيره على أسعار الجيل الحالي.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/rdna4-architecture.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="مقارنة">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">مقارنة</span>
+                <span class="bcard-date">5 يناير 2025</span>
+                <span class="bcard-time">11 دقيقة</span>
+              </div>
+              <h2>Intel vs AMD 2025: من يسيطر على سوق المعالجات؟</h2>
+              <p>الحرب بين Intel وAMD لم تكن يوماً أشد ضراوةً. نُحلل المشهد الكامل لعام 2025 لمساعدتك على الاختيار.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/intel-vs-amd-2025.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="دليل">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">دليل شراء</span>
+                <span class="bcard-date">20 ديسمبر 2024</span>
+                <span class="bcard-time">14 دقيقة</span>
+              </div>
+              <h2>كيف تختار بطاقة رسوميات للذكاء الاصطناعي في 2025؟</h2>
+              <p>مع انتشار نماذج الذكاء الاصطناعي المحلية، اختيار GPU المناسب للـ LLM وStable Diffusion أصبح ضرورياً.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/gpu-for-ai-2025.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="تحليل">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">تحليل سوق</span>
+                <span class="bcard-date">1 ديسمبر 2024</span>
+                <span class="bcard-time">9 دقائق</span>
+              </div>
+              <h2>توقعات أسعار GPU في 2025: هل ستنخفض أكثر؟</h2>
+              <p>بناءً على تحليل الأنماط التاريخية ومعطيات السوق الحالية، إليك توقعاتنا لأسعار بطاقات الرسوميات.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/gpu-price-predictions-2025.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="نصائح">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">نصائح</span>
+                <span class="bcard-date">15 نوفمبر 2024</span>
+                <span class="bcard-time">10 دقائق</span>
+              </div>
+              <h2>سوق GPU المستعمل: دليل الشراء الآمن بأفضل سعر</h2>
+              <p>شراء بطاقة مستعملة يوفر 30-50%. لكن كيف تتجنب الوقوع في الفخ؟ دليلك الكامل للشراء الذكي.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/used-gpu-guide.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="مقارنة">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">مقارنة</span>
+                <span class="bcard-date">1 نوفمبر 2024</span>
+                <span class="bcard-time">13 دقيقة</span>
+              </div>
+              <h2>RTX 4070 Super مقابل RX 7800 XT: معركة الـ $450</h2>
+              <p>في نطاق $400-500 تشتعل المنافسة. أيهما يستحق أموالك؟ نختبر في 20 لعبة مختلفة.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/rtx4070s-vs-rx7800xt.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="دليل">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">دليل شراء</span>
+                <span class="bcard-date">15 أكتوبر 2024</span>
+                <span class="bcard-time">11 دقيقة</span>
+              </div>
+              <h2>أفضل تجميعة جهاز ألعاب بميزانية $800 في 2025</h2>
+              <p>$800 يمكنك بها بناء جهاز ألعاب قوي جداً إذا أحسنت الاختيار. إليك أفضل قطعة قطعة.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/gaming-build-800.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="تحليل">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">تحليل</span>
+                <span class="bcard-date">1 أكتوبر 2024</span>
+                <span class="bcard-time">9 دقائق</span>
+              </div>
+              <h2>ASUS vs MSI vs Gigabyte: أي علامة GPU الأفضل؟</h2>
+              <p>علامة الصانع تؤثر على التبريد والضوضاء والضمان والسعر. نُقارن الكبار الثلاثة لمساعدتك على الاختيار.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/gpu-brands-comparison.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="نصائح">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">نصائح</span>
+                <span class="bcard-date">15 سبتمبر 2024</span>
+                <span class="bcard-time">8 دقائق</span>
+              </div>
+              <h2>كيف تختار GPU المناسبة لشاشتك؟ دليل التوافق الكامل</h2>
+              <p>اختيار GPU بدون أخذ الشاشة في الحسبان خطأ شائع يُضيّع أموالك. إليك كيف تختار التوليفة المثالية.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/monitor-gpu-match.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="تقنية">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">تقنية</span>
+                <span class="bcard-date">1 سبتمبر 2024</span>
+                <span class="bcard-time">12 دقيقة</span>
+              </div>
+              <h2>Overclocking للمبتدئين: زد أداء GPU بـ 10% مجاناً</h2>
+              <p>بأدوات مجانية وخطوات بسيطة، يمكنك الحصول على أداء إضافي مجاني من بطاقتك الحالية.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/overclocking-guide.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+          <article class="bcard" data-cat="دليل">
+            <div class="bcard-body">
+              <div class="bcard-meta">
+                <span class="bcard-tag">دليل شراء</span>
+                <span class="bcard-date">15 أغسطس 2024</span>
+                <span class="bcard-time">10 دقائق</span>
+              </div>
+              <h2>دليل اختيار مزود الطاقة PSU لبطاقات GPU الحديثة</h2>
+              <p>PSU خاطئ قد يُتلف بطاقة تكلف آلاف الدولارات. إليك كيف تحسب الطاقة المطلوبة وتختار الصح.</p>
+            </div>
+            <div class="bcard-footer">
+              <a href="articles/psu-guide.html" class="read-btn">اقرأ المقال</a>
+            </div>
+          </article>
+
+        </div>
       </div>
+
+      <!-- Sidebar -->
+      <aside>
+        <div class="sidebar-sticky">
+          <div class="side-widget alert-side">
+            <h3>🔔 تنبيه انخفاض السعر</h3>
+            <p>أدخل بريدك وسنخبرك فور انخفاض سعر قطعتك</p>
+            <form onsubmit="(function(e){e.preventDefault();document.getElementById('bok').style.display='block';})(event)">
+              <input type="email" placeholder="بريدك الإلكتروني" required/>
+              <button type="submit">اشترك مجاناً</button>
+            </form>
+            <div id="bok" style="display:none;color:#4ade80;font-size:.82rem;margin-top:.5rem">✓ تم الاشتراك!</div>
+          </div>
+          <div class="side-widget">
+            <h3>⚡ روابط سريعة</h3>
+            <ul>
+              <li><a href="gpu.html">أسعار بطاقات NVIDIA</a></li>
+              <li><a href="gpu.html">أسعار بطاقات AMD</a></li>
+              <li><a href="cpu.html">أسعار معالجات Intel</a></li>
+              <li><a href="cpu.html">أسعار معالجات AMD</a></li>
+              <li><a href="compare.html">أداة المقارنة</a></li>
+              <li><a href="alerts.html">تنبيهات الأسعار</a></li>
+            </ul>
+          </div>
+          <div class="side-widget">
+            <h3>🔥 الأكثر قراءةً</h3>
+            <ul>
+              <li><a href="articles/rtx4080s-vs-rx7900xtx.html">RTX 4080 Super vs RX 7900 XTX</a></li>
+              <li><a href="articles/best-cpu-2025.html">أفضل CPU لكل ميزانية 2025</a></li>
+              <li><a href="articles/best-time-buy-gpu.html">متى تشتري GPU؟</a></li>
+              <li><a href="articles/gaming-build-800.html">تجميعة ألعاب بـ $800</a></li>
+              <li><a href="articles/gpu-for-ai-2025.html">GPU للذكاء الاصطناعي</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
     </div>
-  </section>
+  </div>
 </main>
+
 <footer class="footer">
   <div class="container footer-grid">
-    <div class="footer-brand"><a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a><p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p></div>
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">Price<em>Bench</em></span></a>
+      <p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p>
+    </div>
     <nav class="footer-nav">
-      <div class="footer-col"><h4>الأسعار</h4><ul><li><a href="gpu.html">بطاقات GPU</a></li><li><a href="cpu.html">معالجات CPU</a></li></ul></div>
-      <div class="footer-col"><h4>الموقع</h4><ul><li><a href="about.html">من نحن</a></li><li><a href="contact.html">تواصل</a></li></ul></div>
-      <div class="footer-col"><h4>قانوني</h4><ul><li><a href="privacy-policy.html">الخصوصية</a></li><li><a href="terms.html">الشروط</a></li></ul></div>
+      <div class="footer-col"><h4>الأسعار</h4><ul>
+        <li><a href="gpu.html">بطاقات GPU</a></li>
+        <li><a href="cpu.html">معالجات CPU</a></li>
+        <li><a href="compare.html">المقارنة</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>الموقع</h4><ul>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="blog.html">المدونة</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>قانوني</h4><ul>
+        <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+        <li><a href="terms.html">الشروط والأحكام</a></li>
+      </ul></div>
     </nav>
   </div>
-  <div class="footer-bottom"><div class="container footer-bottom-inner"><p>© 2025 GPU Radar.</p></div></div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2025 PriceBench. جميع الحقوق محفوظة.</p>
+      <p class="footer-disclaimer">الأسعار للأغراض المعلوماتية. نشارك في برامج عمولة.</p>
+    </div>
+  </div>
 </footer>
 
 <script src="../js/data.js"></script>
-<script>document.addEventListener("DOMContentLoaded", () => { initNavbar(); });</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+});
+function filterBlog(cat, btn) {
+  document.querySelectorAll('.fcat').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.bcard').forEach(card => {
+    if (cat === 'all') {
+      card.style.display = 'flex';
+    } else {
+      const cardCat = card.dataset.cat || '';
+      card.style.display = cardCat.includes(cat) ? 'flex' : 'none';
+    }
+  });
+}
+</script>
 </body>
 </html>
