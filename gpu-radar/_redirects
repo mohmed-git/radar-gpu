@@ -1,7 +1,79 @@
 # Netlify Redirects — GPU Radar
 
-# 404 handler
-/*    /404.html    404
+# Clean URLs: redirect .html → no extension (301 permanent)
+/pages/about.html           /pages/about              301
+/pages/alerts.html          /pages/alerts             301
+/pages/blog.html            /pages/blog               301
+/pages/compare.html         /pages/compare            301
+/pages/contact.html         /pages/contact            301
+/pages/cpu.html             /pages/cpu                301
+/pages/gpu.html             /pages/gpu                301
+/pages/privacy-policy.html  /pages/privacy-policy     301
+/pages/terms.html           /pages/terms              301
 
-# API proxy to backend (if deployed separately)
-# /api/*    https://your-backend.railway.app/api/:splat    200
+# Articles — redirect .html → no extension
+/pages/articles/best-cpu-2025.html               /pages/articles/best-cpu-2025              301
+/pages/articles/best-time-buy-gpu.html           /pages/articles/best-time-buy-gpu          301
+/pages/articles/gaming-build-800.html            /pages/articles/gaming-build-800           301
+/pages/articles/gpu-brands-comparison.html       /pages/articles/gpu-brands-comparison      301
+/pages/articles/gpu-for-ai-2025.html             /pages/articles/gpu-for-ai-2025            301
+/pages/articles/gpu-price-predictions-2025.html  /pages/articles/gpu-price-predictions-2025 301
+/pages/articles/gpu-prices-drop-2025.html        /pages/articles/gpu-prices-drop-2025       301
+/pages/articles/intel-vs-amd-2025.html           /pages/articles/intel-vs-amd-2025          301
+/pages/articles/monitor-gpu-match.html           /pages/articles/monitor-gpu-match          301
+/pages/articles/overclocking-guide.html          /pages/articles/overclocking-guide         301
+/pages/articles/psu-guide.html                   /pages/articles/psu-guide                  301
+/pages/articles/rdna4-architecture.html          /pages/articles/rdna4-architecture         301
+/pages/articles/rtx4070s-vs-rx7800xt.html        /pages/articles/rtx4070s-vs-rx7800xt       301
+/pages/articles/rtx4080s-vs-rx7900xtx.html       /pages/articles/rtx4080s-vs-rx7900xtx      301
+/pages/articles/used-gpu-guide.html              /pages/articles/used-gpu-guide             301
+/pages/articles/rtx5090-review.html              /pages/articles/rtx5090-review             301
+/pages/articles/rx9070xt-review.html             /pages/articles/rx9070xt-review            301
+/pages/articles/rtx5090-vs-rtx4090.html          /pages/articles/rtx5090-vs-rtx4090         301
+/pages/articles/gaming-build-1000.html           /pages/articles/gaming-build-1000          301
+/pages/articles/ddr5-vs-ddr4-gaming.html         /pages/articles/ddr5-vs-ddr4-gaming        301
+/pages/articles/nvme-ssd-guide-2025.html         /pages/articles/nvme-ssd-guide-2025        301
+/pages/articles/rtx-5000-series-complete-guide.html /pages/articles/rtx-5000-series-complete-guide 301
+/pages/articles/gaming-laptop-vs-desktop-2025.html  /pages/articles/gaming-laptop-vs-desktop-2025  301
+/pages/articles/rx9000-series-guide.html         /pages/articles/rx9000-series-guide        301
+/pages/articles/gpu-cooling-guide.html           /pages/articles/gpu-cooling-guide          301
+
+# Serve .html files for clean URL requests (pretty URLs)
+/pages/about               /pages/about.html         200
+/pages/alerts              /pages/alerts.html        200
+/pages/blog                /pages/blog.html          200
+/pages/compare             /pages/compare.html       200
+/pages/contact             /pages/contact.html       200
+/pages/cpu                 /pages/cpu.html           200
+/pages/gpu                 /pages/gpu.html           200
+/pages/privacy-policy      /pages/privacy-policy.html 200
+/pages/terms               /pages/terms.html         200
+
+/pages/articles/best-cpu-2025               /pages/articles/best-cpu-2025.html              200
+/pages/articles/best-time-buy-gpu           /pages/articles/best-time-buy-gpu.html          200
+/pages/articles/gaming-build-800            /pages/articles/gaming-build-800.html           200
+/pages/articles/gpu-brands-comparison       /pages/articles/gpu-brands-comparison.html      200
+/pages/articles/gpu-for-ai-2025             /pages/articles/gpu-for-ai-2025.html            200
+/pages/articles/gpu-price-predictions-2025  /pages/articles/gpu-price-predictions-2025.html 200
+/pages/articles/gpu-prices-drop-2025        /pages/articles/gpu-prices-drop-2025.html       200
+/pages/articles/intel-vs-amd-2025           /pages/articles/intel-vs-amd-2025.html          200
+/pages/articles/monitor-gpu-match           /pages/articles/monitor-gpu-match.html          200
+/pages/articles/overclocking-guide          /pages/articles/overclocking-guide.html         200
+/pages/articles/psu-guide                   /pages/articles/psu-guide.html                  200
+/pages/articles/rdna4-architecture          /pages/articles/rdna4-architecture.html         200
+/pages/articles/rtx4070s-vs-rx7800xt        /pages/articles/rtx4070s-vs-rx7800xt.html       200
+/pages/articles/rtx4080s-vs-rx7900xtx       /pages/articles/rtx4080s-vs-rx7900xtx.html      200
+/pages/articles/used-gpu-guide              /pages/articles/used-gpu-guide.html             200
+/pages/articles/rtx5090-review              /pages/articles/rtx5090-review.html             200
+/pages/articles/rx9070xt-review             /pages/articles/rx9070xt-review.html            200
+/pages/articles/rtx5090-vs-rtx4090          /pages/articles/rtx5090-vs-rtx4090.html         200
+/pages/articles/gaming-build-1000           /pages/articles/gaming-build-1000.html          200
+/pages/articles/ddr5-vs-ddr4-gaming         /pages/articles/ddr5-vs-ddr4-gaming.html        200
+/pages/articles/nvme-ssd-guide-2025         /pages/articles/nvme-ssd-guide-2025.html        200
+/pages/articles/rtx-5000-series-complete-guide /pages/articles/rtx-5000-series-complete-guide.html 200
+/pages/articles/gaming-laptop-vs-desktop-2025  /pages/articles/gaming-laptop-vs-desktop-2025.html  200
+/pages/articles/rx9000-series-guide         /pages/articles/rx9000-series-guide.html        200
+/pages/articles/gpu-cooling-guide           /pages/articles/gpu-cooling-guide.html          200
+
+# 404 fallback
+/*    /404.html    404
