@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://pricebench.online/pages/articles/overclocking-guide"/>
   <meta property="og:title" content="Overclocking للمبتدئين: زد أداء GPU بـ 10% مجاناً"/>
   <meta property="og:description" content="دليل خطوة بخطوة لعمل Overclocking آمن لبطاقة الرسوميات وزيادة الأداء 10% مجاناً."/>
-  <meta property="og:url" content="https://pricebench.online/pages/articles/overclocking-guide.html"/>
+  <meta property="og:url" content="https://pricebench.online/pages/articles/overclocking-guide"/>
   <meta property="og:type" content="article"/>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
@@ -86,36 +86,57 @@
         <a href="../blog.html" class="back-link">→ العودة للمدونة</a>
         <div class="art-body">
 
-<h2>ما هو Overclocking؟</h2>
-<p>Overclocking هو تشغيل GPU بتردد أعلى من التردد الرسمي المُحدَّد من المصنع. الشركات عادةً تترك هامش أمان في التردد الافتراضي — Overclocking يستغل هذا الهامش للحصول على أداء إضافي مجاني.</p>
+<h2>Overclocking في 2025: هل لا يزال يستحق؟</h2>
+<p>مع تحسن تقنيات GPU الحديثة، تُحسّن المصانع الضبط الافتراضي بشكل أفضل من قبل. لكن لا يزال الـ Overclocking يُقدّم 8-15% أداء إضافي مجانياً — خاصةً على بطاقات AMD التي تملك نطاقاً أوسع للـ OC. هذا الدليل يُرشدك خطوة بخطوة.</p>
 
-<h2>الأدوات المطلوبة (كلها مجانية)</h2>
-<p><strong>MSI Afterburner:</strong> الأداة الذهبية للـ Overclocking — يعمل مع كل البطاقات بغض النظر عن العلامة.</p>
-<p><strong>GPU-Z:</strong> لمراقبة التردد الفعلي ودرجة الحرارة والمعايير.</p>
-<p><strong>FurMark:</strong> لاختبار الاستقرار تحت ضغط أقصى.</p>
-<p><strong>3DMark:</strong> لقياس الأداء قبل وبعد للتحقق من الفارق.</p>
+<h2>ما تحتاجه قبل البدء</h2>
+<ul>
+<li><strong>MSI Afterburner:</strong> أشهر وأفضل أداة OC، مجانية تماماً</li>
+<li><strong>GPU-Z:</strong> لمراقبة الحرارة والأداء والـ clock speeds الفعلية</li>
+<li><strong>3DMark Time Spy:</strong> لقياس الأداء قبل وبعد وإثبات التحسن</li>
+<li><strong>FurMark أو Unigine Heaven:</strong> للاختبار تحت الضغط الكامل</li>
+<li><strong>تبريد كافٍ:</strong> تأكد أن حرارة GPU أقل من 80°C في الـ idle ويمكن الوصول لـ 85-90°C تحت الضغط</li>
+</ul>
 
-<h2>الخطوات بالتفصيل</h2>
-<p><strong>الخطوة 1:</strong> شغّل 3DMark وسجّل نتيجتك الأصلية كمرجع.</p>
-<p><strong>الخطوة 2:</strong> في MSI Afterburner، ارفع Core Clock بمقدار +50MHz فقط.</p>
-<p><strong>الخطوة 3:</strong> شغّل FurMark لمدة 10 دقائق — إذا استقر بدون Crash أو Artifact، الـ OC مستقر.</p>
-<p><strong>الخطوة 4:</strong> ارفع +25MHz إضافية وكرر الاختبار.</p>
-<p><strong>الخطوة 5:</strong> استمر حتى تجد حد الاستقرار، ثم ارجع خطوة للخلف.</p>
+<h2>خطوة 1: Power Limit — ابدأ هنا دائماً</h2>
+<p>أول خطوة: ارفع Power Limit إلى الحد الأقصى (+20% أو ما تسمح به بطاقتك). هذا وحده يُقدّم 3-7% أداء إضافي مجاناً لأن معظم البطاقات مُقيّدة بـ power limit افتراضي محافظ. افعل هذا واختبر الاستقرار بـ 10 دقائق FurMark قبل أي شيء آخر.</p>
 
-<h2>توقعات الأداء الواقعية</h2>
-<p>معظم بطاقات RTX 4000 تقبل +100-150MHz بأمان، مما يُحسّن الأداء 8-12%. RX 7000 من AMD تقبل عموماً +80-120MHz. أسعد مستخدمي OC هم أصحاب RTX 4090 — بعضها يقبل +200-250MHz.</p>
+<h2>خطوة 2: رفع Core Clock</h2>
+<p>ابدأ بـ +50 MHz وشغّل FurMark لـ 10 دقائق. إذا استقر: ارفع +25 MHz أخرى. كرر حتى:</p>
+<ul>
+<li>تحصل على crash/freeze = توقف وارجع -25 MHz</li>
+<li>تلاحظ artifacts (بقع أو خطوط على الشاشة) = ارجع -25 MHz</li>
+<li>الحرارة تتجاوز 90°C باستمرار = توقف</li>
+</ul>
+<p>المدى المتوقع لمعظم البطاقات: +80 إلى +150 MHz على Core Clock.</p>
 
-<h2>هل يؤثر على الضمان؟</h2>
-<p>تقنياً في معظم الشركات، OC يلغي الضمان. لكن عملياً يصعب إثباته. MSI Afterburner لا يُثبّت نفسه دائماً — يمكنك إعادة الإعدادات الافتراضية بضغطة زر. قرارك أنت. تحقق من <a href="../pages/gpu.html" style="color:var(--accent)">قيمة بطاقتك الحالية</a> لتقييم جدوى OC.</p>
+<h2>خطوة 3: رفع Memory Clock</h2>
+<p>VRAM Overclock يُقدّم أحياناً فائدة أكبر من Core OC في الألعاب ذات الـ VRAM bandwidth bottleneck. ابدأ بـ +200 MHz واختبر. إذا ظهرت artifacts (خاصةً طين أو تلوين غريب)، هذا يعني أن VRAM لا تتحمل المزيد.</p>
+
+<h2>نتائج حقيقية — ما تتوقعه</h2>
+<ul>
+<li><strong>RTX 4070:</strong> متوسط كسب +12% بعد OC جيد على Core وMemory</li>
+<li><strong>RX 7800 XT:</strong> متوسط كسب +15% — أوسع نطاق OC في فئتها</li>
+<li><strong>RTX 4090:</strong> +5-8% فقط لأنها مُحسَّنة مسبقاً بشكل أفضل</li>
+</ul>
+
+<h2>تحذيرات مهمة لا تتجاهلها</h2>
+<ul>
+<li>OC قد يُلغي الضمان في بعض الدول — تحقق قبل البدء</li>
+<li>لا تزيد Voltage إذا كنت مبتدئاً — Core/Memory OC بدون voltage آمن نسبياً</li>
+<li>احفظ إعداداتك في MSI Afterburner كـ Profile منفصل</li>
+<li>راقب الحرارة دائماً — إذا تجاوزت 85°C بانتظام، أضف مراوح إضافية أو أبطّئ OC</li>
+</ul>
 
         </div>
         <div class="art-links">
-          <a href="../gpu.html" class="art-link">📊 تحقق من سعر بطاقتك</a>
-          <a href="../compare.html" class="art-link">⚖️ هل تستحق الترقية؟</a>
+          <a href="../gpu.html" class="art-link">📊 أسعار GPU</a>
+          <a href="gaming-build-800.html" class="art-link">🖥️ تجميعة بـ $800</a>
+          <a href="used-gpu-guide.html" class="art-link">💰 GPU مستعملة</a>
         </div>
       </article>
 
-      <aside>
+            <aside>
         <div class="sidebar-sticky">
           <div class="side-widget alert-side">
             <h3>🔔 تنبيه انخفاض السعر</h3>
@@ -140,9 +161,11 @@
             <ul>
               <li><a href="rtx4080s-vs-rx7900xtx.html">RTX 4080 Super vs RX 7900 XTX</a></li>
               <li><a href="best-cpu-2025.html">أفضل CPU لكل ميزانية 2025</a></li>
-              <li><a href="best-time-buy-gpu.html">متى تشتري GPU؟</a></li>
+              <li><a href="rtx5090-review.html">مراجعة RTX 5090</a></li>
+              <li><a href="rx9070xt-review.html">مراجعة RX 9070 XT</a></li>
+              <li><a href="gaming-build-1000.html">تجميعة ألعاب بـ $1000</a></li>
+              <li><a href="ddr5-vs-ddr4-gaming.html">DDR5 vs DDR4 في الألعاب</a></li>
               <li><a href="gpu-for-ai-2025.html">GPU للذكاء الاصطناعي</a></li>
-              <li><a href="gaming-build-800.html">تجميعة ألعاب بـ $800</a></li>
             </ul>
           </div>
         </div>

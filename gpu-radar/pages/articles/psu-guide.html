@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://pricebench.online/pages/articles/psu-guide"/>
   <meta property="og:title" content="دليل اختيار مزود الطاقة PSU لبطاقات GPU الحديثة"/>
   <meta property="og:description" content="كيف تختار مزود طاقة PSU مناسب لبطاقتك — حساب الطاقة، شهادات الكفاءة، والعلامات الموثوقة."/>
-  <meta property="og:url" content="https://pricebench.online/pages/articles/psu-guide.html"/>
+  <meta property="og:url" content="https://pricebench.online/pages/articles/psu-guide"/>
   <meta property="og:type" content="article"/>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
@@ -86,33 +86,58 @@
         <a href="../blog.html" class="back-link">→ العودة للمدونة</a>
         <div class="art-body">
 
-<h2>لماذا PSU مهم جداً؟</h2>
-<p>مزود الطاقة هو القلب الخفي لجهازك — يُغذي كل مكوناتك بالكهرباء. PSU رديء لا يُعطل جهازك فقط، بل يمكن أن يُتلف بطاقة رسوميات تكلف آلاف الدولارات دفعةً واحدة. لا تقتّر هنا أبداً.</p>
+<h2>PSU الخاطئ يُدمّر كل شيء — لا تُهمله</h2>
+<p>مزود الطاقة (PSU) هو الجزء الأكثر إهمالاً في تجميعة الكمبيوتر — والأكثر تدميراً إذا اخترت الغلط. PSU رخيص يُمكنه أن يحرق GPU بـ $700 أو Motherboard بـ $300 في ثوانٍ. هذا الدليل يُعلّمك كيف تحسب القدرة المطلوبة وتختار PSU آمن موثوق.</p>
 
 <h2>كيف تحسب الطاقة المطلوبة؟</h2>
-<p>اجمع استهلاك GPU + CPU + بقية المكونات + أضف 20% هامش أمان. مثال عملي: RTX 4090 (450W) + i9-14900K (125W) + باقي المكونات (100W) = 675W × 1.2 = 810W — تحتاج PSU بقوة 850W على الأقل.</p>
+<p>القاعدة الذهبية: اجمع TDP المكونات الرئيسية وأضف 25-30% هامش أمان.</p>
+<ul>
+<li>GPU TDP + CPU TDP + 100W (للوحة الأم، RAM، SSD، مراوح) = طاقة قاعدية</li>
+<li>اضرب النتيجة × 1.25 لهامش الأمان</li>
+</ul>
+<p>مثال: RTX 4070 (200W) + Ryzen 7 7700X (105W) + 100W = 405W × 1.25 = <strong>507W</strong> → اختر 550W أو 650W</p>
 
-<h2>دليل سريع حسب GPU</h2>
-<p><strong>RTX 4060 / RX 7600:</strong> 550W Gold كافٍ تماماً.</p>
-<p><strong>RTX 4070 Super / RX 7800 XT:</strong> 750W Gold — مريح وآمن.</p>
-<p><strong>RTX 4080 Super / RX 7900 XTX:</strong> 850W Gold — لا تنزل تحت هذا.</p>
-<p><strong>RTX 4090:</strong> 1000W Gold أو أعلى — 1200W أفضل لـ Overclocking.</p>
+<h2>متطلبات PSU للبطاقات الشائعة</h2>
+<ul>
+<li><strong>RTX 4060 / RX 7600:</strong> 550W كافٍ</li>
+<li><strong>RTX 4070 / RX 7800 XT:</strong> 650W مريح</li>
+<li><strong>RTX 4070 Ti Super / RX 7900 XT:</strong> 750W</li>
+<li><strong>RTX 4080 Super / RX 7900 XTX:</strong> 850W</li>
+<li><strong>RTX 4090 / RTX 5090:</strong> 1000W+ — لا تساوم هنا</li>
+</ul>
 
-<h2>شهادة 80 PLUS — لا تتنازل</h2>
-<p>شهادة 80 PLUS تعني أن PSU يحوّل 80%+ من الكهرباء إلى طاقة فعلية. Bronze للفئة المتوسطة، Gold للتوازن بين السعر والكفاءة، Platinum وTitanium للمتطلبين.</p>
+<h2>شهادات الكفاءة — 80 Plus</h2>
+<ul>
+<li><strong>80+ Bronze:</strong> كفاءة 82-85% — الحد الأدنى المقبول للتجميعات الجادة</li>
+<li><strong>80+ Gold:</strong> 87-89% — التوازن الأمثل بين السعر والكفاءة للغالبية</li>
+<li><strong>80+ Platinum:</strong> 90-92% — للتجميعات المتوسطة-العالية</li>
+<li><strong>80+ Titanium:</strong> 92-96% — للخوادم أو المتحمسين فقط</li>
+</ul>
+<p>80+ Gold هو الخيار العملي لمعظم الناس. يوفر الفرق السعري مقارنةً بـ Bronze في فاتورة الكهرباء خلال 2-3 سنوات.</p>
 
-<h2>العلامات الموثوقة</h2>
-<p><strong>Seasonic:</strong> الذهب المطلق في PSU — ضمان 12 سنة. <strong>Corsair RMx:</strong> موثوق ومتوفر بكل المقاسات. <strong>be quiet! Pure Power:</strong> هادئ جداً مع أداء ممتاز. تجنب العلامات المجهولة بأي ثمن — قارن مع <a href="../pages/gpu.html" style="color:var(--accent)">سعر GPU التي تحميها</a> لتُدرك أهمية PSU جيد.</p>
+<h2>PSU Modular vs Non-Modular</h2>
+<p>Fully Modular: تختار الكابلات التي تحتاجها فقط — نظافة تجميع أفضل، تهوية أفضل. أغلى بـ $15-30. Full Modular يستحق للأكواز Mid-Tower وما فوق. Semi-Modular كافٍ للميزانيات المتوسطة.</p>
+
+<h2>العلامات الموثوقة في 2025</h2>
+<ul>
+<li><strong>Seasonic Focus GX (Gold):</strong> أفضل قيمة-جودة في الفئة المتوسطة. 10 سنوات ضمان.</li>
+<li><strong>Corsair RM Series (Gold):</strong> صامت جداً، موثوقية ممتازة، متوفر في كل مكان.</li>
+<li><strong>be quiet! Straight Power (Gold/Platinum):</strong> الأهدأ في السوق، ممتاز للـ silent builds.</li>
+<li><strong>EVGA SuperNOVA (Gold):</strong> لا يزال من الأفضل رغم توقف EVGA عن الـ GPU.</li>
+</ul>
+
+<h2>ماذا تتجنب؟</h2>
+<p>تجنب أي PSU من علامات مجهولة بأسعار أقل بـ 50% من المنافسين. العلامات الخطرة: لا شهادة 80+، وزن خفيف جداً (مكثفات رخيصة)، مراوح صاخبة بشكل مبالغ. تذكر: PSU $100 يحمي GPU بـ $700 — هذا ليس وقت التوفير.</p>
 
         </div>
         <div class="art-links">
-          <a href="../gpu.html" class="art-link">🎮 استهلاك بطاقات GPU</a>
-          <a href="../cpu.html" class="art-link">⚡ استهلاك المعالجات</a>
-          <a href="../../index.html" class="art-link">🏠 العودة للرئيسية</a>
+          <a href="../gpu.html" class="art-link">🎮 أسعار بطاقات GPU</a>
+          <a href="gaming-build-800.html" class="art-link">🖥️ تجميعة ألعاب بـ $800</a>
+          <a href="../compare.html" class="art-link">⚖️ قارن القطع</a>
         </div>
       </article>
 
-      <aside>
+            <aside>
         <div class="sidebar-sticky">
           <div class="side-widget alert-side">
             <h3>🔔 تنبيه انخفاض السعر</h3>
@@ -137,9 +162,11 @@
             <ul>
               <li><a href="rtx4080s-vs-rx7900xtx.html">RTX 4080 Super vs RX 7900 XTX</a></li>
               <li><a href="best-cpu-2025.html">أفضل CPU لكل ميزانية 2025</a></li>
-              <li><a href="best-time-buy-gpu.html">متى تشتري GPU؟</a></li>
+              <li><a href="rtx5090-review.html">مراجعة RTX 5090</a></li>
+              <li><a href="rx9070xt-review.html">مراجعة RX 9070 XT</a></li>
+              <li><a href="gaming-build-1000.html">تجميعة ألعاب بـ $1000</a></li>
+              <li><a href="ddr5-vs-ddr4-gaming.html">DDR5 vs DDR4 في الألعاب</a></li>
               <li><a href="gpu-for-ai-2025.html">GPU للذكاء الاصطناعي</a></li>
-              <li><a href="gaming-build-800.html">تجميعة ألعاب بـ $800</a></li>
             </ul>
           </div>
         </div>

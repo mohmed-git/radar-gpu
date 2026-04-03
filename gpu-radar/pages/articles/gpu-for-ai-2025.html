@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://pricebench.online/pages/articles/gpu-for-ai-2025"/>
   <meta property="og:title" content="كيف تختار بطاقة رسوميات للذكاء الاصطناعي في 2025؟"/>
   <meta property="og:description" content="دليل شامل لاختيار GPU لتشغيل نماذج الذكاء الاصطناعي المحلية وStable Diffusion وLLM."/>
-  <meta property="og:url" content="https://pricebench.online/pages/articles/gpu-for-ai-2025.html"/>
+  <meta property="og:url" content="https://pricebench.online/pages/articles/gpu-for-ai-2025"/>
   <meta property="og:type" content="article"/>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
@@ -86,32 +86,49 @@
         <a href="../blog.html" class="back-link">→ العودة للمدونة</a>
         <div class="art-body">
 
-<h2>لماذا GPU للذكاء الاصطناعي؟</h2>
-<p>نماذج الذكاء الاصطناعي المحلية كـ LLaMA وMistral وStable Diffusion تعتمد اعتماداً كلياً على قوة GPU، وتحديداً على حجم الذاكرة VRAM. اختيار GPU الخاطئ يعني عدم قدرتك على تشغيل النماذج التي تريدها.</p>
+<h2>ثورة الذكاء الاصطناعي المحلي تحتاج GPU مناسبة</h2>
+<p>مع انتشار Stable Diffusion وLLaMA وMistral والنماذج المحلية الأخرى، أصبح اختيار GPU للذكاء الاصطناعي المنزلي قراراً استراتيجياً وليس ترفاً. VRAM هو الملك هنا — وليس أداء الألعاب. هذا الدليل يُحدد أفضل الخيارات لكل ميزانية ونوع استخدام.</p>
 
-<h2>أهم معيار: حجم VRAM</h2>
-<p>قاعدة الإبهام: تحتاج على الأقل 2GB VRAM لكل مليار parameter في النموذج (بدقة FP16). نموذج 7B يحتاج ~14GB، ونموذج 13B يحتاج ~26GB، ونموذج 70B يحتاج GPU متعددة.</p>
+<h2>أولاً: لماذا VRAM هو الأهم؟</h2>
+<p>النماذج اللغوية الكبيرة (LLMs) تُحمَّل كاملةً في VRAM أثناء التشغيل. نموذج 7B (7 مليار معامل) يحتاج ~8 GB بتكميم INT4، أما 13B فيحتاج ~14 GB، و70B يحتاج 40+ GB. إذا تجاوز النموذج VRAM المتاحة، يُحمَّل جزء منه على RAM العادية (System RAM offloading) مما يُبطّئ التشغيل 10-50x.</p>
 
-<h2>توصياتنا حسب الميزانية</h2>
-<p><strong>تحت $500: RX 7800 XT (16GB VRAM):</strong> أفضل قيمة للذكاء الاصطناعي. يُشغّل نماذج 7B بسهولة وبعض نماذج 13B بدقة INT8.</p>
-<p><strong>$500-900: RX 7900 XTX (24GB VRAM):</strong> يُشغّل نماذج 13B بدقة كاملة وبعض نماذج 34B بتحسين. الخيار الأمثل للمستخدم الجاد.</p>
-<p><strong>فوق $1000: RTX 4090 (24GB GDDR6X):</strong> الأسرع مطلقاً مع دعم CUDA الكامل لكل مكتبات الذكاء الاصطناعي.</p>
+<h2>أفضل GPU للذكاء الاصطناعي المحلي في 2025</h2>
 
-<h2>NVIDIA vs AMD للذكاء الاصطناعي</h2>
-<p>NVIDIA تتفوق بفضل نظام CUDA الناضج ودعم PyTorch وTensorFlow الكامل. معظم النماذج محسّنة لـ CUDA أولاً. لكن AMD تضيق الفجوة بسرعة مع ROCm 6، وتقدم VRAM أكبر بسعر أقل.</p>
+<p><strong>RX 7900 XTX (24 GB) — $799:</strong> الملك بلا منازع للمشترين الجدد. 24 GB VRAM تتيح تشغيل نماذج 13B بكفاءة عالية وتجريب 30B مع تكميم INT4. ROCm 6.0 حسّن الدعم بشكل كبير على Linux. على Windows لا يزال أقل استقراراً من CUDA.</p>
 
-<h2>نصيحة عملية</h2>
-<p>إذا كان الذكاء الاصطناعي استخدامك الرئيسي، اختر VRAM الأكبر في ميزانيتك بغض النظر عن كل شيء آخر. شاهد <a href="../pages/gpu.html" style="color:var(--accent)">مقارنة VRAM البطاقات</a> لمساعدتك في الاختيار.</p>
+<p><strong>RTX 4090 (24 GB) — $1,599:</strong> الأسرع مطلقاً في inference بفضل CUDA وhalf-precision FP16 المتفوق. إذا كنت تُدير نماذج كبيرة باستمرار للعمل المهني، هذه هي الأفضل. Stable Diffusion XL على 4090 أسرع 3x من RX 7900 XTX.</p>
+
+<p><strong>RTX 4070 Ti Super (16 GB) — $649:</strong> نقطة التوازن المثالية. 16 GB تكفي لـ LLaMA 3 8B بسهولة وتجريب 13B. Stable Diffusion SDXL بسرعة عالية. الأفضل إذا تمزج بين AI والألعاب.</p>
+
+<p><strong>RTX 3090 مستعملة (24 GB) — $500-600:</strong> صفقة خفية. 24 GB GDDR6X بسعر معقول. أداء CUDA ممتاز لـ LLM inference. تحقق من المصدر جيداً قبل الشراء (استعمال تعدين يُتلف البطاقة).</p>
+
+<h2>ماذا عن Stable Diffusion؟</h2>
+<p>لـ Stable Diffusion وMidjourney-style محلي (SDXL, FLUX):</p>
+<ul>
+<li><strong>8 GB VRAM:</strong> SDXL ممكن لكن بطيء — RTX 4060 Ti 16 GB الخيار الأفضل</li>
+<li><strong>16 GB VRAM:</strong> SDXL بكفاءة تامة، FLUX.1 بجودة كاملة</li>
+<li><strong>24 GB VRAM:</strong> كل شيء بلا قيود، بما في ذلك Inpainting بدقة عالية</li>
+</ul>
+
+<h2>تنبيه مهم: NVIDIA vs AMD للـ AI</h2>
+<p>CUDA (NVIDIA) الأفضل بفارق كبير للـ AI على Windows. معظم frameworks (PyTorch, TensorFlow, llama.cpp) مُحسَّنة أولاً لـ CUDA. AMD ROCm يعمل جيداً على Linux لكنه أقل استقراراً. للعمل الجاد بالذكاء الاصطناعي على Windows، اختر NVIDIA دائماً.</p>
+
+<h2>التوصية النهائية حسب الميزانية</h2>
+<ul>
+<li>تحت $500: RTX 3090 مستعملة (24 GB VRAM) أو RTX 4060 Ti 16 GB للميزانيات الضيقة</li>
+<li>$600-800: RTX 4070 Ti Super (16 GB) للتوازن، أو RX 7900 XTX (24 GB) لـ Linux users</li>
+<li>فوق $1000: RTX 4090 للاحتراف الكامل</li>
+</ul>
 
         </div>
         <div class="art-links">
-          <a href="../gpu.html" class="art-link">🎮 مقارنة VRAM البطاقات</a>
-          <a href="../alerts.html" class="art-link">🔔 تنبيه عند انخفاض السعر</a>
-          <a href="../compare.html" class="art-link">⚖️ قارن البطاقات</a>
+          <a href="../gpu.html" class="art-link">🤖 أسعار GPU للـ AI</a>
+          <a href="../compare.html" class="art-link">⚖️ قارن بطاقات AI</a>
+          <a href="rx9070xt-review.html" class="art-link">📝 مراجعة RX 9070 XT للـ AI</a>
         </div>
       </article>
 
-      <aside>
+            <aside>
         <div class="sidebar-sticky">
           <div class="side-widget alert-side">
             <h3>🔔 تنبيه انخفاض السعر</h3>
@@ -136,9 +153,11 @@
             <ul>
               <li><a href="rtx4080s-vs-rx7900xtx.html">RTX 4080 Super vs RX 7900 XTX</a></li>
               <li><a href="best-cpu-2025.html">أفضل CPU لكل ميزانية 2025</a></li>
-              <li><a href="best-time-buy-gpu.html">متى تشتري GPU؟</a></li>
+              <li><a href="rtx5090-review.html">مراجعة RTX 5090</a></li>
+              <li><a href="rx9070xt-review.html">مراجعة RX 9070 XT</a></li>
+              <li><a href="gaming-build-1000.html">تجميعة ألعاب بـ $1000</a></li>
+              <li><a href="ddr5-vs-ddr4-gaming.html">DDR5 vs DDR4 في الألعاب</a></li>
               <li><a href="gpu-for-ai-2025.html">GPU للذكاء الاصطناعي</a></li>
-              <li><a href="gaming-build-800.html">تجميعة ألعاب بـ $800</a></li>
             </ul>
           </div>
         </div>

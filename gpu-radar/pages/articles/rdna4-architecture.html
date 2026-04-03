@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://pricebench.online/pages/articles/rdna4-architecture"/>
   <meta property="og:title" content="فهم معمار RDNA 4: ما الجديد في بطاقات AMD القادمة؟"/>
   <meta property="og:description" content="تحليل معمار RDNA 4 الجديد من AMD وتأثيره على أسعار بطاقات الجيل الحالي."/>
-  <meta property="og:url" content="https://pricebench.online/pages/articles/rdna4-architecture.html"/>
+  <meta property="og:url" content="https://pricebench.online/pages/articles/rdna4-architecture"/>
   <meta property="og:type" content="article"/>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
@@ -86,30 +86,40 @@
         <a href="../blog.html" class="back-link">→ العودة للمدونة</a>
         <div class="art-body">
 
-<h2>ما هو RDNA 4؟</h2>
-<p>RDNA 4 هو معمار الرسوميات الجيل الرابع من AMD، المُصنَّع على عملية TSMC 3nm المتقدمة. يُعدّ القفزة التقنية الأكبر من AMD منذ RDNA 2، مع تحسينات جوهرية في كل جانب من جوانب الأداء.</p>
+<h2>لماذا RDNA 4 قفزة حقيقية وليست مجرد تحديث؟</h2>
+<p>RDNA 3 خذل كثيراً من المعجبين بـ AMD رغم أنه لم يكن سيئاً. لكن RDNA 4 المُعلَن عنه في CES 2025 يُمثّل إعادة هيكلة جذرية للمعمارية — تحسينات في Compute Units والذاكرة وكفاءة الطاقة والـ Ray Tracing في آنٍ واحد. هذا المقال يشرح كل ما تحتاج معرفته.</p>
 
-<h2>أبرز التحسينات</h2>
-<p><strong>Ray Tracing محسّن بنسبة 50%:</strong> كان هذا نقطة ضعف AMD الكبرى. RDNA 4 يسد الفجوة مع NVIDIA بشكل كبير.</p>
-<p><strong>AI Acceleration — منافسة DLSS:</strong> AMD تُطلق تقنية FSR 4 مع RDNA 4، تعتمد على تعلم الآلة لرفع جودة الصورة مثل DLSS تماماً.</p>
-<p><strong>كفاءة طاقوية محسّنة 30%:</strong> نفس الأداء باستهلاك طاقة أقل بكثير — أحد أكبر عيوب RDNA 3.</p>
-<p><strong>دعم DisplayPort 2.1 وHDMI 2.1a:</strong> جاهز للشاشات 4K/240Hz والـ 8K القادمة.</p>
+<h2>التحسينات الجوهرية في RDNA 4</h2>
+<p><strong>1. Compute Units جديدة بالكامل:</strong> أُعيد تصميم CU الخاص بـ RDNA 4 من الصفر مع زيادة 40% في IPC (الإنتاجية لكل دورة ساعة). هذا يعني أن بطاقة ذات 56 CU في RDNA 4 تؤدي كأداء 78 CU من RDNA 3 نظرياً.</p>
+<p><strong>2. AI Accelerators من الجيل الثاني:</strong> بُنيت وحدات AI مُخصصة للـ upscaling والـ Frame Generation داخل الـ CU مباشرةً، وهو ما يُبرّر قفزة FSR 4 المذهلة في الجودة. للمرة الأولى تُقارب AMD جودة DLSS 3.5.</p>
+<p><strong>3. Ray Tracing محسّن بـ 50%:</strong> إضافة مراحل BVH traversal إضافية وتحسين Ray/Box Intersection يُقدّم أداء RT أقوى بـ 1.5x من RDNA 3. هذا التحسين يُغلق الفجوة مع NVIDIA في ألعاب Full RT.</p>
+<p><strong>4. Infinity Cache الجيل الثالث:</strong> زيادة كفاءة الكاش مع خفض استهلاك الطاقة. RX 9070 XT تستهلك 200W مقابل 300W لـ RX 7900 XT بأداء مماثل.</p>
 
-<h2>تأثيره على أسعار RDNA 3</h2>
-<p>مع إعلان RDNA 4، انخفضت أسعار RX 7900 XTX وRX 7800 XT بنسبة 15-20%. هذا يجعل شراء بطاقات RDNA 3 الآن استثماراً ممتازاً للميزانية المحدودة — تحصل على بطاقة قوية بسعر مخفّض.</p>
+<h2>أبرز بطاقات RDNA 4 في 2025</h2>
+<ul>
+<li><strong>RX 9070 XT:</strong> 56 CU، 16 GB GDDR6، 200W — المنافس المباشر لـ RTX 4070 Ti Super</li>
+<li><strong>RX 9070:</strong> 48 CU، 16 GB GDDR6، 180W — أداء RTX 4070 بسعر أقل</li>
+<li><strong>RX 9060 XT:</strong> 32 CU، 16 GB GDDR6، 150W — ثورة الفئة المتوسطة</li>
+</ul>
 
-<h2>متى تصدر ولمن؟</h2>
-<p>يُتوقع إطلاق أول بطاقات RDNA 4 في النصف الأول من 2025 بسعر يستهدف فئة $500-700. إذا كنت في هذا النطاق السعري ولا تستعجل، قد يستحق الانتظار. لكن إذا كنت تحتاج الآن، <a href="../pages/gpu.html" style="color:var(--accent)">بطاقات RDNA 3 الحالية</a> بأسعارها المنخفضة صفقة ممتازة.</p>
+<h2>FSR 4 — هل أصبح منافساً حقيقياً لـ DLSS؟</h2>
+<p>FSR 4 يستخدم نماذج ML يعمل فقط على RDNA 4 (غير متاح على الأجيال القديمة — نقطة سلبية كبيرة). جودة FSR 4 Quality تُقارن DLSS 4 Quality في كثير من الألعاب المختبرة. لكن DLSS 4 Multi-Frame Generation لا يزال بلا منافس حقيقي عند تفعيله الكامل.</p>
+
+<h2>تأثير RDNA 4 على أسعار الجيل القديم</h2>
+<p>إطلاق RX 9070 XT بسعر $549 أجبر NVIDIA على خفض RTX 4070 Ti Super إلى $649 فوراً. وأجبر السوق على خفض RX 7900 XTX إلى $699. هذا يعني أن المستفيد الأكبر من RDNA 4 قد يكون مشتري بطاقات الجيل الحالي بأسعار أرخص!</p>
+
+<h2>من يجب أن يشتري RDNA 4؟</h2>
+<p>إذا كنت تبحث عن أفضل قيمة في 2025 بكفاءة طاقة ممتازة وRay Tracing محسّن، RX 9070 XT صفقة رائعة عند $549. لكن إذا كان لديك RDNA 3 أو RTX 4000، لا يستحق الترقية الآن — انتظر RDNA 5 أو RTX 5000 الكامل.</p>
 
         </div>
         <div class="art-links">
-          <a href="../gpu.html" class="art-link">🔴 أسعار بطاقات AMD</a>
-          <a href="../compare.html" class="art-link">⚖️ قارن AMD vs NVIDIA</a>
-          <a href="../alerts.html" class="art-link">🔔 تنبيه إطلاق RDNA 4</a>
+          <a href="../gpu.html" class="art-link">🔴 شاهد أسعار بطاقات AMD</a>
+          <a href="../compare.html" class="art-link">⚖️ قارن RDNA4 vs Ada</a>
+          <a href="rx9070xt-review.html" class="art-link">📝 مراجعة RX 9070 XT</a>
         </div>
       </article>
 
-      <aside>
+            <aside>
         <div class="sidebar-sticky">
           <div class="side-widget alert-side">
             <h3>🔔 تنبيه انخفاض السعر</h3>
@@ -134,9 +144,11 @@
             <ul>
               <li><a href="rtx4080s-vs-rx7900xtx.html">RTX 4080 Super vs RX 7900 XTX</a></li>
               <li><a href="best-cpu-2025.html">أفضل CPU لكل ميزانية 2025</a></li>
-              <li><a href="best-time-buy-gpu.html">متى تشتري GPU؟</a></li>
+              <li><a href="rtx5090-review.html">مراجعة RTX 5090</a></li>
+              <li><a href="rx9070xt-review.html">مراجعة RX 9070 XT</a></li>
+              <li><a href="gaming-build-1000.html">تجميعة ألعاب بـ $1000</a></li>
+              <li><a href="ddr5-vs-ddr4-gaming.html">DDR5 vs DDR4 في الألعاب</a></li>
               <li><a href="gpu-for-ai-2025.html">GPU للذكاء الاصطناعي</a></li>
-              <li><a href="gaming-build-800.html">تجميعة ألعاب بـ $800</a></li>
             </ul>
           </div>
         </div>
