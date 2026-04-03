@@ -1,6 +1,3 @@
-[build]
-  publish = "gpu-radar"
-
 [[headers]]
   for = "/sitemap.xml"
   [headers.values]
