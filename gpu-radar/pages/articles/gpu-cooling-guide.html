@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>دليل تبريد GPU الشامل: متى تنظف وكيف تُحسّن الحرارة بـ 15°C | PriceBench</title>
+  <title>دليل تبريد GPU الشامل: متى تنظف وكيف تُحسّن الحرارة بـ 15°C | GPU Radar</title>
   <meta name="description" content="دليل عملي لتحسين تبريد بطاقة الرسوميات — تنظيف المراوح، تغيير المعجون الحراري، وإعداد منحنى المراوح. خفّض الحرارة 10-15°C بخطوات بسيطة."/>
   <meta name="robots" content="index, follow"/>
   <meta name="google-adsense-account" content="ca-pub-1686978448234868">
-  <link rel="canonical" href="https://pricebench.online/pages/articles/gpu-cooling-guide"/>
+  <link rel="canonical" href="https://gpu-radar.com/pages/articles/gpu-cooling-guide"/>
   <meta property="og:title" content="دليل تبريد GPU الشامل: متى تنظف وكيف تُحسّن الحرارة بـ 15°C"/>
   <meta property="og:description" content="دليل عملي لتحسين تبريد بطاقة الرسوميات — تنظيف المراوح، تغيير المعجون الحراري، وإعداد منحنى المراوح. خفّض الحرارة 10-15°C بخطوات بسيطة."/>
-  <meta property="og:url" content="https://pricebench.online/pages/articles/gpu-cooling-guide"/>
+  <meta property="og:url" content="https://gpu-radar.com/pages/articles/gpu-cooling-guide"/>
   <meta property="og:type" content="article"/>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
@@ -51,11 +51,20 @@
     .sidebar-sticky{ position:sticky; top:80px; }
     @media(max-width:900px){ .art-layout{grid-template-columns:1fr;} .sidebar-sticky{position:static;} }
   </style>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1686978448234868" crossorigin="anonymous"></script>
+  <style>
+  /* ── AdSense ad units ── */
+  .ad-unit { margin: 2rem 0; }
+  .ad-horizontal { text-align: center; }
+  .ad-sidebar { margin-bottom: 1.25rem; }
+  .adsbygoogle { display: block; }
+  </style>
 </head>
 <body>
 <header class="navbar" id="navbar">
   <div class="nav-container">
-    <a href="../../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">Price<em>Bench</em></span></a>
+    <a href="../../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
     <nav class="nav-menu" id="nav-menu">
       <a href="../../index.html" class="nav-link">الرئيسية</a>
       <a href="../gpu.html" class="nav-link">بطاقات الرسوميات</a>
@@ -78,7 +87,7 @@
     <div class="meta">
       <span>📅 10 فبراير 2025</span>
       <span>⏱ 8 دقائق قراءة</span>
-      <span>✍️ فريق PriceBench</span>
+      <span>✍️ فريق GPU Radar</span>
     </div>
   </div>
 </section>
@@ -91,10 +100,10 @@
         <div class="art-body">
 
 <h2>لماذا تبريد GPU يهم كثيراً؟</h2>
-<p>بطاقة رسوميات تعمل بـ 90°C+ تُثبّط أداءها (Thermal Throttling) وتختصر عمرها. الفرق بين GPU مُبرّدة جيداً (75°C) وسيئة التبريد (90°C+) قد يصل 10-15% في الأداء — مجاناً! هذا الدليل يُرشدك لكل ما يمكنك فعله بدون فتح البطاقة وبدون فتحها.</p>
+<p>بطاقة رسوميات تعمل بـ 90°C+ تُثبّط أداءها (Thermal Throttling) وتختصر عمرها. الفرق بين GPU مُبرّدة جيداً (75°C) وسيئة التبريد (90°C+) قد يصل 10-15% في الأداء — مجاناً! هذا الدليل يُرشدك لكل ما يمكنك فعله بدون فتح البطاقة وبدون فتحها.
 
 <h2>الخطوة 1: تنظيف المراوح والهيكل (كل 6 أشهر)</h2>
-<p>الغبار هو عدو رقم 1. طبقة رقيقة من الغبار على مراوح GPU أو المشعاع تُقلّص التبريد بـ 8-12°C. أدوات تحتاجها: مكيف هواء مضغوط (Compressed Air) ومطاط صغير.</p>
+<p>الغبار هو عدو رقم 1. طبقة رقيقة من الغبار على مراوح GPU أو المشعاع تُقلّص التبريد بـ 8-12°C. أدوات تحتاجها: مكيف هواء مضغوط (Compressed Air) ومطاط صغير.
 <ol>
 <li>أوقف الكمبيوتر وافصل الكهرباء</li>
 <li>أخرج بطاقة GPU من الهيكل إذا أمكن</li>
@@ -104,19 +113,29 @@
 
 <h2>الخطوة 2: تحسين منحنى المراوح في MSI Afterburner</h2>
 <p>الإعداد الافتراضي لمعظم البطاقات "صامت عند درجات منخفضة، سريع عند درجات عالية". يمكنك تخصيصه لخفض الحرارة الأقصى بـ 5-8°C:</p>
+  <!-- AdSense In-Article Ad -->
+  <div class="ad-unit ad-horizontal" aria-label="إعلان">
+    <ins class="adsbygoogle"
+         style="display:block;text-align:center"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-1686978448234868"
+         data-ad-slot="auto"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 <ol>
 <li>افتح MSI Afterburner → Fan Speed → Auto (ألغِ)</li>
 <li>ارسم منحنى: 0% عند 40°C، 50% عند 60°C، 80% عند 75°C، 100% عند 85°C</li>
 <li>قبول واحفظ كـ Profile</li>
 </ol>
-<p>النتيجة: درجات حرارة أقل بـ 5-8°C مع ضجيج أكثر قليلاً — مقايضة مقبولة.</p>
+<p>النتيجة: درجات حرارة أقل بـ 5-8°C مع ضجيج أكثر قليلاً — مقايضة مقبولة.
 
 <h2>الخطوة 3: تغيير Thermal Paste (كل 2-3 سنوات)</h2>
-<p>المعجون الحراري الأصلي يجف بعد 2-3 سنوات ويُقلّص كفاءته. تغييره يخفض الحرارة 5-15°C حسب مدى الجفاف. هذا يتطلب فتح البطاقة (يُلغي الضمان في بعض الدول).</p>
-<p>أفضل المعاجن الحرارية بالترتيب: Thermal Grizzly Kryonaut ($8), Noctua NT-H2 ($10), Arctic MX-6 ($6).</p>
+<p>المعجون الحراري الأصلي يجف بعد 2-3 سنوات ويُقلّص كفاءته. تغييره يخفض الحرارة 5-15°C حسب مدى الجفاف. هذا يتطلب فتح البطاقة (يُلغي الضمان في بعض الدول).
+<p>أفضل المعاجن الحرارية بالترتيب: Thermal Grizzly Kryonaut ($8), Noctua NT-H2 ($10), Arctic MX-6 ($6).
 
 <h2>الخطوة 4: تحسين تدفق الهواء في الهيكل</h2>
-<p>GPU لا يعمل بمعزل — تدفق الهواء في الهيكل يؤثر بشكل مباشر:</p>
+<p>GPU لا يعمل بمعزل — تدفق الهواء في الهيكل يؤثر بشكل مباشر:
 <ul>
 <li><strong>Positive Pressure:</strong> مراوح دخول أكثر من خروج — يُقلّص الغبار</li>
 <li><strong>Negative Pressure:</strong> مراوح خروج أكثر — تبريد أفضل في بعض الهياكل</li>
@@ -125,7 +144,7 @@
 </ul>
 
 <h2>الخطوة 5: Thermal Pads (للمتقدمين)</h2>
-<p>بعض البطاقات تستخدم Thermal Pads للذاكرة VRAM والـ VRM. الـ Pads الأصلية تجف أو تنكمش بمرور الوقت. استبدالها بـ Thermal Pads عالية الجودة (Gelid GP-Extreme 2.5W) يخفض درجات VRAM بـ 8-12°C.</p>
+<p>بعض البطاقات تستخدم Thermal Pads للذاكرة VRAM والـ VRM. الـ Pads الأصلية تجف أو تنكمش بمرور الوقت. استبدالها بـ Thermal Pads عالية الجودة (Gelid GP-Extreme 2.5W) يخفض درجات VRAM بـ 8-12°C.
 
 <h2>متى تكون الحرارة خطيرة؟</h2>
 <ul>
@@ -145,9 +164,19 @@
 
       <aside>
         <div class="sidebar-sticky">
+  <!-- AdSense Sidebar Ad -->
+  <div class="ad-unit ad-sidebar" aria-label="إعلان">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1686978448234868"
+         data-ad-slot="auto"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
           <div class="side-widget alert-side">
             <h3>🔔 تنبيه انخفاض السعر</h3>
-            <p>أدخل بريدك وسنخبرك فور انخفاض سعر قطعتك</p>
+            <p>أدخل بريدك وسنخبرك فور انخفاض سعر قطعتك
             <form onsubmit="(function(e){e.preventDefault();document.getElementById('aok').style.display='block';})(event)">
               <input type="email" placeholder="بريدك الإلكتروني" required/>
               <button type="submit">اشترك مجاناً</button>
@@ -184,8 +213,8 @@
 <footer class="footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <a href="../../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">Price<em>Bench</em></span></a>
-      <p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p>
+      <a href="../../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+      <p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.
     </div>
     <nav class="footer-nav">
       <div class="footer-col"><h4>الأسعار</h4><ul>
@@ -206,8 +235,8 @@
   </div>
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>© 2025 PriceBench. جميع الحقوق محفوظة.</p>
-      <p class="footer-disclaimer">الأسعار للأغراض المعلوماتية. نشارك في برامج عمولة.</p>
+      <p>© 2025 GPU Radar. جميع الحقوق محفوظة.
+      <p class="footer-disclaimer">الأسعار للأغراض المعلوماتية. نشارك في برامج عمولة.
     </div>
   </div>
 </footer>
