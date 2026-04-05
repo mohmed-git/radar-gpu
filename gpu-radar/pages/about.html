@@ -3,14 +3,46 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>من نحن | GPU Radar — منصة تتبع أسعار قطع الكمبيوتر</title>
-  <meta name="description" content="تعرف على GPU Radar، المنصة العربية الأولى لتتبع أسعار بطاقات الرسوميات GPU والمعالجات CPU في الوقت الفعلي."/>
+  <title>من نحن | GPU Radar — منصة عربية لتتبع أسعار قطع الكمبيوتر</title>
+  <meta name="description" content="تعرّف على GPU Radar، المنصة العربية الأولى لتتبع أسعار GPU وCPU في الوقت الفعلي. قصتنا، فريقنا، ومهمتنا."/>
   <meta name="robots" content="index, follow"/>
   <meta name="google-adsense-account" content="ca-pub-1686978448234868">
   <link rel="canonical" href="https://gpu-radar.com/pages/about"/>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/style.css"/>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1686978448234868" crossorigin="anonymous"></script>
+  <style>
+    .about-body { max-width: 860px; margin: 0 auto; }
+    .about-body h2 { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin: 2.5rem 0 .75rem; padding-top: 1.5rem; border-top: 1px solid rgba(56,189,248,.1); }
+    .about-body h2:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    .about-body p { font-size: .95rem; color: var(--text2); line-height: 1.9; margin-bottom: 1rem; }
+    .about-body ul { padding-right: 1.5rem; margin-bottom: 1rem; }
+    .about-body li { font-size: .93rem; color: var(--text2); margin-bottom: .5rem; line-height: 1.7; list-style: disc; }
+    .about-body strong { color: var(--white); }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 1rem; text-align: center; }
+    .stat-card .num { font-size: 2rem; font-weight: 800; color: var(--accent); font-family: var(--font-data); display: block; margin-bottom: .25rem; }
+    .stat-card .label { font-size: .82rem; color: var(--text3); }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+    .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; }
+    .team-card .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--accent-dim); border: 2px solid rgba(56,189,248,.3); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; }
+    .team-card h3 { font-size: .95rem; font-weight: 700; color: var(--white); margin-bottom: .25rem; }
+    .team-card p { font-size: .82rem; color: var(--text3); margin: 0; }
+    .timeline { position: relative; padding-right: 2rem; }
+    .timeline::before { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 2rem; }
+    .timeline-item::before { content: ''; position: absolute; right: -2.45rem; top: .35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg2); }
+    .timeline-item .year { font-size: .78rem; font-family: var(--font-data); color: var(--accent); font-weight: 700; margin-bottom: .3rem; }
+    .timeline-item h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: .4rem; }
+    .timeline-item p { font-size: .88rem; color: var(--text2); margin: 0; line-height: 1.7; }
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+    .value-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .value-card .icon { font-size: 1.75rem; margin-bottom: .75rem; display: block; }
+    .value-card h3 { font-size: .95rem; font-weight: 700; color: var(--white); margin-bottom: .5rem; }
+    .value-card p { font-size: .86rem; color: var(--text2); line-height: 1.7; margin: 0; }
+  </style>
 </head>
 <body>
 <header class="navbar" id="navbar">
@@ -18,8 +50,8 @@
     <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
     <nav class="nav-menu" id="nav-menu">
       <a href="../index.html" class="nav-link">الرئيسية</a>
-      <a href="gpu.html"      class="nav-link">بطاقات الرسوميات</a>
-      <a href="cpu.html"      class="nav-link">المعالجات</a>
+      <a href="gpu.html"      class="nav-link">GPU</a>
+      <a href="cpu.html"      class="nav-link">CPU</a>
       <a href="compare.html"  class="nav-link">المقارنة</a>
       <a href="blog.html"     class="nav-link">المدونة</a>
       <a href="about.html"    class="nav-link active">من نحن</a>
@@ -37,33 +69,152 @@
   <section class="page-hero">
     <div class="container">
       <h1>من نحن</h1>
-      <p>قصة GPU Radar وكيف ولدت الفكرة</p>
+      <p>المنصة العربية الأولى لتتبع أسعار GPU وCPU في الوقت الفعلي</p>
     </div>
   </section>
 
-  <section class="section" style="background:var(--bg2)">
+  <!-- Stats -->
+  <section class="section" style="background:var(--bg2); padding: 3rem 0;">
     <div class="container">
-      <div class="policy-body" style="max-width:800px;margin:0 auto">
-        <h2>لماذا GPU Radar؟</h2>
-        <p>وُلدت فكرة GPU Radar من تجربة شخصية: دفعنا مئات الدولارات ثمناً لبطاقة رسوميات قبل أسبوع واحد من انخفاض سعرها 20%. هذا الموقف جعلنا نتساءل: لماذا لا توجد أداة تتبع أسعار موثوقة للمتسوق العربي؟</p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="num">+200</span>
+          <span class="label">قطعة مُتتبَّعة</span>
+        </div>
+        <div class="stat-card">
+          <span class="num">25</span>
+          <span class="label">مقالة تقنية</span>
+        </div>
+        <div class="stat-card">
+          <span class="num">يومياً</span>
+          <span class="label">تحديث الأسعار</span>
+        </div>
+        <div class="stat-card">
+          <span class="num">مجاناً</span>
+          <span class="label">للجميع دائماً</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-body">
+
+        <h2>القصة — لماذا GPU Radar؟</h2>
+        <p>
+          وُلدت فكرة <strong>GPU Radar</strong> من تجربة شخصية مؤلمة: دفع أحد مؤسسي الموقع مبلغ $650 لبطاقة رسوميات RTX 4070 Ti، ليجد بعد أسبوع واحد أن سعرها انخفض إلى $539. كان يكفيه الانتظار أسبوعاً واحداً ليوفر أكثر من مئة دولار.
+        </p>
+        <p>
+          هذا الموقف طرح سؤالاً مشروعاً: <strong>لماذا لا توجد أداة تتبع أسعار موثوقة للمتسوق العربي؟</strong> كانت الأدوات المتاحة إما باللغة الإنجليزية فقط، أو لا تغطي المتاجر العربية والمتاجر الدولية في آنٍ معاً، أو تفتقر إلى البيانات التاريخية الكاملة.
+        </p>
+        <p>
+          بدأنا GPU Radar عام 2024 بهدف واحد بسيط: <strong>أن لا يدفع أحد سعراً أعلى مما يجب لقطع الكمبيوتر.</strong>
+        </p>
 
         <h2>مهمتنا</h2>
-        <p>نؤمن أن كل متسوق يستحق الوصول إلى بيانات الأسعار التاريخية الكاملة. هدفنا البسيط: ألا يدفع أحد سعراً أعلى مما يجب لقطع الكمبيوتر.</p>
+        <p>نؤمن أن الشفافية في الأسعار حق لكل مستهلك. مهمتنا هي تزويد المتسوق العربي بكل الأدوات والبيانات التي يحتاجها لاتخاذ قرار شراء ذكي:</p>
+        <ul>
+          <li>تتبع أسعار GPU وCPU من NVIDIA وAMD وIntel يومياً.</li>
+          <li>مقارنات تفصيلية بين الأداء والسعر عبر الزمن.</li>
+          <li>تنبيهات فورية عند وصول السعر لمستوى تحدده أنت.</li>
+          <li>مقالات تحريرية معمّقة تساعد في اتخاذ قرار الشراء الصحيح.</li>
+        </ul>
 
-        <h2>كيف نعمل؟</h2>
-        <p>يجمع نظامنا الأسعار يومياً من عشرات المصادر الموثوقة ويحللها باستخدام خوارزميات تتبع الاتجاهات. نقدم بيانات الأسعار التاريخية لسنة كاملة مجاناً لجميع المستخدمين.</p>
+        <div class="values-grid">
+          <div class="value-card">
+            <span class="icon">🎯</span>
+            <h3>الدقة أولاً</h3>
+            <p>بياناتنا محدّثة يومياً من مصادر موثوقة. لا أرقام مزيفة، لا تخمين.</p>
+          </div>
+          <div class="value-card">
+            <span class="icon">🆓</span>
+            <h3>مجاني للجميع</h3>
+            <p>كل الأدوات والبيانات مجانية تماماً. نتمول عبر الإعلانات وروابط العمولة.</p>
+          </div>
+          <div class="value-card">
+            <span class="icon">🌍</span>
+            <h3>للمتسوق العربي</h3>
+            <p>واجهة عربية كاملة، محتوى باللغة العربية، ومراعاة السياق الاقتصادي للمنطقة.</p>
+          </div>
+          <div class="value-card">
+            <span class="icon">🔒</span>
+            <h3>الخصوصية محترمة</h3>
+            <p>لا نبيع بياناتك. لا نتتبعك خارج موقعنا. معلوماتك لك فقط.</p>
+          </div>
+        </div>
 
         <h2>ما الذي نتتبعه؟</h2>
-        <p>نتتبع أكثر من 200 قطعة من GPU وCPU من NVIDIA وAMD وIntel. نخطط لإضافة ذاكرة RAM وأقراص SSD قريباً.</p>
+        <p>يغطي GPU Radar الآن أكثر من <strong>200 قطعة</strong> من أبرز فئات قطع الكمبيوتر:</p>
+        <ul>
+          <li><strong>بطاقات الرسوميات (GPU):</strong> NVIDIA RTX 4000/5000 series، AMD RX 7000/9000 series.</li>
+          <li><strong>المعالجات (CPU):</strong> Intel Core 13th/14th Gen و Core Ultra، AMD Ryzen 7000/9000 series.</li>
+          <li><strong>قريباً:</strong> ذاكرة RAM DDR5، أقراص NVMe SSD، ألواح أم، ووحدات تغذية.</li>
+        </ul>
 
-        <h2>طريقة الربح</h2>
-        <p>نعمل بنموذج التسويق بالعمولة (Affiliate). عند الشراء عبر روابطنا نحصل على عمولة صغيرة من المتجر دون أي تكلفة إضافية عليك.</p>
+        <h2>كيف نجمع البيانات؟</h2>
+        <p>يجمع نظامنا الأسعار يومياً من مصادر موثوقة ومتعددة. نحلل الاتجاهات باستخدام خوارزميات خاصة للكشف عن انخفاض الأسعار، التقلبات الموسمية، وأفضل أوقات الشراء.</p>
+        <p>البيانات التاريخية متاحة لأكثر من سنة كاملة، ما يتيح لك رؤية كامل مسار سعر أي قطعة قبل شرائها.</p>
+
+        <h2>نموذج الربح — الشفافية أولاً</h2>
+        <p>نؤمن أنك تستحق معرفة كيف يتمول الموقع:</p>
+        <ul>
+          <li><strong>الإعلانات (Google AdSense):</strong> نعرض إعلانات ذات صلة من خلال Google AdSense. هذه الإعلانات لا تؤثر على موضوعية تقييماتنا أو توصياتنا.</li>
+          <li><strong>روابط العمولة (Affiliate):</strong> بعض روابط المنتجات تتضمن معرّف عمولة. إذا اشتريت عبر رابطنا، نحصل على عمولة صغيرة من المتجر دون أي زيادة في سعرك.</li>
+          <li><strong>المحتوى المحايد:</strong> العمولات لا تؤثر على ترتيب المنتجات أو التقييمات. توصياتنا مبنية على البيانات الموضوعية فقط.</li>
+        </ul>
+
+        <h2>تاريخ GPU Radar</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="year">مارس 2024</div>
+            <h3>البداية</h3>
+            <p>إطلاق النسخة التجريبية الأولى مع تتبع 50 بطاقة رسوميات.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="year">يوليو 2024</div>
+            <h3>إضافة المعالجات</h3>
+            <p>توسيع قاعدة البيانات لتشمل أكثر من 80 معالج CPU من Intel وAMD.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="year">ديسمبر 2024</div>
+            <h3>تنبيهات الأسعار</h3>
+            <p>إطلاق نظام التنبيهات البريدية — فعّل تنبيهاً وانتظر السعر المناسب.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="year">أبريل 2025</div>
+            <h3>المدونة التقنية</h3>
+            <p>إطلاق قسم المقالات مع 25 مقالة تقنية معمّقة باللغة العربية.</p>
+          </div>
+        </div>
+
+        <h2>الفريق</h2>
+        <p>GPU Radar مبني من مجموعة صغيرة من المهتمين بعالم قطع الكمبيوتر الذين يؤمنون بأن المعلومة الجيدة تُحدث فرقاً حقيقياً في قرارات الشراء.</p>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="avatar">👨‍💻</div>
+            <h3>محمد</h3>
+            <p>المؤسس · تطوير وتحليل البيانات</p>
+          </div>
+          <div class="team-card">
+            <div class="avatar">✍️</div>
+            <h3>فريق التحرير</h3>
+            <p>مقالات تقنية · تقييمات الأداء</p>
+          </div>
+          <div class="team-card">
+            <div class="avatar">🤝</div>
+            <h3>أنت!</h3>
+            <p>مجتمع القراء · المقترحات والملاحظات</p>
+          </div>
+        </div>
 
         <h2>تواصل معنا</h2>
-        <p>
-          <a href="contact.html" style="color:var(--accent);font-weight:600">صفحة التواصل</a> ·
-          <a href="/cdn-cgi/l/email-protection#90f8f5fcfcffd0f7e0e5bde2f1f4f1e2bef3fffd" style="color:var(--accent);font-weight:600"><span class="__cf_email__" data-cfemail="bfd7dad3d3d0ffd8cfca92cddedbdecd91dcd0d2">[email&#160;protected]</span></a>
-        </p>
+        <p>نحب سماع آراء مجتمعنا. سواء كان لديك اقتراح لمنتج جديد تريد تتبعه، ملاحظة على محتوى ما، أو مجرد سؤال:</p>
+        <ul>
+          <li>📝 <a href="contact.html" style="color:var(--accent);font-weight:600">نموذج التواصل</a></li>
+          <li>📧 <a href="mailto:hello@gpu-radar.com" style="color:var(--accent);font-weight:600">hello@gpu-radar.com</a></li>
+        </ul>
+
       </div>
     </div>
   </section>
@@ -108,4 +259,6 @@
     </div>
   </div>
 </footer>
-<script 
+<script src="../js/main.js" defer></script>
+</body>
+</html>

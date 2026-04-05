@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>كيف تختار بطاقة رسوميات للذكاء الاصطناعي في 2025؟ | PriceBench</title>
+  <title>كيف تختار بطاقة رسوميات للذكاء الاصطناعي في 2025؟ | GPU Radar</title>
   <meta name="description" content="دليل شامل لاختيار GPU لتشغيل نماذج الذكاء الاصطناعي المحلية وStable Diffusion وLLM."/>
   <meta name="robots" content="index, follow"/>
   <meta name="google-adsense-account" content="ca-pub-1686978448234868">
 
-  <link rel="canonical" href="https://pricebench.online/pages/articles/gpu-for-ai-2025"/>
+  <link rel="canonical" href="https://gpu-radar.com/pages/articles/gpu-for-ai-2025"/>
   <meta property="og:title" content="كيف تختار بطاقة رسوميات للذكاء الاصطناعي في 2025؟"/>
   <meta property="og:description" content="دليل شامل لاختيار GPU لتشغيل نماذج الذكاء الاصطناعي المحلية وStable Diffusion وLLM."/>
-  <meta property="og:url" content="https://pricebench.online/pages/articles/gpu-for-ai-2025"/>
+  <meta property="og:url" content="https://gpu-radar.com/pages/articles/gpu-for-ai-2025"/>
   <meta property="og:type" content="article"/>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
@@ -47,11 +47,20 @@
     .sidebar-sticky{ position:sticky; top:80px; }
     @media(max-width:900px){ .art-layout{grid-template-columns:1fr;} .sidebar-sticky{position:static;} }
   </style>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1686978448234868" crossorigin="anonymous"></script>
+  <style>
+  /* ── AdSense ad units ── */
+  .ad-unit { margin: 2rem 0; }
+  .ad-horizontal { text-align: center; }
+  .ad-sidebar { margin-bottom: 1.25rem; }
+  .adsbygoogle { display: block; }
+  </style>
 </head>
 <body>
 <header class="navbar" id="navbar">
   <div class="nav-container">
-    <a href="../../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">Price<em>Bench</em></span></a>
+    <a href="../../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
     <nav class="nav-menu" id="nav-menu">
       <a href="../../index.html" class="nav-link">الرئيسية</a>
       <a href="../gpu.html" class="nav-link">بطاقات الرسوميات</a>
@@ -74,7 +83,7 @@
     <div class="meta">
       <span>📅 20 ديسمبر 2024</span>
       <span>⏱ 14 دقيقة قراءة</span>
-      <span>✍️ فريق PriceBench</span>
+      <span>✍️ فريق GPU Radar</span>
     </div>
   </div>
 </section>
@@ -87,23 +96,33 @@
         <div class="art-body">
 
 <h2>ثورة الذكاء الاصطناعي المحلي تحتاج GPU مناسبة</h2>
-<p>مع انتشار Stable Diffusion وLLaMA وMistral والنماذج المحلية الأخرى، أصبح اختيار GPU للذكاء الاصطناعي المنزلي قراراً استراتيجياً وليس ترفاً. VRAM هو الملك هنا — وليس أداء الألعاب. هذا الدليل يُحدد أفضل الخيارات لكل ميزانية ونوع استخدام.</p>
+<p>مع انتشار Stable Diffusion وLLaMA وMistral والنماذج المحلية الأخرى، أصبح اختيار GPU للذكاء الاصطناعي المنزلي قراراً استراتيجياً وليس ترفاً. VRAM هو الملك هنا — وليس أداء الألعاب. هذا الدليل يُحدد أفضل الخيارات لكل ميزانية ونوع استخدام.
 
 <h2>أولاً: لماذا VRAM هو الأهم؟</h2>
-<p>النماذج اللغوية الكبيرة (LLMs) تُحمَّل كاملةً في VRAM أثناء التشغيل. نموذج 7B (7 مليار معامل) يحتاج ~8 GB بتكميم INT4، أما 13B فيحتاج ~14 GB، و70B يحتاج 40+ GB. إذا تجاوز النموذج VRAM المتاحة، يُحمَّل جزء منه على RAM العادية (System RAM offloading) مما يُبطّئ التشغيل 10-50x.</p>
+<p>النماذج اللغوية الكبيرة (LLMs) تُحمَّل كاملةً في VRAM أثناء التشغيل. نموذج 7B (7 مليار معامل) يحتاج ~8 GB بتكميم INT4، أما 13B فيحتاج ~14 GB، و70B يحتاج 40+ GB. إذا تجاوز النموذج VRAM المتاحة، يُحمَّل جزء منه على RAM العادية (System RAM offloading) مما يُبطّئ التشغيل 10-50x.
 
 <h2>أفضل GPU للذكاء الاصطناعي المحلي في 2025</h2>
 
 <p><strong>RX 7900 XTX (24 GB) — $799:</strong> الملك بلا منازع للمشترين الجدد. 24 GB VRAM تتيح تشغيل نماذج 13B بكفاءة عالية وتجريب 30B مع تكميم INT4. ROCm 6.0 حسّن الدعم بشكل كبير على Linux. على Windows لا يزال أقل استقراراً من CUDA.</p>
+  <!-- AdSense In-Article Ad -->
+  <div class="ad-unit ad-horizontal" aria-label="إعلان">
+    <ins class="adsbygoogle"
+         style="display:block;text-align:center"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-1686978448234868"
+         data-ad-slot="auto"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 
-<p><strong>RTX 4090 (24 GB) — $1,599:</strong> الأسرع مطلقاً في inference بفضل CUDA وhalf-precision FP16 المتفوق. إذا كنت تُدير نماذج كبيرة باستمرار للعمل المهني، هذه هي الأفضل. Stable Diffusion XL على 4090 أسرع 3x من RX 7900 XTX.</p>
+<p><strong>RTX 4090 (24 GB) — $1,599:</strong> الأسرع مطلقاً في inference بفضل CUDA وhalf-precision FP16 المتفوق. إذا كنت تُدير نماذج كبيرة باستمرار للعمل المهني، هذه هي الأفضل. Stable Diffusion XL على 4090 أسرع 3x من RX 7900 XTX.
 
-<p><strong>RTX 4070 Ti Super (16 GB) — $649:</strong> نقطة التوازن المثالية. 16 GB تكفي لـ LLaMA 3 8B بسهولة وتجريب 13B. Stable Diffusion SDXL بسرعة عالية. الأفضل إذا تمزج بين AI والألعاب.</p>
+<p><strong>RTX 4070 Ti Super (16 GB) — $649:</strong> نقطة التوازن المثالية. 16 GB تكفي لـ LLaMA 3 8B بسهولة وتجريب 13B. Stable Diffusion SDXL بسرعة عالية. الأفضل إذا تمزج بين AI والألعاب.
 
-<p><strong>RTX 3090 مستعملة (24 GB) — $500-600:</strong> صفقة خفية. 24 GB GDDR6X بسعر معقول. أداء CUDA ممتاز لـ LLM inference. تحقق من المصدر جيداً قبل الشراء (استعمال تعدين يُتلف البطاقة).</p>
+<p><strong>RTX 3090 مستعملة (24 GB) — $500-600:</strong> صفقة خفية. 24 GB GDDR6X بسعر معقول. أداء CUDA ممتاز لـ LLM inference. تحقق من المصدر جيداً قبل الشراء (استعمال تعدين يُتلف البطاقة).
 
 <h2>ماذا عن Stable Diffusion؟</h2>
-<p>لـ Stable Diffusion وMidjourney-style محلي (SDXL, FLUX):</p>
+<p>لـ Stable Diffusion وMidjourney-style محلي (SDXL, FLUX):
 <ul>
 <li><strong>8 GB VRAM:</strong> SDXL ممكن لكن بطيء — RTX 4060 Ti 16 GB الخيار الأفضل</li>
 <li><strong>16 GB VRAM:</strong> SDXL بكفاءة تامة، FLUX.1 بجودة كاملة</li>
@@ -111,7 +130,7 @@
 </ul>
 
 <h2>تنبيه مهم: NVIDIA vs AMD للـ AI</h2>
-<p>CUDA (NVIDIA) الأفضل بفارق كبير للـ AI على Windows. معظم frameworks (PyTorch, TensorFlow, llama.cpp) مُحسَّنة أولاً لـ CUDA. AMD ROCm يعمل جيداً على Linux لكنه أقل استقراراً. للعمل الجاد بالذكاء الاصطناعي على Windows، اختر NVIDIA دائماً.</p>
+<p>CUDA (NVIDIA) الأفضل بفارق كبير للـ AI على Windows. معظم frameworks (PyTorch, TensorFlow, llama.cpp) مُحسَّنة أولاً لـ CUDA. AMD ROCm يعمل جيداً على Linux لكنه أقل استقراراً. للعمل الجاد بالذكاء الاصطناعي على Windows، اختر NVIDIA دائماً.
 
 <h2>التوصية النهائية حسب الميزانية</h2>
 <ul>
@@ -130,9 +149,19 @@
 
             <aside>
         <div class="sidebar-sticky">
+  <!-- AdSense Sidebar Ad -->
+  <div class="ad-unit ad-sidebar" aria-label="إعلان">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1686978448234868"
+         data-ad-slot="auto"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
           <div class="side-widget alert-side">
             <h3>🔔 تنبيه انخفاض السعر</h3>
-            <p>أدخل بريدك وسنخبرك فور انخفاض سعر قطعتك</p>
+            <p>أدخل بريدك وسنخبرك فور انخفاض سعر قطعتك
             <form onsubmit="(function(e){e.preventDefault();document.getElementById('aok').style.display='block';})(event)">
               <input type="email" placeholder="بريدك الإلكتروني" required/>
               <button type="submit">اشترك مجاناً</button>
@@ -169,8 +198,8 @@
 <footer class="footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <a href="../../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">Price<em>Bench</em></span></a>
-      <p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p>
+      <a href="../../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+      <p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.
     </div>
     <nav class="footer-nav">
       <div class="footer-col"><h4>الأسعار</h4><ul>
@@ -191,8 +220,8 @@
   </div>
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>© 2025 PriceBench. جميع الحقوق محفوظة.</p>
-      <p class="footer-disclaimer">الأسعار للأغراض المعلوماتية. نشارك في برامج عمولة.</p>
+      <p>© 2025 GPU Radar. جميع الحقوق محفوظة.
+      <p class="footer-disclaimer">الأسعار للأغراض المعلوماتية. نشارك في برامج عمولة.
     </div>
   </div>
 </footer>

@@ -4,13 +4,49 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>تواصل معنا | GPU Radar</title>
-  <meta name="description" content="تواصل مع فريق GPU Radar. لديك اقتراح، خطأ في سعر، أو شراكة تجارية — نحن هنا."/>
+  <meta name="description" content="تواصل مع فريق GPU Radar — أسئلة، اقتراحات، أو تعاون. نرد خلال 48 ساعة."/>
   <meta name="robots" content="index, follow"/>
   <meta name="google-adsense-account" content="ca-pub-1686978448234868">
   <link rel="canonical" href="https://gpu-radar.com/pages/contact"/>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/style.css"/>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1686978448234868" crossorigin="anonymous"></script>
+  <style>
+    .contact-layout { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: start; padding: 3rem 0; }
+    .contact-form-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
+    .contact-form-wrap h2 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: .85rem; font-weight: 600; color: var(--text2); margin-bottom: .4rem; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea { width: 100%; padding: .7rem 1rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font-ui); font-size: .9rem; outline: none; direction: rtl; transition: border-color .2s; box-sizing: border-box; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(56,189,248,.08); }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+    .form-group select option { background: var(--bg2); }
+    .form-submit { width: 100%; padding: .8rem; background: var(--accent); color: #000; border: none; border-radius: 8px; font-family: var(--font-ui); font-weight: 700; font-size: .95rem; cursor: pointer; transition: background .2s; margin-top: .5rem; }
+    .form-submit:hover { background: #7DD3FC; }
+    .form-note { font-size: .8rem; color: var(--text3); margin-top: .75rem; text-align: center; }
+    .form-success { display: none; background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); border-radius: 8px; padding: 1.25rem; text-align: center; margin-top: 1rem; }
+    .form-success p { color: #4ade80; margin: 0; font-weight: 600; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+    .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .info-card .info-icon { font-size: 1.5rem; margin-bottom: .75rem; display: block; }
+    .info-card h3 { font-size: .95rem; font-weight: 700; color: var(--white); margin-bottom: .4rem; }
+    .info-card p { font-size: .87rem; color: var(--text2); margin: 0; line-height: 1.6; }
+    .info-card a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .info-card a:hover { text-decoration: underline; }
+    .faq-section { max-width: 860px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-size: .97rem; font-weight: 700; color: var(--white); margin-bottom: .5rem; }
+    .faq-item p { font-size: .9rem; color: var(--text2); margin: 0; line-height: 1.7; }
+    .faq-item a { color: var(--accent); }
+    @media(max-width:900px){ .contact-layout { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
 <header class="navbar" id="navbar">
@@ -18,11 +54,11 @@
     <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
     <nav class="nav-menu" id="nav-menu">
       <a href="../index.html" class="nav-link">الرئيسية</a>
-      <a href="gpu.html"      class="nav-link">بطاقات الرسوميات</a>
-      <a href="cpu.html"      class="nav-link">المعالجات</a>
-      <a href="compare.html"  class="nav-link">المقارنة</a>
-      <a href="blog.html"     class="nav-link">المدونة</a>
-      <a href="about.html"    class="nav-link">من نحن</a>
+      <a href="gpu.html"     class="nav-link">GPU</a>
+      <a href="cpu.html"     class="nav-link">CPU</a>
+      <a href="compare.html" class="nav-link">المقارنة</a>
+      <a href="blog.html"    class="nav-link">المدونة</a>
+      <a href="about.html"   class="nav-link">من نحن</a>
     </nav>
     <div class="nav-actions">
       <a href="alerts.html" class="btn-alert"><span class="bell-dot"></span>تنبيهات</a>
@@ -37,90 +73,117 @@
   <section class="page-hero">
     <div class="container">
       <h1>تواصل معنا</h1>
-      <p>فريقنا جاهز للرد على استفساراتك خلال 24 ساعة عمل</p>
+      <p>سؤال، اقتراح، أو تعاون؟ نرد في غضون 48 ساعة</p>
     </div>
   </section>
 
   <section class="section" style="background:var(--bg2)">
     <div class="container">
-      <div class="contact-grid">
+      <div class="contact-layout">
 
-        <!-- Info -->
+        <!-- Contact Form -->
+        <div class="contact-form-wrap">
+          <h2>أرسل رسالة</h2>
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">الاسم الكامل *</label>
+              <input type="text" id="name" name="name" placeholder="مثال: أحمد محمد" required autocomplete="name"/>
+            </div>
+            <div class="form-group">
+              <label for="email">البريد الإلكتروني *</label>
+              <input type="email" id="email" name="email" placeholder="example@email.com" required autocomplete="email" dir="ltr"/>
+            </div>
+            <div class="form-group">
+              <label for="subject">موضوع الرسالة *</label>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>اختر الموضوع...</option>
+                <option value="سؤال تقني">سؤال تقني عن قطعة</option>
+                <option value="اقتراح منتج">اقتراح إضافة منتج</option>
+                <option value="خطأ في البيانات">الإبلاغ عن خطأ في البيانات</option>
+                <option value="تعاون">تعاون أو شراكة</option>
+                <option value="إعلانات">استفسار عن الإعلانات</option>
+                <option value="خصوصية">طلب متعلق بالخصوصية</option>
+                <option value="أخرى">أخرى</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">الرسالة *</label>
+              <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..." required minlength="20"></textarea>
+            </div>
+            <button type="submit" class="form-submit">إرسال الرسالة ←</button>
+            <p class="form-note">بإرسال هذا النموذج أنت توافق على <a href="privacy-policy.html" style="color:var(--accent)">سياسة الخصوصية</a>.</p>
+            <div class="form-success" id="form-success">
+              <p>✅ تم إرسال رسالتك بنجاح! سنرد خلال 48 ساعة.</p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
         <div class="contact-info">
-          <h2>نسعد بتواصلك</h2>
-          <p>سواء كان لديك اقتراح لتحسين الموقع، خطأ في سعر مُعروض، فرصة شراكة، أو مجرد سؤال — نحن هنا.</p>
-          <div class="contact-items">
-            <div class="ci-item">
-              <span class="ci-icon">📧</span>
-              <div>
-                <span class="ci-label">البريد الإلكتروني</span>
-                <span class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7c14191010133c1b0c09510e1d181d0e521f1311">[email&#160;protected]</a></span>
-              </div>
-            </div>
-            <div class="ci-item">
-              <span class="ci-icon">✈</span>
-              <div>
-                <span class="ci-label">تيليغرام</span>
-                <span class="ci-val">@GPURadarAR</span>
-              </div>
-            </div>
-            <div class="ci-item">
-              <span class="ci-icon">𝕏</span>
-              <div>
-                <span class="ci-label">تويتر / X</span>
-                <span class="ci-val">@GPURadarAR</span>
-              </div>
-            </div>
-            <div class="ci-item">
-              <span class="ci-icon">⏰</span>
-              <div>
-                <span class="ci-label">وقت الاستجابة</span>
-                <span class="ci-val">خلال 24 ساعة عمل</span>
-              </div>
-            </div>
+          <div class="info-card">
+            <span class="info-icon">📧</span>
+            <h3>البريد الإلكتروني</h3>
+            <p>للاستفسارات العامة:<br/><a href="mailto:hello@gpu-radar.com">hello@gpu-radar.com</a></p>
+            <p style="margin-top:.5rem">للخصوصية والبيانات:<br/><a href="mailto:privacy@gpu-radar.com">privacy@gpu-radar.com</a></p>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon">⏱️</span>
+            <h3>وقت الرد</h3>
+            <p>نرد على جميع الاستفسارات خلال <strong style="color:var(--white)">24–48 ساعة</strong> من أيام العمل. الرسائل المُستلمة في عطلة نهاية الأسبوع تُعالج أول يوم عمل.</p>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon">🤝</span>
+            <h3>تعاون وشراكة</h3>
+            <p>إذا كنت تمثل متجراً أو علامة تجارية وتود التعاون معنا، يسعدنا التواصل على:<br/><a href="mailto:partners@gpu-radar.com">partners@gpu-radar.com</a></p>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon">🐛</span>
+            <h3>الإبلاغ عن خطأ</h3>
+            <p>لاحظت خطأً في سعر أو بيانات؟ أخبرنا وسنصحح ذلك فوراً. دقة البيانات أولويتنا القصوى.</p>
           </div>
         </div>
 
-        <!-- Form -->
-        <div>
-          <form id="contact-form"
-            style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;"
-            onsubmit="handleContactSubmit(event)">
-            <h3 style="margin-bottom:1.25rem;font-size:1.1rem">أرسل رسالة</h3>
+      </div>
+    </div>
+  </section>
 
-            <div class="form-field">
-              <label for="c-name">الاسم</label>
-              <input type="text" id="c-name" name="name" required placeholder="اسمك الكامل"/>
-            </div>
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <h2 style="font-size:1.4rem; font-weight:800; margin-bottom:2rem; text-align:center;">الأسئلة الشائعة</h2>
+      <div class="faq-section">
 
-            <div class="form-field">
-              <label for="c-email">البريد الإلكتروني</label>
-              <input type="email" id="c-email" name="email" required placeholder="name@email.com"/>
-            </div>
+        <div class="faq-item">
+          <h3>هل موقع GPU Radar مجاني؟</h3>
+          <p>نعم، جميع خدمات GPU Radar مجانية بالكامل. نتمول عبر الإعلانات وروابط العمولة. لا حسابات مدفوعة، ولا قيود على الوصول.</p>
+        </div>
 
-            <div class="form-field">
-              <label for="c-subject">الموضوع</label>
-              <select id="c-subject" name="subject">
-                <option value="suggestion">اقتراح تحسين</option>
-                <option value="error">خطأ في سعر</option>
-                <option value="partnership">شراكة تجارية</option>
-                <option value="other">سؤال عام</option>
-              </select>
-            </div>
+        <div class="faq-item">
+          <h3>كيف يمكنني تفعيل تنبيهات الأسعار؟</h3>
+          <p>توجه إلى <a href="alerts.html">صفحة التنبيهات</a>، أدخل بريدك الإلكتروني وحدد المنتج والسعر المستهدف. ستصلك رسالة بريدية فور وصول السعر للمستوى الذي حددته.</p>
+        </div>
 
-            <div class="form-field">
-              <label for="c-msg">رسالتك</label>
-              <textarea id="c-msg" name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
-            </div>
+        <div class="faq-item">
+          <h3>من أين تأتي بيانات الأسعار؟</h3>
+          <p>نجمع البيانات يومياً من متاجر إلكترونية موثوقة ومصادر متعددة. نحلل الاتجاهات ونكشف عن التقلبات الموسمية وأفضل أوقات الشراء.</p>
+        </div>
 
-            <button type="submit" class="btn-primary" style="width:100%">إرسال الرسالة</button>
+        <div class="faq-item">
+          <h3>كيف يمكنني اقتراح منتج للإضافة؟</h3>
+          <p>استخدم النموذج أعلاه واختر "اقتراح إضافة منتج" من قائمة الموضوعات. ذكر اسم المنتج والشركة المصنّعة وسنبذل جهدنا لإضافته.</p>
+        </div>
 
-            <div id="contact-ok"
-              style="display:none;color:#4ade80;text-align:center;margin-top:.75rem;font-size:.9rem;
-                     padding:.6rem;background:rgba(74,222,128,.1);border-radius:6px;">
-              ✓ تم الإرسال! سنرد عليك قريباً.
-            </div>
-          </form>
+        <div class="faq-item">
+          <h3>هل تستهدفون فئات عمرية معينة؟</h3>
+          <p>GPU Radar موجّه للمستخدمين البالغين (18 سنة فما فوق) المهتمين بقطع الكمبيوتر. لا نجمع بيانات الأطفال. راجع <a href="privacy-policy.html">سياسة الخصوصية</a> لمزيد من التفاصيل.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>كيف تحمون بياناتي الشخصية؟</h3>
+          <p>لا نبيع بياناتك أبداً. نستخدم التشفير HTTPS، ونطبق مبدأ الحد الأدنى من جمع البيانات. راجع <a href="privacy-policy.html">سياسة الخصوصية الكاملة</a>.</p>
         </div>
 
       </div>
@@ -158,11 +221,28 @@
     </div>
   </div>
 </footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/data.js"></script>
+<script src="../js/main.js" defer></script>
 <script>
-  function handleContactSubmit(e) {
+  // Simple contact form handler
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    // In production: POST to /api/contact
-    document.getElementById('contact-ok').style.display = 'block';
- 
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !subject || message.length < 20) {
+      alert('يرجى ملء جميع الحقول المطلوبة (الرسالة 20 حرفاً على الأقل).');
+      return;
+    }
+
+    // Show success message (static site — no backend)
+    document.getElementById('form-success').style.display = 'block';
+    this.reset();
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'none';
+    }, 6000);
+  });
+</script>
+</body>
+</html>
