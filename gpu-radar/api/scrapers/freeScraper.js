@@ -1307,11 +1307,86 @@ function smartSimulate(product, currentPrice) {
   return Math.round(newPrice / 5) * 5;
 }
 
+// ── AI PRICING ENGINE INTEGRATION ────────────────────────
+const { analyzePriceWithAI } = require('./aiPricingEngine');
+
+// ── BUILD OFFERS LIST FOR AI ──────────────────────────────
+// يجمع عروض من مصادر متعددة لتحليلها بـ AI
+async function buildOffersList(product) {
+  const offers = [];
+
+  // 1. Newegg offer
+  if (product.newegg && product.newegg.includes('N82E')) {
+    const neweggPrice = await fetchNewegg(product);
+    if (neweggPrice) {
+      offers.push({
+        store:     'Newegg',
+        price:     neweggPrice,
+        condition: 'New',
+        seller:    'Newegg',
+        link:      product.newegg,
+      });
+    }
+  }
+
+  // 2. Amazon offer (price from ASIN if available)
+  if (product.asin) {
+    offers.push({
+      store:     'Amazon',
+      price:     product.basePrice, // سيُحدَّث بـ Amazon API إذا توفّر
+      condition: 'New',
+      seller:    'Amazon',
+      link:      `https://www.amazon.com/dp/${product.asin}`,
+    });
+  }
+
+  // 3. BestBuy offer (estimated from base price ±5%)
+  if (product.bestbuy_sku) {
+    const bbPrice = Math.round(product.basePrice * (0.97 + Math.random() * 0.06));
+    offers.push({
+      store:     'BestBuy',
+      price:     bbPrice,
+      condition: 'New',
+      seller:    'BestBuy',
+      link:      `https://www.bestbuy.com/site/${product.bestbuy_sku}.p`,
+    });
+  }
+
+  return offers;
+}
+
 // ── FETCH A SINGLE PRODUCT PRICE ─────────────────────────
 async function fetchPrice(product, currentPrice) {
+  // Step 1: محاولة جلب من Newegg مباشرةً
   const live = await fetchNewegg(product);
+
+  // Step 2: إذا وجد API Key لـ Claude — حلّل بالذكاء الاصطناعي
+  if (process.env.ANTHROPIC_API_KEY) {
+    try {
+      const offers = await buildOffersList(product);
+      if (live) {
+        // أضف سعر Newegg الحقيقي للقائمة
+        const neweggIdx = offers.findIndex(o => o.store === 'Newegg');
+        if (neweggIdx >= 0) offers[neweggIdx].price = live;
+        else offers.unshift({ store:'Newegg', price:live, condition:'New', seller:'Newegg', link: product.newegg || '' });
+      }
+
+      if (offers.length > 0) {
+        const aiResult = await analyzePriceWithAI(product, offers);
+        if (aiResult?.best_price?.price) {
+          console.log(`[AI+Scraper] ${product.name}: $${aiResult.best_price.price} via ${aiResult.best_price.store} (${aiResult.deal_status})`);
+          return aiResult.best_price.price;
+        }
+      }
+    } catch (err) {
+      console.warn(`[AI] Fallback for ${product.name}:`, err.message);
+    }
+  }
+
+  // Step 3: استخدم سعر Newegg المباشر إذا وجد
   if (live) return live;
 
+  // Step 4: محاكاة ذكية كملاذ أخير
   const simulated = smartSimulate(product, currentPrice);
   const base      = currentPrice || product.basePrice;
   const pct       = ((simulated - base) / base * 100).toFixed(2);
@@ -1325,8 +1400,10 @@ async function fetchAllPrices(currentPrices = {}) {
   for (const product of PRODUCT_CATALOG) {
     const currentPrice = currentPrices[product.id]?.price || product.basePrice;
     results[product.id] = await fetchPrice(product, currentPrice);
+    // تأخير بسيط بين المنتجات لتجنب Rate Limiting
+    await new Promise(r => setTimeout(r, 800));
   }
   return results;
 }
 
-module.exports = { PRODUCT_CATALOG, fetchAllPrices, fetchPrice, smartSimulate };
+module.exports = { PRODUCT_CATALOG, fetchAllPrices, fetchPrice, smartSimulate, buildOffersList };
