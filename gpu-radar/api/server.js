@@ -20,6 +20,7 @@ const {
   startScheduler, runDailyUpdate,
   triggerManualUpdate, nextRunTime
 } = require(path.join(__dirname, 'jobs/dailyUpdate'));
+const { analyzeOffers, analyzeFromDB } = require(path.join(__dirname, 'priceAnalyzer'));
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -213,6 +214,44 @@ app.get('/api/alerts/unsubscribe', (req, res) => {
     <h2 style="color:${ok?'#4ADE80':'#F87171'}">${ok?'✓ تم إلغاء اشتراكك بنجاح':'الرابط غير صالح'}</h2>
     <a href="/" style="color:#38BDF8">العودة لـ GPU Radar →</a>
   </body></html>`);
+});
+
+// ── PRICING INTELLIGENCE ENGINE ───────────────────────────
+// POST /api/analyze — analyze a list of offers for a product
+// Body: { product_name: string, offers: Array<offer> }
+// Each offer: { store, price, condition?, link?, seller?, rating?, title?, notes? }
+app.post('/api/analyze', (req, res) => {
+  const { product_name, offers } = req.body;
+
+  if (!product_name || typeof product_name !== 'string') {
+    return res.status(400).json({ error: 'product_name (string) is required' });
+  }
+  if (!Array.isArray(offers) || offers.length === 0) {
+    return res.status(400).json({ error: 'offers must be a non-empty array' });
+  }
+  if (offers.length > 50) {
+    return res.status(400).json({ error: 'Too many offers (max 50)' });
+  }
+
+  // Enrich with current DB price if product is in our catalog
+  const dbEntry = Object.values(getAllPrices()).find(
+    p => p.name.toLowerCase().includes(product_name.toLowerCase()) ||
+         product_name.toLowerCase().includes(p.name.toLowerCase())
+  );
+  const options = dbEntry ? { currentDbPrice: dbEntry.price } : {};
+
+  const verdict = analyzeOffers(product_name, offers, options);
+  res.json(verdict);
+});
+
+// GET /api/analyze/:id — quick verdict for a product in our catalog
+app.get('/api/analyze/:id', (req, res) => {
+  const dbEntry = getPrice(req.params.id);
+  if (!dbEntry) return res.status(404).json({ error: 'Part not found' });
+
+  const history = getHistory(req.params.id) || [];
+  const verdict = analyzeFromDB(req.params.id, dbEntry, history);
+  res.json(verdict);
 });
 
 // ── ADMIN ─────────────────────────────────────────────────
