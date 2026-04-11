@@ -1,6 +1,6 @@
 // ============================================================
 // GPU RADAR — API Server (api/server.js)
-// بدون أي API Key مدفوع!
+// مع دعم ZenRows API لاستخراج أسعار حقيقية من Amazon/Newegg/BestBuy
 // ============================================================
 
 require('dotenv').config();
@@ -22,13 +22,34 @@ const {
 } = require(path.join(__dirname, 'jobs/dailyUpdate'));
 const { analyzeOffers, analyzeFromDB } = require(path.join(__dirname, 'priceAnalyzer'));
 
+// ── ZenRows Scraper ───────────────────────────────────────
+const zenrows = require(path.join(__dirname, 'scrapers/zenrowsScraper'));
+
+// Cache بسيط لتجنب طلبات متكررة (TTL: 10 دقائق)
+const zenCache = new Map();
+const ZEN_TTL  = 10 * 60 * 1000;
+
+function zenCacheGet(key) {
+  const entry = zenCache.get(key);
+  if (!entry) return null;
+  if (Date.now() - entry.ts > ZEN_TTL) { zenCache.delete(key); return null; }
+  return entry.data;
+}
+function zenCacheSet(key, data) {
+  zenCache.set(key, { data, ts: Date.now() });
+}
+
 const app  = express();
 const PORT = process.env.PORT || 3001;
 
 // ── MIDDLEWARE ────────────────────────────────────────────
 app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
 app.use(express.json());
+// يخدم ملفات webapp من الجذر — الموقع الثابت
 app.use(express.static(path.join(__dirname, '../..')));
+// اختصارات للصفحات المهمة
+app.get('/price-tracker', (_req, res) => res.redirect('/gpu-radar/pages/price-tracker.html'));
+app.get('/prices',        (_req, res) => res.redirect('/gpu-radar/pages/price-tracker.html'));
 
 // Logger (API requests only)
 app.use((req, _res, next) => {
@@ -254,6 +275,186 @@ app.get('/api/analyze/:id', (req, res) => {
   res.json(verdict);
 });
 
+// ══════════════════════════════════════════════════════════
+// ZENROWS — استخراج أسعار حقيقية من المتاجر الكبرى
+// ══════════════════════════════════════════════════════════
+
+// GET /api/zenrows/test — اختبار اتصال ZenRows API
+app.get('/api/zenrows/test', async (_req, res) => {
+  try {
+    const result = await zenrows.testZenRows();
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/zenrows/catalog — قائمة المنتجات المدعومة
+app.get('/api/zenrows/catalog', (_req, res) => {
+  const catalog = zenrows.PRODUCT_CATALOG.map(p => ({
+    id:        p.id,
+    name:      p.name,
+    basePrice: p.basePrice,
+  }));
+  res.json({ catalog, count: catalog.length });
+});
+
+// GET /api/zenrows/price/:id?store=amazon|newegg|bestbuy
+// جلب سعر منتج واحد من متجر محدد
+app.get('/api/zenrows/price/:id', async (req, res) => {
+  const { id }    = req.params;
+  const store     = (req.query.store || 'amazon').toLowerCase();
+  const cacheKey  = `${id}:${store}`;
+
+  const cached = zenCacheGet(cacheKey);
+  if (cached) return res.json({ ...cached, cached: true });
+
+  try {
+    const result = await zenrows.fetchPrice(id, store);
+    if (result.error && !result.price) {
+      return res.status(404).json(result);
+    }
+    zenCacheSet(cacheKey, result);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message, id, store });
+  }
+});
+
+// GET /api/zenrows/compare/:id — مقارنة أسعار منتج من جميع المتاجر الثلاثة
+app.get('/api/zenrows/compare/:id', async (req, res) => {
+  const { id }   = req.params;
+  const cacheKey = `compare:${id}`;
+
+  const cached = zenCacheGet(cacheKey);
+  if (cached) return res.json({ ...cached, cached: true });
+
+  try {
+    const result = await zenrows.fetchAllStores(id);
+    if (result.error) return res.status(404).json(result);
+    zenCacheSet(cacheKey, result);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message, id });
+  }
+});
+
+// POST /api/zenrows/batch — جلب أسعار مجموعة منتجات من متجر واحد
+// Body: { ids: ['rtx4090', 'rtx4080s', ...], store: 'amazon' }
+app.post('/api/zenrows/batch', async (req, res) => {
+  const { ids = [], store = 'amazon' } = req.body;
+
+  if (!Array.isArray(ids) || ids.length === 0)
+    return res.status(400).json({ error: 'ids must be a non-empty array' });
+  if (ids.length > 10)
+    return res.status(400).json({ error: 'Max 10 products per batch request' });
+
+  try {
+    // تحقق من الـ cache أولاً
+    const uncachedIds = ids.filter(id => !zenCacheGet(`${id}:${store}`));
+    const cachedResults = ids
+      .filter(id => zenCacheGet(`${id}:${store}`))
+      .map(id => ({ ...zenCacheGet(`${id}:${store}`), cached: true }));
+
+    let freshResults = [];
+    if (uncachedIds.length > 0) {
+      freshResults = await zenrows.fetchBatch(uncachedIds, store, 2000);
+      freshResults.forEach(r => { if (r.id) zenCacheSet(`${r.id}:${store}`, r); });
+    }
+
+    const all = [...cachedResults, ...freshResults];
+    res.json({
+      results:    all,
+      count:      all.length,
+      store,
+      scraped_at: new Date().toISOString(),
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/zenrows/live — جلب أسعار جميع المنتجات الرئيسية من Amazon
+// يستخدم cache — يُحدَّث فقط عند طلب force=true
+app.get('/api/zenrows/live', async (req, res) => {
+  const force     = req.query.force === 'true';
+  const storeQ    = (req.query.store || 'amazon').toLowerCase();
+  const typeQ     = (req.query.type  || '').toLowerCase();   // gpu | cpu | ''
+  const limitQ    = Math.min(parseInt(req.query.limit) || 20, 40);
+  const cacheKey  = `live:${storeQ}:${typeQ}`;
+
+  if (!force) {
+    const cached = zenCacheGet(cacheKey);
+    if (cached) return res.json({ ...cached, cached: true });
+  }
+
+  // اختر منتجات مناسبة
+  let catalog = zenrows.PRODUCT_CATALOG;
+  if (typeQ === 'gpu') catalog = catalog.filter(p => p.name.toLowerCase().includes('rtx') || p.name.toLowerCase().includes('rx ') || p.name.toLowerCase().includes('arc'));
+  if (typeQ === 'cpu') catalog = catalog.filter(p => p.name.toLowerCase().includes('ryzen') || p.name.toLowerCase().includes('core') || p.name.toLowerCase().includes('i9') || p.name.toLowerCase().includes('i7') || p.name.toLowerCase().includes('i5'));
+  catalog = catalog.slice(0, limitQ);
+
+  try {
+    const rawResults = await zenrows.fetchBatch(catalog.map(p => p.id), storeQ, 2000);
+    const results    = rawResults.map(r => ({
+      ...r,
+      deal_pct: r.price && r.basePrice
+        ? parseFloat(((r.price - r.basePrice) / r.basePrice * 100).toFixed(1))
+        : null,
+    }));
+
+    const response = {
+      results,
+      count:      results.length,
+      store:      storeQ,
+      scraped_at: new Date().toISOString(),
+    };
+
+    zenCacheSet(cacheKey, response);
+    res.json(response);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/zenrows/deals — أفضل العروض (أقل سعر مقارنة بالسعر الأساسي)
+app.get('/api/zenrows/deals', async (req, res) => {
+  const storeQ   = (req.query.store || 'amazon').toLowerCase();
+  const limitQ   = Math.min(parseInt(req.query.limit) || 10, 20);
+  const cacheKey = `deals:${storeQ}`;
+
+  const cached = zenCacheGet(cacheKey);
+  if (cached) return res.json({ ...cached, cached: true });
+
+  // جلب أول 15 منتج
+  const ids = zenrows.PRODUCT_CATALOG.slice(0, 15).map(p => p.id);
+  try {
+    const rawResults = await zenrows.fetchBatch(ids, storeQ, 2000);
+    const deals = rawResults
+      .filter(r => r.price && r.basePrice)
+      .map(r => ({
+        ...r,
+        savings:  r.basePrice - r.price,
+        deal_pct: parseFloat(((r.price - r.basePrice) / r.basePrice * 100).toFixed(1)),
+      }))
+      .filter(r => r.deal_pct < 0)                // فقط المنتجات أقل من السعر الأساسي
+      .sort((a, b) => a.deal_pct - b.deal_pct)    // الأفضل أولاً
+      .slice(0, limitQ);
+
+    const response = {
+      deals,
+      count:      deals.length,
+      store:      storeQ,
+      scraped_at: new Date().toISOString(),
+    };
+
+    zenCacheSet(cacheKey, response);
+    res.json(response);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ── ADMIN ─────────────────────────────────────────────────
 app.post('/api/admin/update', triggerManualUpdate);
 
@@ -288,16 +489,25 @@ app.listen(PORT, () => {
   Mode: ${process.env.NODE_ENV || 'development'}
 
   Endpoints:
-  GET  /api/prices/live      ← Frontend يجلب منه
-  GET  /api/parts            ← كل القطع
+  GET  /api/prices/live             ← Frontend يجلب منه
+  GET  /api/parts                   ← كل القطع
   GET  /api/parts/:id/history
   GET  /api/gpus  /api/cpus
   GET  /api/market/summary
   GET  /api/compare?ids=...
   GET  /api/search?q=...
-  POST /api/alerts           ← تسجيل تنبيه
-  POST /api/admin/update     ← تشغيل يدوي
+  POST /api/alerts                  ← تسجيل تنبيه
+  POST /api/admin/update            ← تشغيل يدوي
   GET  /api/admin/status
+
+  ─── ZenRows Live Scraping ──────────────────────
+  GET  /api/zenrows/test            ← اختبار ZenRows API
+  GET  /api/zenrows/catalog         ← قائمة المنتجات
+  GET  /api/zenrows/price/:id       ← سعر منتج ?store=amazon|newegg|bestbuy
+  GET  /api/zenrows/compare/:id     ← مقارنة أسعار من 3 متاجر
+  POST /api/zenrows/batch           ← { ids[], store }
+  GET  /api/zenrows/live            ← ?store=&type=gpu|cpu&limit=
+  GET  /api/zenrows/deals           ← أفضل العروض الحية
 `);
   startScheduler();
 });
