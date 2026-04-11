@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPU Radar — مقارنة الأسعار الحية | Amazon · Newegg · Best Buy</title>
+  <meta name="description" content="مقارنة أسعار GPU و CPU لحظياً من Amazon وNewegg وBest Buy باستخدام ZenRows" />
+  <style>
+    /* ── BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080C10;
+      --surface:   #0F1923;
+      --card:      #141E2D;
+      --border:    #1E2E42;
+      --accent:    #38BDF8;
+      --green:     #4ADE80;
+      --red:       #F87171;
+      --yellow:    #FBBF24;
+      --purple:    #A78BFA;
+      --text:      #E2E8F0;
+      --muted:     #64748B;
+      --amazon:    #FF9900;
+      --newegg:    #F26522;
+      --bestbuy:   #1F49A0;
+      --radius:    12px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ───────────────────────────────────────── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-icon { font-size: 28px; }
+    .logo-text { font-size: 20px; font-weight: 700; }
+    .logo-text span { color: var(--accent); }
+
+    .header-nav {
+      display: flex;
+      gap: 8px;
+    }
+    .header-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all .2s;
+    }
+    .header-nav a:hover,
+    .header-nav a.active { background: var(--border); color: var(--accent); }
+
+    .zenrows-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #1a2a1a, #0f1a0f);
+      border: 1px solid #2d4a2d;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--green);
+    }
+    .zenrows-badge .dot {
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(180deg, #0d1b2a 0%, var(--bg) 100%);
+      padding: 48px 24px 32px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto 24px; }
+
+    .store-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .store-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid;
+    }
+    .store-badge.amazon  { background: #ff990022; border-color: #ff990055; color: var(--amazon); }
+    .store-badge.newegg  { background: #f2652222; border-color: #f2652255; color: var(--newegg); }
+    .store-badge.bestbuy { background: #1f49a022; border-color: #1f49a055; color: #5b8fff; }
+    .store-badge img { width: 18px; height: 18px; object-fit: contain; }
+
+    /* ── CONTROLS ─────────────────────────────────────── */
+    .controls {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    .ctrl-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-width: 160px;
+    }
+    .ctrl-group label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .ctrl-group select,
+    .ctrl-group input {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .ctrl-group select:focus,
+    .ctrl-group input:focus { border-color: var(--accent); }
+
+    .ctrl-group input { min-width: 240px; }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      height: 40px;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .btn-compare {
+      background: linear-gradient(135deg, #a78bfa33, #38bdf833);
+      color: var(--purple);
+      border: 1px solid #a78bfa55;
+    }
+    .btn-compare:hover { background: linear-gradient(135deg, #a78bfa55, #38bdf855); }
+
+    /* ── STATS BAR ────────────────────────────────────── */
+    .stats-bar {
+      max-width: 1200px;
+      margin: 0 auto 24px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-value { font-size: 22px; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; }
+
+    /* ── PRODUCT GRID ─────────────────────────────────── */
+    .products-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .count-badge {
+      background: var(--border);
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    /* ── PRODUCT CARD (single store view) ─────────────── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+      animation: fadeIn .3s ease both;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      border-color: #2a3d56;
+    }
+
+    .card-header {
+      padding: 14px 16px 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .card-icon.gpu { background: linear-gradient(135deg, #1e3a5f, #0f2040); }
+    .card-icon.cpu { background: linear-gradient(135deg, #2d1b4e, #1a0f2e); }
+
+    .card-name {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.3;
+      flex: 1;
+    }
+    .card-id {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .card-body { padding: 14px 16px; }
+
+    .price-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .price-live {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.5px;
+    }
+    .price-live.loading { color: var(--muted); font-size: 18px; }
+    .price-live.error   { color: var(--red); font-size: 16px; }
+
+    .price-base {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+    .deal-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .deal-badge.positive { background: #f8717122; color: var(--red); }
+    .deal-badge.negative { background: #4ade8022; color: var(--green); }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .meta-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .meta-tag.store-amazon  { border-color: #ff990033; color: var(--amazon); }
+    .meta-tag.store-newegg  { border-color: #f2652233; color: var(--newegg); }
+    .meta-tag.store-bestbuy { border-color: #1f49a033; color: #5b8fff; }
+
+    .card-link {
+      display: block;
+      text-align: center;
+      padding: 8px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all .2s;
+    }
+    .card-link.amazon  { background: #ff990018; color: var(--amazon); border: 1px solid #ff990033; }
+    .card-link.newegg  { background: #f2652218; color: var(--newegg); border: 1px solid #f2652233; }
+    .card-link.bestbuy { background: #1f49a018; color: #5b8fff;       border: 1px solid #1f49a033; }
+    .card-link:hover   { opacity: .8; transform: translateY(-1px); }
+    .card-link.disabled { pointer-events: none; opacity: .4; }
+
+    /* ── COMPARE TABLE ────────────────────────────────── */
+    .compare-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    .compare-table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    thead th {
+      background: var(--surface);
+      padding: 14px 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+    }
+    thead th:first-child { text-align: right; }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface); }
+    tbody td {
+      padding: 14px 16px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    tbody td:first-child { text-align: right; }
+
+    .td-name { font-weight: 600; font-size: 13px; }
+    .td-name small { display: block; color: var(--muted); font-size: 11px; font-weight: 400; margin-top: 2px; }
+
+    .td-price {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .td-price.best { color: var(--green); }
+    .td-price.loading { color: var(--muted); font-size: 13px; font-weight: 400; }
+    .td-price.error   { color: var(--red);   font-size: 12px; font-weight: 400; }
+
+    .best-badge {
+      display: inline-block;
+      background: #4ade8022;
+      color: var(--green);
+      border: 1px solid #4ade8044;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .store-link-sm {
+      display: inline-block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+      text-decoration: none;
+    }
+    .store-link-sm:hover { color: var(--accent); }
+
+    /* ── TABS ─────────────────────────────────────────── */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--surface);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      width: fit-content;
+      margin: 0 24px 24px;
+    }
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all .2s;
+      background: transparent;
+      color: var(--muted);
+    }
+    .tab-btn.active {
+      background: var(--card);
+      color: var(--accent);
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    }
+
+    /* ── LOADING ──────────────────────────────────────── */
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: inline-block;
+    }
+
+    .loading-overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 80px;
+      color: var(--muted);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px;
+      color: var(--muted);
+    }
+    .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+
+    /* ── ANIMATIONS ───────────────────────────────────── */
+    @keyframes spin   { to { transform: rotate(360deg); } }
+    @keyframes pulse  { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── TOAST ────────────────────────────────────────── */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toast {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+      animation: fadeIn .3s ease;
+      max-width: 320px;
+    }
+    .toast.success { border-color: #4ade8044; }
+    .toast.error   { border-color: #f8717144; }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 700px) {
+      .controls { flex-direction: column; }
+      .ctrl-group input { min-width: unset; }
+      .products-grid { grid-template-columns: 1fr; }
+      .header-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────────── -->
+<header>
+  <a href="/" class="logo">
+    <span class="logo-icon">🎮</span>
+    <span class="logo-text">GPU <span>Radar</span></span>
+  </a>
+  <nav class="header-nav">
+    <a href="/">الرئيسية</a>
+    <a href="/pages/price-tracker.html" class="active">مقارنة الأسعار</a>
+  </nav>
+  <div class="zenrows-badge">
+    <div class="dot"></div>
+    ZenRows Live
+  </div>
+</header>
+
+<!-- ── HERO ────────────────────────────────────────────── -->
+<section class="hero">
+  <h1>مقارنة الأسعار الحية 🔍</h1>
+  <p>استخراج أسعار حقيقية لحظياً من المتاجر الكبرى باستخدام ZenRows API</p>
+  <div class="store-badges">
+    <div class="store-badge amazon">🛒 Amazon.com</div>
+    <div class="store-badge newegg">⚡ Newegg.com</div>
+    <div class="store-badge bestbuy">🏪 Best Buy</div>
+  </div>
+</section>
+
+<!-- ── TABS ─────────────────────────────────────────────── -->
+<div class="tabs">
+  <button class="tab-btn active" data-tab="browse" onclick="switchTab('browse')">🗂 تصفح المنتجات</button>
+  <button class="tab-btn" data-tab="compare" onclick="switchTab('compare')">⚖️ مقارنة من 3 متاجر</button>
+  <button class="tab-btn" data-tab="deals" onclick="switchTab('deals')">🔥 أفضل العروض</button>
+</div>
+
+<!-- ── CONTROLS ─────────────────────────────────────────── -->
+<div class="controls" id="browseControls">
+  <div class="ctrl-group">
+    <label>🏪 المتجر</label>
+    <select id="storeSelect">
+      <option value="amazon">🛒 Amazon</option>
+      <option value="newegg">⚡ Newegg</option>
+      <option value="bestbuy">🏪 Best Buy</option>
+    </select>
+  </div>
+  <div class="ctrl-group">
+    <label>🏷 الفئة</label>
+    <select id="typeSelect">
+      <option value="">الكل</option>
+      <option value="gpu">GPU فقط</option>
+      <option value="cpu">CPU فقط</option>
+    </select>
+  </div>
+  <div class="ctrl-group">
+    <label>🔢 عدد النتائج</label>
+    <select id="limitSelect">
+      <option value="6">6 منتجات</option>
+      <option value="10" selected>10 منتجات</option>
+      <option value="20">20 منتج</option>
+    </select>
+  </div>
+  <div class="ctrl-group">
+    <label>🔍 بحث</label>
+    <input type="text" id="searchInput" placeholder="RTX 4090, Ryzen 9..." />
+  </div>
+  <button class="btn btn-primary" id="fetchBtn" onclick="fetchLivePrices()">
+    <span id="fetchBtnText">🚀 جلب الأسعار</span>
+  </button>
+</div>
+
+<!-- ── COMPARE CONTROLS ──────────────────────────────────── -->
+<div class="controls" id="compareControls" style="display:none;">
+  <div class="ctrl-group" style="flex:2">
+    <label>📦 معرّف المنتج</label>
+    <input type="text" id="compareIdInput" placeholder="مثال: rtx4090, rx7900xtx, r9-9950x..." />
+  </div>
+  <button class="btn btn-compare" onclick="fetchCompare()">
+    ⚖️ مقارنة من 3 متاجر
+  </button>
+  <button class="btn btn-secondary" onclick="showCatalog()">
+    📋 عرض الكاتالوج
+  </button>
+</div>
+
+<!-- ── STATS BAR ─────────────────────────────────────────── -->
+<div class="stats-bar" id="statsBar" style="display:none;">
+  <div class="stat-card">
+    <div class="stat-value" id="statTotal">—</div>
+    <div class="stat-label">منتج تم جلبه</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" id="statSuccess" style="color:var(--green)">—</div>
+    <div class="stat-label">سعر تم استخراجه</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" id="statAvg" style="color:var(--yellow)">—</div>
+    <div class="stat-label">متوسط السعر</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" id="statBest" style="color:var(--accent)">—</div>
+    <div class="stat-label">أفضل سعر</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" id="statStore" style="font-size:14px">—</div>
+    <div class="stat-label">المتجر</div>
+  </div>
+</div>
+
+<!-- ── BROWSE TAB ────────────────────────────────────────── -->
+<div id="browseTab">
+  <div class="products-section">
+    <div id="productsContainer">
+      <div class="empty-state">
+        <div class="icon">🔍</div>
+        <p>اختر المتجر والفئة ثم اضغط <strong>جلب الأسعار</strong></p>
+        <p style="font-size:13px;margin-top:8px;color:#4a6080">يستخدم ZenRows API لاستخراج الأسعار الحقيقية</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── COMPARE TAB ───────────────────────────────────────── -->
+<div id="compareTab" style="display:none;">
+  <div class="compare-section">
+    <div id="compareContainer">
+      <div class="empty-state">
+        <div class="icon">⚖️</div>
+        <p>أدخل معرّف المنتج لمقارنة الأسعار من Amazon وNewegg وBest Buy</p>
+        <p style="font-size:13px;margin-top:8px;color:#4a6080">مثال: rtx4090 — rx7900xtx — r9-9950x</p>
+        <button class="btn btn-secondary" style="margin:16px auto 0;display:flex;" onclick="showCatalog()">📋 عرض قائمة المعرّفات</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── DEALS TAB ─────────────────────────────────────────── -->
+<div id="dealsTab" style="display:none;">
+  <div class="controls" id="dealsControls">
+    <div class="ctrl-group">
+      <label>🏪 المتجر</label>
+      <select id="dealsStoreSelect">
+        <option value="amazon">🛒 Amazon</option>
+        <option value="newegg">⚡ Newegg</option>
+        <option value="bestbuy">🏪 Best Buy</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <label>🔢 عدد النتائج</label>
+      <select id="dealsLimitSelect">
+        <option value="5">5 عروض</option>
+        <option value="10" selected>10 عروض</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" onclick="fetchDeals()">🔥 جلب أفضل العروض</button>
+  </div>
+  <div class="products-section">
+    <div id="dealsContainer">
+      <div class="empty-state">
+        <div class="icon">🔥</div>
+        <p>اضغط <strong>جلب أفضل العروض</strong> لعرض المنتجات الأقل سعراً</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CATALOG MODAL ─────────────────────────────────────── -->
+<div id="catalogModal" style="
+  display:none;
+  position:fixed; inset:0; z-index:200;
+  background:rgba(0,0,0,.7);
+  overflow-y:auto;
+  padding:40px 20px;
+">
+  <div style="max-width:800px;margin:0 auto;background:var(--card);border-radius:16px;border:1px solid var(--border);overflow:hidden;">
+    <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+      <h2 style="font-size:18px;">📋 قائمة المنتجات المدعومة</h2>
+      <button onclick="hideCatalog()" style="background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;">✕</button>
+    </div>
+    <div id="catalogContent" style="padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;max-height:70vh;overflow-y:auto;">
+      <div class="loading-overlay"><div class="spinner"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST CONTAINER ───────────────────────────────────── -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ────────────────────────────────────────────────────────
+// STATE
+// ────────────────────────────────────────────────────────
+let currentTab = 'browse';
+let catalog    = [];
+
+// ────────────────────────────────────────────────────────
+// UTILITIES
+// ────────────────────────────────────────────────────────
+const API = '';  // خادم نفس الـ origin
+
+function fmt(price) {
+  if (!price && price !== 0) return null;
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price);
+}
+
+function storeLabel(store) {
+  return { amazon:'Amazon', newegg:'Newegg', bestbuy:'Best Buy' }[store] || store;
+}
+
+function storeColor(store) {
+  return { amazon:'var(--amazon)', newegg:'var(--newegg)', bestbuy:'#5b8fff' }[store] || 'var(--accent)';
+}
+
+function toast(msg, type = 'success') {
+  const c = document.getElementById('toastContainer');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.innerHTML = `<span>${type === 'success' ? '✅' : '❌'}</span><span>${msg}</span>`;
+  c.appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+
+function setLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.disabled = loading;
+  const txt = btn.querySelector('span') || btn;
+  if (loading) {
+    btn._origText = txt.textContent;
+    txt.innerHTML = '<span class="spinner" style="width:14px;height:14px;"></span> جاري الجلب...';
+  } else {
+    txt.textContent = btn._origText || txt.textContent;
+  }
+}
+
+// ────────────────────────────────────────────────────────
+// TABS
+// ────────────────────────────────────────────────────────
+function switchTab(tab) {
+  currentTab = tab;
+  ['browse','compare','deals'].forEach(t => {
+    document.getElementById(t+'Tab').style.display    = t === tab ? '' : 'none';
+    document.querySelector(`[data-tab="${t}"]`).classList.toggle('active', t === tab);
+  });
+  document.getElementById('browseControls').style.display  = tab === 'browse'  ? '' : 'none';
+  document.getElementById('compareControls').style.display = tab === 'compare' ? '' : 'none';
+  document.getElementById('dealsControls').style.display   = tab === 'deals'   ? 'flex' : 'none';
+  document.getElementById('statsBar').style.display        = tab === 'browse'  ? '' : 'none';
+}
+
+// ────────────────────────────────────────────────────────
+// FETCH LIVE PRICES (browse tab)
+// ────────────────────────────────────────────────────────
+async function fetchLivePrices() {
+  const store  = document.getElementById('storeSelect').value;
+  const type   = document.getElementById('typeSelect').value;
+  const limit  = document.getElementById('limitSelect').value;
+  const search = document.getElementById('searchInput').value.trim().toLowerCase();
+
+  setLoading('fetchBtn', true);
+  const container = document.getElementById('productsContainer');
+  container.innerHTML = `<div class="loading-overlay">
+    <div class="spinner" style="width:40px;height:40px;border-width:3px;"></div>
+    <p>جاري جلب الأسعار من ${storeLabel(store)}...</p>
+    <p style="font-size:12px;color:#4a6080">قد يستغرق هذا 20–60 ثانية</p>
+  </div>`;
+
+  document.getElementById('statsBar').style.display = '';
+
+  try {
+    const params = new URLSearchParams({ store, type, limit });
+    const res    = await fetch(`${API}/api/zenrows/live?${params}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    let results = data.results || [];
+
+    // تطبيق البحث المحلي
+    if (search) {
+      results = results.filter(r =>
+        r.name?.toLowerCase().includes(search) ||
+        r.id?.toLowerCase().includes(search)
+      );
+    }
+
+    updateStats(results, store);
+    renderProducts(results, store);
+    toast(`تم جلب ${results.length} منتج من ${storeLabel(store)}`, 'success');
+  } catch (err) {
+    container.innerHTML = `<div class="empty-state">
+      <div class="icon">⚠️</div>
+      <p style="color:var(--red)">خطأ: ${err.message}</p>
+      <p style="font-size:12px;margin-top:8px;">تأكد من تشغيل الخادم وصلاحية ZenRows API</p>
+    </div>`;
+    toast(`فشل الجلب: ${err.message}`, 'error');
+  } finally {
+    setLoading('fetchBtn', false);
+  }
+}
+
+function updateStats(results, store) {
+  const withPrice = results.filter(r => r.price);
+  const prices    = withPrice.map(r => r.price);
+
+  document.getElementById('statTotal').textContent   = results.length;
+  document.getElementById('statSuccess').textContent = withPrice.length;
+  document.getElementById('statAvg').textContent     = prices.length ? fmt(prices.reduce((a,b)=>a+b,0)/prices.length) : '—';
+  document.getElementById('statBest').textContent    = prices.length ? fmt(Math.min(...prices)) : '—';
+  document.getElementById('statStore').textContent   = storeLabel(store);
+}
+
+function renderProducts(results, store) {
+  const container = document.getElementById('productsContainer');
+
+  if (!results.length) {
+    container.innerHTML = `<div class="empty-state">
+      <div class="icon">🔍</div>
+      <p>لا توجد نتائج</p>
+    </div>`;
+    return;
+  }
+
+  const sectionHtml = `
+    <div class="section-header">
+      <div class="section-title">
+        ${storeLabel(store)} — نتائج الأسعار
+        <span class="count-badge">${results.length}</span>
+      </div>
+    </div>
+    <div class="products-grid">
+      ${results.map((r, i) => renderProductCard(r, store, i)).join('')}
+    </div>
+  `;
+  container.innerHTML = sectionHtml;
+}
+
+function renderProductCard(r, store, index) {
+  const isGPU = r.id?.includes('rtx') || r.id?.includes('rx') || r.id?.includes('arc');
+  const icon  = isGPU ? '🖥️' : '⚙️';
+  const type  = isGPU ? 'gpu' : 'cpu';
+
+  let priceHtml;
+  if (r.price) {
+    const deal   = r.deal_pct;
+    const dealHtml = deal !== null && deal !== undefined
+      ? `<span class="deal-badge ${deal < 0 ? 'negative' : 'positive'}">${deal > 0 ? '+' : ''}${deal}%</span>`
+      : '';
+    priceHtml = `
+      <div class="price-row">
+        <div>
+          <div class="price-live">${fmt(r.price)}</div>
+          ${r.basePrice ? `<div class="price-base">الأساس: ${fmt(r.basePrice)}</div>` : ''}
+        </div>
+        ${dealHtml}
+      </div>
+    `;
+  } else if (r.error) {
+    priceHtml = `<div class="price-live error">⚠️ تعذّر الجلب</div>`;
+  } else {
+    priceHtml = `<div class="price-live loading">غير متاح</div>`;
+  }
+
+  const linkHtml = r.url && r.price
+    ? `<a href="${r.url}" target="_blank" rel="noopener" class="card-link ${store}">
+         عرض على ${storeLabel(store)} ↗
+       </a>`
+    : `<span class="card-link ${store} disabled">الرابط غير متاح</span>`;
+
+  return `
+    <div class="product-card" style="animation-delay:${index * 50}ms">
+      <div class="card-header">
+        <div class="card-icon ${type}">${icon}</div>
+        <div>
+          <div class="card-name">${r.name || r.id}</div>
+          <div class="card-id">${r.id}</div>
+        </div>
+      </div>
+      <div class="card-body">
+        ${priceHtml}
+        <div class="card-meta">
+          <span class="meta-tag store-${store}">
+            ${storeLabel(store)}
+          </span>
+          ${r.scraped_at ? `<span class="meta-tag">🕐 ${new Date(r.scraped_at).toLocaleTimeString('ar-EG')}</span>` : ''}
+        </div>
+        ${linkHtml}
+      </div>
+    </div>
+  `;
+}
+
+// ────────────────────────────────────────────────────────
+// COMPARE (3 stores)
+// ────────────────────────────────────────────────────────
+async function fetchCompare() {
+  const id = document.getElementById('compareIdInput').value.trim();
+  if (!id) { toast('أدخل معرّف المنتج أولاً', 'error'); return; }
+
+  const container = document.getElementById('compareContainer');
+  container.innerHTML = `<div class="loading-overlay">
+    <div class="spinner" style="width:40px;height:40px;border-width:3px;"></div>
+    <p>جاري المقارنة من 3 متاجر...</p>
+    <p style="font-size:12px;color:#4a6080">Amazon + Newegg + Best Buy</p>
+  </div>`;
+
+  try {
+    const res  = await fetch(`${API}/api/zenrows/compare/${encodeURIComponent(id)}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);
+    const data = await res.json();
+    renderCompare(data);
+    toast(`تم مقارنة أسعار ${data.name}`, 'success');
+  } catch (err) {
+    container.innerHTML = `<div class="empty-state">
+      <div class="icon">⚠️</div>
+      <p style="color:var(--red)">خطأ: ${err.message}</p>
+    </div>`;
+    toast(`فشل: ${err.message}`, 'error');
+  }
+}
+
+function renderCompare(data) {
+  const stores = ['amazon', 'newegg', 'bestbuy'];
+  const prices = stores.map(s => data.stores[s]?.price).filter(Boolean);
+  const minPr  = prices.length ? Math.min(...prices) : null;
+
+  const rows = `
+    <tr>
+      <td class="td-name">
+        ${data.name}
+        <small>معرّف: ${data.id}</small>
+      </td>
+      ${stores.map(s => {
+        const d = data.stores[s];
+        if (!d) return `<td class="td-price error">—</td>`;
+        if (d.error && !d.price) return `<td class="td-price error" title="${d.error}">⚠️ فشل</td>`;
+        const isBest = d.price && d.price === minPr;
+        const link   = d.url ? `<br><a href="${d.url}" target="_blank" class="store-link-sm">عرض ↗</a>` : '';
+        return `<td>
+          <div class="td-price ${isBest ? 'best' : ''}">${d.price ? fmt(d.price) : '—'}</div>
+          ${isBest ? '<div class="best-badge">✓ الأرخص</div>' : ''}
+          ${link}
+        </td>`;
+      }).join('')}
+      <td class="td-price" style="color:var(--yellow)">${data.best_price ? fmt(data.best_price) : '—'}</td>
+    </tr>
+  `;
+
+  const container = document.getElementById('compareContainer');
+  container.innerHTML = `
+    <div class="section-header" style="margin-bottom:20px;">
+      <div class="section-title">⚖️ مقارنة أسعار: ${data.name}</div>
+      <div style="font-size:12px;color:var(--muted);">آخر تحديث: ${new Date(data.scraped_at).toLocaleString('ar-EG')}</div>
+    </div>
+    <div class="compare-table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>المنتج</th>
+            <th style="color:var(--amazon)">🛒 Amazon</th>
+            <th style="color:var(--newegg)">⚡ Newegg</th>
+            <th style="color:#5b8fff">🏪 Best Buy</th>
+            <th style="color:var(--green)">⭐ أفضل سعر</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;padding:12px 16px;background:var(--surface);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--muted);">
+      💡 السعر الأساسي للمنتج: <strong style="color:var(--text)">${fmt(data.basePrice)}</strong>
+      ${data.best_price && data.basePrice ? ` — توفير: <strong style="color:${data.best_price < data.basePrice ? 'var(--green)' : 'var(--red)'}">
+        ${data.best_price < data.basePrice ? '↓' : '↑'} ${fmt(Math.abs(data.best_price - data.basePrice))}
+      </strong>` : ''}
+    </div>
+  `;
+}
+
+// ────────────────────────────────────────────────────────
+// DEALS
+// ────────────────────────────────────────────────────────
+async function fetchDeals() {
+  const store = document.getElementById('dealsStoreSelect').value;
+  const limit = document.getElementById('dealsLimitSelect').value;
+  const container = document.getElementById('dealsContainer');
+
+  container.innerHTML = `<div class="loading-overlay">
+    <div class="spinner" style="width:40px;height:40px;border-width:3px;"></div>
+    <p>جاري البحث عن أفضل العروض...</p>
+  </div>`;
+
+  try {
+    const res  = await fetch(`${API}/api/zenrows/deals?store=${store}&limit=${limit}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    if (!data.deals?.length) {
+      container.innerHTML = `<div class="empty-state"><div class="icon">😔</div><p>لا توجد عروض في الوقت الحالي</p></div>`;
+      return;
+    }
+
+    container.innerHTML = `
+      <div class="section-header" style="margin-bottom:16px;">
+        <div class="section-title">🔥 أفضل العروض — ${storeLabel(store)} <span class="count-badge">${data.deals.length}</span></div>
+      </div>
+      <div class="products-grid">
+        ${data.deals.map((r, i) => renderProductCard({...r, deal_pct: r.deal_pct}, store, i)).join('')}
+      </div>
+    `;
+    toast(`وجدنا ${data.deals.length} عرض`, 'success');
+  } catch (err) {
+    container.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><p style="color:var(--red)">${err.message}</p></div>`;
+    toast(`فشل: ${err.message}`, 'error');
+  }
+}
+
+// ────────────────────────────────────────────────────────
+// CATALOG MODAL
+// ────────────────────────────────────────────────────────
+async function showCatalog() {
+  document.getElementById('catalogModal').style.display = '';
+
+  if (catalog.length > 0) {
+    renderCatalog();
+    return;
+  }
+
+  try {
+    const res  = await fetch(`${API}/api/zenrows/catalog`);
+    const data = await res.json();
+    catalog    = data.catalog || [];
+    renderCatalog();
+  } catch (err) {
+    document.getElementById('catalogContent').innerHTML = `<p style="color:var(--red);padding:20px;">خطأ: ${err.message}</p>`;
+  }
+}
+
+function renderCatalog() {
+  document.getElementById('catalogContent').innerHTML = catalog.map(p => `
+    <div style="
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:8px;padding:10px 12px;cursor:pointer;transition:border-color .2s;
+    " onclick="useProduct('${p.id}')" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:13px;font-weight:600;">${p.name}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px;">
+        <code style="background:var(--bg);padding:1px 5px;border-radius:4px;">${p.id}</code>
+        <span style="float:left;">${fmt(p.basePrice)}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function useProduct(id) {
+  document.getElementById('compareIdInput').value = id;
+  hideCatalog();
+  switchTab('compare');
+}
+
+function hideCatalog() {
+  document.getElementById('catalogModal').style.display = 'none';
+}
+
+// إغلاق المودال عند الضغط خارجه
+document.getElementById('catalogModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) hideCatalog();
+});
+
+// بحث بالضغط Enter
+document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') fetchLivePrices();
+});
+document.getElementById('compareIdInput')?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') fetchCompare();
+});
+
+// اختبار الاتصال عند التحميل
+(async () => {
+  try {
+    const res = await fetch(`${API}/api/zenrows/test`);
+    const d   = await res.json();
+    if (d.ok) toast('✓ ZenRows API متصل وجاهز', 'success');
+  } catch { /* silent */ }
+})();
+</script>
+</body>
+</html>
