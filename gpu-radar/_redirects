@@ -38,6 +38,9 @@
 /pages/articles/rx9000-series-guide.html         /pages/articles/rx9000-series-guide        301
 /pages/articles/gpu-cooling-guide.html           /pages/articles/gpu-cooling-guide          301
 
+/pages/analyzer.html              /pages/analyzer           301
+/pages/analyzer                   /pages/analyzer.html      200
+
 # Serve .html files for clean URL requests (pretty URLs)
 /pages/about               /pages/about.html         200
 /pages/alerts              /pages/alerts.html        200

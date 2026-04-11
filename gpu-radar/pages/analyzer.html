@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>محلل الأسعار | GPU Radar — هل هذا سعر جيد؟</title>
+  <meta name="description" content="أداة تحليل أسعار GPU وCPU الذكية. أدخل عروض المتاجر واحصل على حكم فوري: هل هذا سعر جيد أم لا؟"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="google-adsense-account" content="ca-pub-1686978448234868">
+  <link rel="canonical" href="https://gpu-radar.com/pages/analyzer"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <!-- Open Graph -->
+  <meta property="og:title" content="محلل الأسعار الذكي | GPU Radar"/>
+  <meta property="og:description" content="هل سعر GPU أو CPU الذي وجدته جيد أم مبالغ فيه؟ حللّه الآن مجاناً."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://gpu-radar.com/pages/analyzer"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1686978448234868" crossorigin="anonymous"></script>
+  <style>
+    /* ── Page Layout ── */
+    .analyzer-hero { background: var(--bg2); padding: 5rem 0 3rem; border-bottom: 1px solid var(--border); text-align: center; }
+    .analyzer-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: .75rem; }
+    .analyzer-hero h1 span { color: var(--accent); }
+    .analyzer-hero p { color: var(--text2); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .analyzer-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; padding: 3rem 0 5rem; align-items: start; }
+
+    /* ── Form Card ── */
+    .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
+    .form-card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: .5rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: .83rem; font-weight: 600; color: var(--text2); margin-bottom: .35rem; }
+    .form-group input, .form-group select {
+      width: 100%; padding: .65rem 1rem; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-family: var(--font-ui); font-size: .88rem;
+      outline: none; direction: rtl; transition: border-color .2s; box-sizing: border-box;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(56,189,248,.08); }
+    .form-group input[dir="ltr"] { direction: ltr; text-align: left; }
+    .form-group select option { background: var(--bg2); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+
+    /* ── Offers List ── */
+    .offers-section { margin-top: 1.75rem; }
+    .offers-section h3 { font-size: .95rem; font-weight: 700; margin-bottom: 1rem; color: var(--white); display: flex; align-items: center; gap: .5rem; }
+    .offer-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: .75rem; position: relative; }
+    .offer-item .offer-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .75rem; }
+    .offer-num { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-dim); border: 1px solid rgba(56,189,248,.3); color: var(--accent); font-size: .72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-data); }
+    .offer-item .remove-btn { margin-right: auto; background: none; border: none; color: var(--text3); cursor: pointer; font-size: .8rem; padding: .2rem .5rem; border-radius: 4px; transition: color .2s; }
+    .offer-item .remove-btn:hover { color: #f87171; }
+    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+    .offer-grid .full { grid-column: 1 / -1; }
+    .offer-grid input, .offer-grid select { padding: .55rem .85rem; font-size: .84rem; }
+    .add-offer-btn { width: 100%; padding: .65rem; background: transparent; border: 1px dashed var(--border); border-radius: 8px; color: var(--text2); font-family: var(--font-ui); font-size: .87rem; cursor: pointer; transition: all .2s; margin-top: .25rem; }
+    .add-offer-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    /* ── Quick Catalog Select ── */
+    .catalog-search { position: relative; margin-bottom: 1.5rem; }
+    .catalog-search input { padding-left: 2.5rem !important; }
+    .catalog-search .search-icon { position: absolute; left: .85rem; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: .9rem; pointer-events: none; }
+    .catalog-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; max-height: 240px; overflow-y: auto; z-index: 100; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+    .catalog-dropdown.open { display: block; }
+    .catalog-option { padding: .6rem 1rem; font-size: .85rem; color: var(--text2); cursor: pointer; transition: background .15s; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .catalog-option:hover { background: var(--accent-dim); color: var(--accent); }
+    .catalog-option .opt-price { float: left; color: var(--text3); font-family: var(--font-data); font-size: .8rem; }
+    .catalog-option .opt-type { display: inline-block; font-size: .7rem; background: var(--bg3); padding: .1rem .4rem; border-radius: 3px; margin-right: .4rem; color: var(--accent); }
+
+    /* ── Submit ── */
+    .analyze-btn { width: 100%; padding: .85rem; background: var(--accent); color: #000; border: none; border-radius: 10px; font-family: var(--font-ui); font-weight: 800; font-size: 1rem; cursor: pointer; transition: background .2s; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: .5rem; }
+    .analyze-btn:hover { background: #7DD3FC; }
+    .analyze-btn:disabled { background: var(--text3); cursor: not-allowed; }
+    .analyze-btn .spinner { width: 18px; height: 18px; border: 2px solid rgba(0,0,0,.3); border-top-color: #000; border-radius: 50%; animation: spin .6s linear infinite; display: none; }
+    .analyze-btn.loading .spinner { display: block; }
+    .analyze-btn.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Result Card ── */
+    .result-card { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 0; overflow: hidden; }
+    .result-card.show { display: block; }
+    .result-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+    .deal-badge { padding: .35rem 1rem; border-radius: 20px; font-size: .82rem; font-weight: 800; font-family: var(--font-data); letter-spacing: .05em; text-transform: uppercase; }
+    .deal-badge.good    { background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.3); color: #4ade80; }
+    .deal-badge.normal  { background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.25); color: var(--accent); }
+    .deal-badge.over    { background: rgba(248,113,113,.12); border: 1px solid rgba(248,113,113,.3); color: #f87171; }
+    .result-product { font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .result-body { padding: 1.5rem 2rem; }
+    .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .price-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+    .price-box.highlight { border-color: rgba(56,189,248,.35); background: var(--accent-dim); }
+    .price-box .pb-label { font-size: .75rem; color: var(--text3); margin-bottom: .35rem; text-transform: uppercase; letter-spacing: .05em; font-family: var(--font-data); }
+    .price-box .pb-val { font-size: 1.5rem; font-weight: 800; color: var(--accent); font-family: var(--font-data); line-height: 1; }
+    .price-box.highlight .pb-val { color: #4ade80; }
+    .price-box .pb-store { font-size: .75rem; color: var(--text2); margin-top: .25rem; }
+    .price-box .pb-link { display: inline-flex; align-items: center; gap: .3rem; margin-top: .5rem; font-size: .78rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+    .price-box .pb-link:hover { text-decoration: underline; }
+    .trend-row { display: flex; align-items: center; gap: 1.5rem; padding: 1rem 1.25rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .trend-item { display: flex; align-items: center; gap: .4rem; font-size: .87rem; }
+    .trend-item span { font-weight: 700; }
+    .trend-item .trend-rising  { color: #f87171; }
+    .trend-item .trend-dropping { color: #4ade80; }
+    .trend-item .trend-stable  { color: var(--accent); }
+    .notes-box { background: rgba(56,189,248,.06); border: 1px solid rgba(56,189,248,.15); border-radius: 8px; padding: 1rem 1.25rem; font-size: .85rem; color: var(--text2); line-height: 1.7; }
+    .result-footer { padding: 1rem 2rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .result-footer .meta { font-size: .78rem; color: var(--text3); font-family: var(--font-data); }
+    .result-footer .copy-btn { padding: .4rem 1rem; background: var(--accent-dim); border: 1px solid rgba(56,189,248,.2); border-radius: 6px; color: var(--accent); font-size: .8rem; font-weight: 600; cursor: pointer; transition: background .2s; }
+    .result-footer .copy-btn:hover { background: rgba(56,189,248,.2); }
+
+    /* ── Sidebar ── */
+    .sidebar-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; }
+    .sidebar-card h3 { font-size: .9rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); color: var(--white); display: flex; align-items: center; gap: .4rem; }
+    .quick-check-list { display: flex; flex-direction: column; gap: .3rem; }
+    .qc-item { display: flex; align-items: center; gap: .5rem; padding: .5rem .75rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; cursor: pointer; transition: all .2s; text-align: right; }
+    .qc-item:hover { border-color: var(--accent); background: var(--accent-dim); }
+    .qc-item .qc-name { font-size: .83rem; color: var(--text2); font-weight: 600; flex: 1; }
+    .qc-item .qc-price { font-size: .8rem; color: var(--accent); font-family: var(--font-data); font-weight: 700; }
+    .qc-item .qc-badge { font-size: .68rem; padding: .1rem .45rem; border-radius: 3px; font-weight: 700; font-family: var(--font-data); }
+    .qc-item .qc-badge.good { background: rgba(34,197,94,.15); color: #4ade80; }
+    .qc-item .qc-badge.normal { background: var(--accent-dim); color: var(--accent); }
+    .qc-item .qc-badge.over { background: rgba(248,113,113,.12); color: #f87171; }
+    .how-list { display: flex; flex-direction: column; gap: .65rem; }
+    .how-item { display: flex; gap: .75rem; align-items: flex-start; }
+    .how-num { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #000; font-size: .72rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-data); }
+    .how-item p { font-size: .84rem; color: var(--text2); margin: 0; line-height: 1.5; padding-top: .15rem; }
+    .trusted-list { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .trusted-tag { padding: .25rem .65rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; font-size: .78rem; color: var(--text2); }
+
+    /* ── Error ── */
+    .error-card { display: none; background: rgba(248,113,113,.08); border: 1px solid rgba(248,113,113,.2); border-radius: 10px; padding: 1.25rem 1.5rem; margin-top: 1rem; }
+    .error-card.show { display: block; }
+    .error-card p { color: #f87171; font-size: .9rem; margin: 0; }
+
+    /* ── Responsive ── */
+    @media(max-width:960px){ .analyzer-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+    <nav class="nav-menu" id="nav-menu">
+      <a href="../index.html" class="nav-link">الرئيسية</a>
+      <a href="gpu.html"     class="nav-link">GPU</a>
+      <a href="cpu.html"     class="nav-link">CPU</a>
+      <a href="compare.html" class="nav-link">المقارنة</a>
+      <a href="analyzer.html" class="nav-link active">محلل الأسعار</a>
+      <a href="blog.html"    class="nav-link">المدونة</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="alerts.html" class="btn-alert"><span class="bell-dot"></span>تنبيهات</a>
+      <button class="burger" id="burger" aria-label="فتح القائمة" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="analyzer-hero">
+    <div class="container">
+      <h1>محلل الأسعار <span>الذكي</span></h1>
+      <p>أدخل عروض المتاجر واحصل على حكم فوري: هل هذا سعر جيد، عادي، أم مبالغ فيه؟</p>
+    </div>
+  </section>
+
+  <!-- AdSense Banner -->
+  <div class="container" style="padding:1.5rem 0 0">
+    <ins class="adsbygoogle" style="display:block;text-align:center" data-ad-format="auto" data-full-width-responsive="true" data-ad-client="ca-pub-1686978448234868" data-ad-slot="auto"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="section" style="background:var(--bg2); padding-top:0">
+    <div class="container">
+      <div class="analyzer-layout">
+
+        <!-- ── MAIN FORM ── -->
+        <div>
+          <div class="form-card">
+            <h2>🔍 تحليل عروض جديدة</h2>
+
+            <!-- Product Name with Catalog Search -->
+            <div class="form-group">
+              <label for="product-input">اسم المنتج</label>
+              <div class="catalog-search">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="product-input" placeholder="مثال: RTX 5090 أو Ryzen 9 9950X..." autocomplete="off" dir="ltr"/>
+                <div class="catalog-dropdown" id="catalog-dropdown"></div>
+              </div>
+            </div>
+
+            <!-- Offers -->
+            <div class="offers-section">
+              <h3>🏪 عروض المتاجر <span id="offers-count" style="color:var(--text3);font-weight:400;font-size:.82rem">(اضف عرضاً واحداً على الأقل)</span></h3>
+              <div id="offers-list"></div>
+              <button type="button" class="add-offer-btn" id="add-offer-btn">+ إضافة عرض متجر آخر</button>
+            </div>
+
+            <!-- Error -->
+            <div class="error-card" id="error-card">
+              <p id="error-msg"></p>
+            </div>
+
+            <!-- Submit -->
+            <button type="button" class="analyze-btn" id="analyze-btn">
+              <div class="spinner"></div>
+              <span class="btn-text">⚡ تحليل الأسعار الآن</span>
+            </button>
+          </div>
+
+          <!-- ── RESULT CARD ── -->
+          <div class="result-card" id="result-card" style="margin-top:1.5rem">
+            <div class="result-header">
+              <div>
+                <div class="result-product" id="res-product"></div>
+              </div>
+              <span class="deal-badge" id="res-badge"></span>
+            </div>
+            <div class="result-body">
+              <div class="price-grid" id="res-price-grid"></div>
+              <div class="trend-row" id="res-trend"></div>
+              <div class="notes-box" id="res-notes" style="display:none"></div>
+            </div>
+            <div class="result-footer">
+              <span class="meta" id="res-meta"></span>
+              <button class="copy-btn" id="copy-btn">📋 نسخ JSON</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SIDEBAR ── -->
+        <aside>
+          <!-- Quick DB Check -->
+          <div class="sidebar-card">
+            <h3>⚡ فحص سريع من الكتالوج</h3>
+            <div class="quick-check-list" id="quick-list">
+              <div style="color:var(--text3);font-size:.83rem;text-align:center;padding:.5rem">جاري تحميل الكتالوج...</div>
+            </div>
+          </div>
+
+          <!-- How It Works -->
+          <div class="sidebar-card">
+            <h3>🧠 كيف يعمل المحلل؟</h3>
+            <div class="how-list">
+              <div class="how-item">
+                <div class="how-num">1</div>
+                <p>يُصفّي العروض المستعملة أو المجددة أو من بائعين بتقييم منخفض.</p>
+              </div>
+              <div class="how-item">
+                <div class="how-num">2</div>
+                <p>يُقارن الأسعار بقاعدة بياناتنا التاريخية وأسعار الكتالوج.</p>
+              </div>
+              <div class="how-item">
+                <div class="how-num">3</div>
+                <p>يُعطي أولوية لعروض المتاجر الموثوقة (Amazon, Newegg, B&H...).</p>
+              </div>
+              <div class="how-item">
+                <div class="how-num">4</div>
+                <p>يُصدر حكماً: صفقة جيدة / سعر عادي / سعر مرتفع.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trusted Stores -->
+          <div class="sidebar-card">
+            <h3>✅ متاجر موثوقة</h3>
+            <div class="trusted-list">
+              <span class="trusted-tag">Amazon</span>
+              <span class="trusted-tag">Newegg</span>
+              <span class="trusted-tag">B&H Photo</span>
+              <span class="trusted-tag">Best Buy</span>
+              <span class="trusted-tag">Walmart</span>
+              <span class="trusted-tag">Adorama</span>
+              <span class="trusted-tag">Micro Center</span>
+              <span class="trusted-tag">Costco</span>
+            </div>
+            <p style="font-size:.8rem;color:var(--text3);margin-top:.75rem;margin-bottom:0">المتاجر الأخرى تُقبل لكن تأخذ أولوية أقل في التحليل.</p>
+          </div>
+
+          <!-- AdSense Sidebar -->
+          <div>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1686978448234868" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-mark">◈</span><span class="logo-text">GPU<em>Radar</em></span></a>
+      <p>منصة تتبع أسعار قطع الكمبيوتر للمتسوقين العرب.</p>
+    </div>
+    <nav class="footer-nav">
+      <div class="footer-col"><h4>الأسعار</h4><ul>
+        <li><a href="gpu.html">بطاقات GPU</a></li>
+        <li><a href="cpu.html">معالجات CPU</a></li>
+        <li><a href="compare.html">المقارنة</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>الأدوات</h4><ul>
+        <li><a href="analyzer.html">محلل الأسعار</a></li>
+        <li><a href="alerts.html">تنبيهات الأسعار</a></li>
+        <li><a href="blog.html">المدونة</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>قانوني</h4><ul>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+        <li><a href="terms.html">الشروط والأحكام</a></li>
+      </ul></div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2025 GPU Radar. جميع الحقوق محفوظة.</p>
+      <p class="footer-disclaimer">التحليل للأغراض المعلوماتية. نشارك في برامج عمولة.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script>
+// ══════════════════════════════════════════════════════════
+// GPU Radar — Price Analyzer Frontend
+// ══════════════════════════════════════════════════════════
+
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0')
+  ? 'http://localhost:3001'
+  : '';  // same origin on production (static + API same server)
+
+// ── Catalog Data ──────────────────────────────────────────
+let catalogData = [];
+let offerCount  = 0;
+let lastVerdict = null;
+
+// Fetch catalog from API
+async function loadCatalog() {
+  try {
+    const res = await fetch(`${API_BASE}/api/parts`);
+    if (!res.ok) throw new Error('API unavailable');
+    const data = await res.json();
+    catalogData = data.parts || [];
+    renderQuickList(catalogData.slice(0, 10)); // top 10 by deal status
+  } catch {
+    // Fallback catalog if API is not running (static site context)
+    catalogData = FALLBACK_CATALOG;
+    renderQuickList(FALLBACK_CATALOG.slice(0, 10));
+  }
+}
+
+// ── Fallback catalog for static-site mode ─────────────────
+const FALLBACK_CATALOG = [
+  { id:'rtx5090',   name:'RTX 5090',         price:3899, type:'GPU', brand:'NVIDIA' },
+  { id:'rtx5080',   name:'RTX 5080',         price:1299, type:'GPU', brand:'NVIDIA' },
+  { id:'rtx5070ti', name:'RTX 5070 Ti',      price:1009, type:'GPU', brand:'NVIDIA' },
+  { id:'rtx5070',   name:'RTX 5070',         price:649,  type:'GPU', brand:'NVIDIA' },
+  { id:'rtx5060ti', name:'RTX 5060 Ti 16GB', price:514,  type:'GPU', brand:'NVIDIA' },
+  { id:'rx9070xt',  name:'RX 9070 XT',       price:599,  type:'GPU', brand:'AMD'    },
+  { id:'rx9070',    name:'RX 9070',          price:549,  type:'GPU', brand:'AMD'    },
+  { id:'rtx4090',   name:'RTX 4090',         price:3199, type:'GPU', brand:'NVIDIA' },
+  { id:'r9-9950x',  name:'Ryzen 9 9950X',    price:649,  type:'CPU', brand:'AMD'    },
+  { id:'r9-9900x',  name:'Ryzen 9 9900X',    price:449,  type:'CPU', brand:'AMD'    },
+  { id:'i9-14900k', name:'Core i9-14900K',   price:399,  type:'CPU', brand:'Intel'  },
+  { id:'r7-9700x',  name:'Ryzen 7 9700X',    price:329,  type:'CPU', brand:'AMD'    },
+];
+
+// ── Offer Item Template ───────────────────────────────────
+function createOfferHTML(num) {
+  return `
+  <div class="offer-item" id="offer-${num}" data-num="${num}">
+    <div class="offer-header">
+      <div class="offer-num">${num}</div>
+      <span style="font-size:.83rem;font-weight:600;color:var(--text2)">عرض #${num}</span>
+      <button class="remove-btn" onclick="removeOffer(${num})">✕ حذف</button>
+    </div>
+    <div class="offer-grid">
+      <div class="form-group">
+        <label>اسم المتجر *</label>
+        <input type="text" class="o-store" placeholder="Amazon / Newegg / B&H..." autocomplete="off"/>
+      </div>
+      <div class="form-group">
+        <label>السعر (USD) *</label>
+        <input type="number" class="o-price" placeholder="599" min="1" max="99999" dir="ltr"/>
+      </div>
+      <div class="form-group">
+        <label>الحالة</label>
+        <select class="o-condition">
+          <option value="new">جديد (New)</option>
+          <option value="open-box">Open Box</option>
+          <option value="refurbished">مجدد (Refurb)</option>
+          <option value="used">مستعمل (Used)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>تقييم البائع (%)</label>
+        <input type="number" class="o-rating" placeholder="100" min="0" max="100" dir="ltr" value="100"/>
+      </div>
+      <div class="form-group full">
+        <label>رابط المنتج (اختياري)</label>
+        <input type="url" class="o-link" placeholder="https://www.amazon.com/..." dir="ltr"/>
+      </div>
+    </div>
+  </div>`;
+}
+
+function addOffer() {
+  offerCount++;
+  const container = document.getElementById('offers-list');
+  container.insertAdjacentHTML('beforeend', createOfferHTML(offerCount));
+  updateOffersCount();
+  // Focus on store input of new offer
+  const newItem = document.getElementById(`offer-${offerCount}`);
+  if (newItem) newItem.querySelector('.o-store').focus();
+}
+
+function removeOffer(num) {
+  const el = document.getElementById(`offer-${num}`);
+  if (el) el.remove();
+  updateOffersCount();
+}
+
+function updateOffersCount() {
+  const items = document.querySelectorAll('.offer-item');
+  const span  = document.getElementById('offers-count');
+  span.textContent = items.length === 0
+    ? '(اضف عرضاً واحداً على الأقل)'
+    : `(${items.length} عرض)`;
+}
+
+// ── Catalog Autocomplete ──────────────────────────────────
+const productInput = document.getElementById('product-input');
+const catalogDropdown = document.getElementById('catalog-dropdown');
+
+productInput.addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  if (q.length < 1) { catalogDropdown.classList.remove('open'); return; }
+
+  const matches = (catalogData.length ? catalogData : FALLBACK_CATALOG)
+    .filter(p => p.name.toLowerCase().includes(q) || (p.brand||'').toLowerCase().includes(q))
+    .slice(0, 8);
+
+  if (matches.length === 0) { catalogDropdown.classList.remove('open'); return; }
+
+  catalogDropdown.innerHTML = matches.map(p => `
+    <div class="catalog-option" onclick="selectProduct('${p.name}', ${p.price || ''})">
+      <span class="opt-type">${p.type || ''}</span>${p.name}
+      <span class="opt-price">~$${(p.price||0).toLocaleString()}</span>
+    </div>`).join('');
+  catalogDropdown.classList.add('open');
+});
+
+function selectProduct(name, price) {
+  productInput.value = name;
+  catalogDropdown.classList.remove('open');
+  // Auto-fill first offer's price if empty
+  const firstPrice = document.querySelector('.o-price');
+  if (firstPrice && !firstPrice.value && price) firstPrice.value = price;
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.catalog-search')) catalogDropdown.classList.remove('open');
+});
+
+// ── Quick List from Catalog ───────────────────────────────
+function renderQuickList(parts) {
+  const container = document.getElementById('quick-list');
+  if (!parts || parts.length === 0) {
+    container.innerHTML = '<div style="color:var(--text3);font-size:.83rem;text-align:center;padding:.5rem">لا توجد بيانات</div>';
+    return;
+  }
+  container.innerHTML = parts.slice(0, 8).map(p => {
+    const change = p.change_pct || 0;
+    let badge = 'normal', badgeText = 'عادي';
+    if (p.is_all_time_low || change < -5) { badge = 'good'; badgeText = '🔥 منخفض'; }
+    else if (change > 5) { badge = 'over'; badgeText = '📈 مرتفع'; }
+    return `
+    <div class="qc-item" onclick="quickCheck('${p.id}', '${p.name}')">
+      <div style="font-size:.9rem">${(p.type||'') === 'GPU' ? '🎮' : '⚡'}</div>
+      <div class="qc-name">${p.name}</div>
+      <div class="qc-price">$${(p.price||0).toLocaleString()}</div>
+      <div class="qc-badge ${badge}">${badgeText}</div>
+    </div>`;
+  }).join('');
+}
+
+async function quickCheck(partId, partName) {
+  productInput.value = partName;
+  showLoading(true);
+  hideError();
+  try {
+    const res = await fetch(`${API_BASE}/api/analyze/${partId}`);
+    const data = await res.json();
+    if (data.error) { showError(data.error); return; }
+    lastVerdict = data;
+    renderResult(data);
+    // scroll to result
+    document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } catch {
+    showError('تعذّر الاتصال بالخادم. تأكد من تشغيل API.');
+  } finally {
+    showLoading(false);
+  }
+}
+
+// ── Collect Form Offers ───────────────────────────────────
+function collectOffers() {
+  const items = document.querySelectorAll('.offer-item');
+  const offers = [];
+  for (const item of items) {
+    const store     = item.querySelector('.o-store')?.value?.trim();
+    const price     = parseFloat(item.querySelector('.o-price')?.value);
+    const condition = item.querySelector('.o-condition')?.value || 'new';
+    const rating    = parseFloat(item.querySelector('.o-rating')?.value);
+    const link      = item.querySelector('.o-link')?.value?.trim() || null;
+    if (store && price) {
+      offers.push({ store, price, condition, rating: isNaN(rating) ? 100 : rating, link });
+    }
+  }
+  return offers;
+}
+
+// ── Analyze ───────────────────────────────────────────────
+document.getElementById('analyze-btn').addEventListener('click', async () => {
+  const productName = productInput.value.trim();
+  if (!productName) {
+    showError('يرجى إدخال اسم المنتج أولاً.');
+    productInput.focus();
+    return;
+  }
+
+  const offers = collectOffers();
+  if (offers.length === 0) {
+    showError('يرجى إضافة عرض واحد على الأقل مع تحديد المتجر والسعر.');
+    return;
+  }
+
+  showLoading(true);
+  hideError();
+
+  try {
+    const res = await fetch(`${API_BASE}/api/analyze`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product_name: productName, offers }),
+    });
+    const data = await res.json();
+
+    if (data.error) {
+      showError(`❌ ${data.error}${data.details ? ': ' + data.details : ''}`);
+      return;
+    }
+
+    lastVerdict = data;
+    renderResult(data);
+  } catch {
+    // Fallback: client-side analysis when API is not available
+    const verdict = clientSideAnalyze(productName, offers);
+    lastVerdict = verdict;
+    renderResult(verdict);
+  } finally {
+    showLoading(false);
+  }
+});
+
+// ── Client-Side Fallback Analysis ────────────────────────
+function clientSideAnalyze(productName, offers) {
+  const TRUSTED = ['amazon','newegg','b&h','bhphoto','bestbuy','walmart','adorama','microcenter'];
+  const BAD_COND = ['used','refurbished','open-box','openbox','renewed'];
+
+  const validOffers = offers.filter(o => {
+    if (!o.price || isNaN(o.price) || o.price <= 0) return false;
+    if (BAD_COND.includes((o.condition||'').toLowerCase())) return false;
+    if (o.rating !== undefined && o.rating < 95) return false;
+    return true;
+  }).sort((a,b) => a.price - b.price);
+
+  if (validOffers.length === 0) return { error: 'insufficient reliable data' };
+
+  const catalog = FALLBACK_CATALOG.find(p =>
+    productName.toLowerCase().includes(p.name.toLowerCase()) ||
+    p.name.toLowerCase().includes(productName.toLowerCase())
+  );
+
+  const trustedOffers = validOffers.filter(o => TRUSTED.some(t => (o.store||'').toLowerCase().includes(t)));
+  const best   = trustedOffers[0] || validOffers[0];
+  const lowest = validOffers[0];
+  const avg    = Math.round(validOffers.reduce((s,o) => s+o.price,0) / validOffers.length);
+  const ref    = catalog?.price || avg;
+  const ratio  = best.price / ref;
+
+  let dealStatus = 'normal price';
+  if (ratio <= 0.92) dealStatus = 'good deal';
+  else if (ratio >= 1.08) dealStatus = 'overpriced';
+
+  const notes = [];
+  if (catalog) notes.push(`السعر المرجعي: $${ref.toLocaleString()}`);
+  const savings = ref - best.price;
+  if (savings > 0) notes.push(`توفير محتمل: $${savings.toLocaleString()} (${((savings/ref)*100).toFixed(1)}%)`);
+  if (!trustedOffers.length) notes.push('⚠️ لا توجد عروض من متاجر موثوقة');
+
+  return {
+    product_name: catalog?.name || productName,
+    best_price: { price: best.price, store: best.store, link: best.link || null },
+    lowest_valid_price: { price: lowest.price, store: lowest.store, link: lowest.link || null },
+    average_market_price: avg,
+    reference_price: ref,
+    price_trend: ratio < 0.92 ? 'dropping' : ratio > 1.08 ? 'rising' : 'stable',
+    deal_status: dealStatus,
+    valid_offers_count: validOffers.length,
+    total_offers_count: offers.length,
+    notes: notes.join(' | '),
+    analyzed_at: new Date().toISOString(),
+    source: 'client-side',
+  };
+}
+
+// ── Render Result ─────────────────────────────────────────
+function renderResult(data) {
+  const card = document.getElementById('result-card');
+  card.classList.add('show');
+
+  // Product + Badge
+  document.getElementById('res-product').textContent = data.product_name || 'غير محدد';
+  const badge = document.getElementById('res-badge');
+  const dealMap = {
+    'good deal':    { cls: 'good',   ar: '🔥 صفقة ممتازة' },
+    'normal price': { cls: 'normal', ar: '✅ سعر عادي'      },
+    'overpriced':   { cls: 'over',   ar: '⚠️ سعر مرتفع'    },
+  };
+  const d = dealMap[data.deal_status] || { cls: 'normal', ar: data.deal_status };
+  badge.className = `deal-badge ${d.cls}`;
+  badge.textContent = d.ar;
+
+  // Price Grid
+  const bestStore  = data.best_price?.store || '—';
+  const lowStore   = data.lowest_valid_price?.store || '—';
+  const bestLink   = data.best_price?.link;
+  const lowLink    = data.lowest_valid_price?.link;
+  const trendAr = { rising:'📈 ارتفاع', dropping:'📉 انخفاض', stable:'➡️ مستقر' };
+
+  document.getElementById('res-price-grid').innerHTML = `
+    <div class="price-box highlight">
+      <div class="pb-label">أفضل سعر (موثوق)</div>
+      <div class="pb-val">$${(data.best_price?.price||0).toLocaleString()}</div>
+      <div class="pb-store">${bestStore}</div>
+      ${bestLink ? `<a class="pb-link" href="${bestLink}" target="_blank" rel="noopener">🛒 اشتر الآن ↗</a>` : ''}
+    </div>
+    <div class="price-box">
+      <div class="pb-label">أدنى سعر صالح</div>
+      <div class="pb-val">$${(data.lowest_valid_price?.price||0).toLocaleString()}</div>
+      <div class="pb-store">${lowStore}</div>
+      ${lowLink ? `<a class="pb-link" href="${lowLink}" target="_blank" rel="noopener">↗ عرض</a>` : ''}
+    </div>
+    <div class="price-box">
+      <div class="pb-label">متوسط السوق</div>
+      <div class="pb-val">$${(data.average_market_price||0).toLocaleString()}</div>
+      <div class="pb-store">من ${data.valid_offers_count||0} عرض</div>
+    </div>
+    ${data.reference_price ? `
+    <div class="price-box">
+      <div class="pb-label">السعر المرجعي</div>
+      <div class="pb-val">$${data.reference_price.toLocaleString()}</div>
+      <div class="pb-store">كتالوج GPU Radar</div>
+    </div>` : ''}`;
+
+  // Trend Row
+  document.getElementById('res-trend').innerHTML = `
+    <div class="trend-item">اتجاه السعر: <span class="trend-${data.price_trend||'stable'}">${trendAr[data.price_trend]||data.price_trend}</span></div>
+    ${data.is_52week_low ? '<div class="trend-item">🏆 <span style="color:#4ade80">أدنى سعر في 52 أسبوع!</span></div>' : ''}
+    ${data.is_52week_high ? '<div class="trend-item">⚠️ <span style="color:#f87171">أعلى سعر في 52 أسبوع</span></div>' : ''}
+    ${data.change_pct !== undefined ? `<div class="trend-item">التغيير: <span style="color:${data.change_pct<0?'#4ade80':'#f87171'}">${data.change_pct>0?'+':''}${data.change_pct}%</span></div>` : ''}
+    <div class="trend-item">عروض مُحللة: <span style="color:var(--accent)">${data.valid_offers_count||'—'} / ${data.total_offers_count||'—'}</span></div>`;
+
+  // Notes
+  const notesBox = document.getElementById('res-notes');
+  if (data.notes) {
+    notesBox.style.display = '';
+    notesBox.innerHTML = data.notes.split(' | ').map(n => `<div>${n}</div>`).join('');
+  } else {
+    notesBox.style.display = 'none';
+  }
+
+  // Footer meta
+  const analyzedAt = data.analyzed_at ? new Date(data.analyzed_at).toLocaleString('ar-SA') : '';
+  document.getElementById('res-meta').textContent = `تحليل: ${analyzedAt}${data.source === 'client-side' ? ' (وضع بدون اتصال)' : ''}`;
+}
+
+// ── Copy JSON Result ──────────────────────────────────────
+document.getElementById('copy-btn').addEventListener('click', () => {
+  if (!lastVerdict) return;
+  navigator.clipboard.writeText(JSON.stringify(lastVerdict, null, 2)).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✅ تم النسخ!';
+    setTimeout(() => btn.textContent = '📋 نسخ JSON', 2000);
+  });
+});
+
+// ── UI Helpers ────────────────────────────────────────────
+function showLoading(on) {
+  const btn = document.getElementById('analyze-btn');
+  if (on) btn.classList.add('loading');
+  else btn.classList.remove('loading');
+  btn.disabled = on;
+}
+
+function showError(msg) {
+  const card = document.getElementById('error-card');
+  document.getElementById('error-msg').textContent = msg;
+  card.classList.add('show');
+}
+
+function hideError() {
+  document.getElementById('error-card').classList.remove('show');
+}
+
+// ── Init ──────────────────────────────────────────────────
+addOffer(); // Add first offer on load
+loadCatalog();
+</script>
+</body>
+</html>
