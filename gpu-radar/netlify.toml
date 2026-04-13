@@ -1,4 +1,120 @@
+# ============================================================
+# PriceBench — Netlify Configuration
+# ============================================================
+
+# ── BUILD SETTINGS ────────────────────────────────────────
+[build]
+  publish = "gpu-radar"
+
+# ══════════════════════════════════════════════════════════
+# REDIRECTS — صفحات بدون امتداد .html
+# ══════════════════════════════════════════════════════════
+[[redirects]]
+  from = "/pages/gpu"
+  to   = "/gpu-radar/pages/gpu.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/cpu"
+  to   = "/gpu-radar/pages/cpu.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/compare"
+  to   = "/gpu-radar/pages/compare.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/blog"
+  to   = "/gpu-radar/pages/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/alerts"
+  to   = "/gpu-radar/pages/alerts.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/about"
+  to   = "/gpu-radar/pages/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/contact"
+  to   = "/gpu-radar/pages/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/privacy-policy"
+  to   = "/gpu-radar/pages/privacy-policy.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/terms"
+  to   = "/gpu-radar/pages/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/analyzer"
+  to   = "/gpu-radar/pages/analyzer.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/price-tracker"
+  to   = "/gpu-radar/pages/price-tracker.html"
+  status = 200
+
+# ── Articles redirects (بدون .html) ──────────────────────
+[[redirects]]
+  from = "/pages/articles/:article"
+  to   = "/gpu-radar/pages/articles/:article.html"
+  status = 200
+
+# ── API Proxy to Railway ──────────────────────────────────
+[[redirects]]
+  from = "/api/*"
+  to   = "https://radar-gpu-production.up.railway.app/api/:splat"
+  status = 200
+  force = true
+
+# ══════════════════════════════════════════════════════════
+# HEADERS
+# ══════════════════════════════════════════════════════════
+
+# sitemap.xml — Content-Type مهم لـ Google Search Console
 [[headers]]
   for = "/sitemap.xml"
   [headers.values]
-    Content-Type = "application/xml"
+    Content-Type = "application/xml; charset=utf-8"
+
+# robots.txt
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+# Security & Performance Headers — جميع الصفحات
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection       = "1; mode=block"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    Permissions-Policy     = "camera=(), microphone=(), geolocation=()"
+
+# Cache للأصول الثابتة
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

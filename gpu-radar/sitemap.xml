@@ -2,259 +2,270 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- ═══ MAIN PAGES ═══ -->
   <url>
-    <loc>https://gpu-radar.com/</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://gpu-radar.com/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pricebench.online/"/>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/gpu</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/gpu</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/cpu</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/cpu</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/compare</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/compare</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/blog</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/price-tracker</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/blog</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/alerts</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/alerts</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/about</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/analyzer</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/about</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/contact</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/contact</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/privacy-policy</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/privacy-policy</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.30</priority>
   </url>
 
   <url>
-    <loc>https://gpu-radar.com/pages/terms</loc>
-    <lastmod>2025-04-03</lastmod>
+    <loc>https://pricebench.online/pages/terms</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.30</priority>
   </url>
 
-  <!-- NEW ARTICLES (10) -->
+  <!-- ═══ ARTICLES — RTX 5000 & RX 9000 (New 2025-2026) ═══ -->
   <url>
-    <loc>https://gpu-radar.com/pages/articles/rtx5090-review</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/rx9070xt-review</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/rtx5090-vs-rtx4090</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.82</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/gaming-build-1000</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.82</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/ddr5-vs-ddr4-gaming</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/nvme-ssd-guide-2025</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/rtx-5000-series-complete-guide</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/gaming-laptop-vs-desktop-2025</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/rx9000-series-guide</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/gpu-cooling-guide</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <!-- EXISTING ARTICLES (15) -->
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/rtx4080s-vs-rx7900xtx</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/gpu-prices-drop-2025</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/best-cpu-2025</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/best-time-buy-gpu</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/rdna4-architecture</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/intel-vs-amd-2025</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/gpu-for-ai-2025</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/gaming-build-800</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/used-gpu-guide</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/overclocking-guide</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/psu-guide</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/gpu-brands-comparison</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/monitor-gpu-match</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/gpu-price-predictions-2025</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.78</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/articles/rtx4070s-vs-rx7800xt</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gpu-radar.com/pages/analyzer</loc>
-    <lastmod>2025-04-11</lastmod>
+    <loc>https://pricebench.online/pages/articles/rtx5090-review</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/rx9070xt-review</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/rtx5090-vs-rtx4090</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/rtx-5000-series-complete-guide</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.87</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/rx9000-series-guide</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.87</priority>
+  </url>
+
+  <!-- ═══ ARTICLES — Build Guides ═══ -->
+  <url>
+    <loc>https://pricebench.online/pages/articles/gaming-build-1000</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/gaming-build-800</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/gaming-laptop-vs-desktop-2025</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- ═══ ARTICLES — GPU Comparisons ═══ -->
+  <url>
+    <loc>https://pricebench.online/pages/articles/rtx4080s-vs-rx7900xtx</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/rtx4070s-vs-rx7800xt</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+
+  <!-- ═══ ARTICLES — Market & Prices ═══ -->
+  <url>
+    <loc>https://pricebench.online/pages/articles/gpu-prices-drop-2025</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/gpu-price-predictions-2025</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/best-time-buy-gpu</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- ═══ ARTICLES — Hardware Guides ═══ -->
+  <url>
+    <loc>https://pricebench.online/pages/articles/best-cpu-2025</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/rdna4-architecture</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/intel-vs-amd-2025</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/gpu-for-ai-2025</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/gpu-brands-comparison</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.77</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/monitor-gpu-match</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.77</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/overclocking-guide</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/gpu-cooling-guide</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/psu-guide</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/used-gpu-guide</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/ddr5-vs-ddr4-gaming</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://pricebench.online/pages/articles/nvme-ssd-guide-2025</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
   </url>
 
 </urlset>
