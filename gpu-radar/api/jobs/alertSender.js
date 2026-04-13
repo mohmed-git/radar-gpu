@@ -135,7 +135,7 @@ function buildEmailHTML(alert, currentPrice) {
 
           <p style="color:#64748B;font-size:12px;margin:0 0 8px;text-align:center;">
             لإيقاف هذا التنبيه:
-            <a href="https://gpu-radar.com/unsubscribe?token=${alert.token}" style="color:#38BDF8;">إلغاء الاشتراك</a>
+            <a href="https://pricebench.online/unsubscribe?token=${alert.token}" style="color:#38BDF8;">إلغاء الاشتراك</a>
           </p>
           <p style="color:#475569;font-size:11px;margin:0;text-align:center;">
             GPU Radar · الأسعار للأغراض المعلوماتية · قد نحصل على عمولة عند الشراء عبر روابطنا
@@ -165,7 +165,7 @@ async function sendAlertEmail(alert, currentPrice) {
     if (mailer.sendgrid) {
       await mailer.sendgrid.send({
         to:      alert.email,
-        from:    { email: process.env.EMAIL_FROM || 'alerts@gpu-radar.com', name: 'GPU Radar' },
+        from:    { email: process.env.EMAIL_FROM || 'alerts@pricebench.online', name: 'GPU Radar' },
         subject,
         html,
       });
@@ -173,7 +173,7 @@ async function sendAlertEmail(alert, currentPrice) {
     // Nodemailer path
     else {
       await mailer.sendMail({
-        from:    `"GPU Radar" <${process.env.EMAIL_FROM || 'alerts@gpu-radar.com'}>`,
+        from:    `"PriceBench" <${process.env.EMAIL_FROM || 'alerts@pricebench.online'}>`,
         to:      alert.email,
         subject,
         html,

@@ -39,7 +39,7 @@ async function sendAlertEmail(mailer, alert, newPrice) {
 <body style="background:#080C10;color:#E2E8F0;font-family:Arial,sans-serif;direction:rtl;margin:0;padding:20px">
 <div style="max-width:560px;margin:0 auto;background:#0D1117;border-radius:12px;border:1px solid rgba(56,189,248,0.2);overflow:hidden">
   <div style="padding:24px 28px;border-bottom:1px solid rgba(56,189,248,0.15)">
-    <span style="color:#38BDF8;font-size:18px;font-weight:700">◈ GPU Radar — تنبيه سعر 🔔</span>
+    <span style="color:#38BDF8;font-size:18px;font-weight:700">◈ PriceBench — تنبيه سعر &#x1F514;</span>
   </div>
   <div style="padding:28px">
     <p style="margin:0 0 16px;color:#94A3B8">وصل سعر <strong style="color:#38BDF8">${alert.partName}</strong> إلى حدك المستهدف!</p>
@@ -62,8 +62,8 @@ async function sendAlertEmail(mailer, alert, newPrice) {
       </a>
     </div>
     <p style="margin:20px 0 0;font-size:11px;color:#475569;text-align:center">
-      <a href="https://gpu-radar.com/api/alerts/unsubscribe?token=${alert.token}" style="color:#38BDF8">إلغاء الاشتراك</a>
-      &nbsp;·&nbsp; GPU Radar · الأسعار للأغراض المعلوماتية
+      <a href="https://pricebench.online/api/alerts/unsubscribe?token=${alert.token}" style="color:#38BDF8">إلغاء الاشتراك</a>
+      &nbsp;·&nbsp; PriceBench · الأسعار للأغراض المعلوماتية
     </p>
   </div>
 </div>
@@ -71,9 +71,9 @@ async function sendAlertEmail(mailer, alert, newPrice) {
 
   try {
     await mailer.sendMail({
-      from:    `"GPU Radar" <${process.env.SMTP_USER}>`,
+      from:    `"PriceBench" <${process.env.SMTP_USER}>`,
       to:      alert.email,
-      subject: `🔔 GPU Radar: ${alert.partName} وصل $${newPrice}!`,
+      subject: `PriceBench: ${alert.partName} وصل $${newPrice}!`,
       html,
     });
     console.log(`[Email] ✓ Sent to ${alert.email}`);
@@ -172,8 +172,8 @@ async function runDailyUpdate() {
       .sort((a, b) => Math.abs(b.changePct) - Math.abs(a.changePct))
       .slice(0, 5)
       .forEach(c => {
-        const arrow = c.changePct < 0 ? '▼' : '▲';
-        console.log(`    ${arrow} ${c.name}: $${c.oldPrice} → $${c.newPrice} (${c.changePct}%)`);
+        const dir = c.changePct < 0 ? 'DOWN' : 'UP';
+        console.log(`    [${dir}] ${c.name}: $${c.oldPrice} -> $${c.newPrice} (${c.changePct}%)`);
       });
   }
   console.log('─'.repeat(50));

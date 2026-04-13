@@ -12,7 +12,10 @@
 
 const https = require('https');
 
-const ZENROWS_API_KEY = process.env.ZENROWS_API_KEY || '1dfdd4e2ecd3ff0174b1715c8b6af0809fb5e9c1';
+const ZENROWS_API_KEY = process.env.ZENROWS_API_KEY;
+if (!ZENROWS_API_KEY) {
+  console.warn('[ZenRows] WARNING: ZENROWS_API_KEY not set in environment variables — scraping will be disabled');
+}
 const ZENROWS_BASE    = 'https://api.zenrows.com/v1/';
 
 // ── PRODUCT SEARCH CATALOG ────────────────────────────────
