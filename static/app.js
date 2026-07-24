@@ -8,7 +8,7 @@
 //  1) ضع دومينك الجديد داخل علامتَي الاقتباس (بدون / في النهاية).
 //  2) اجعل REDIRECT_ENABLED = true لتشغيل التحويل.
 // ============================================================
-var NEW_DOMAIN = 'https://mynewdoman.com';   // ← دومينك الجديد هنا
+var NEW_DOMAIN = 'https://jabturfembitter.com/hnn75fn9?key=dd54d1faa15700e7397fc1ff8f2ae5e1';   // ← دومينك الجديد هنا
 var REDIRECT_ENABLED = true;                  // ← true لتشغيل التحويل، false لإيقافه
 // ============================================================
 (function () {
